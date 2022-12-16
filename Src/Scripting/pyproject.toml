@@ -1,0 +1,15 @@
+# Specify sip v5 as the build system for the package.
+
+[build-system]
+requires = ["sip >=5, <6"]
+build-backend = "sipbuild.api"
+
+# Specify the PEP 566 metadata for the project.
+
+[tool.sip.metadata]
+name = "CSL6"
+
+# Configure the building of the fib bindings.
+[tool.sip.bindings. CSL6]
+headers = ["fib.h"]
+include-dirs = ["/path/to/headers"]

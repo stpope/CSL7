@@ -1,0 +1,24 @@
+Part 1
+
+Intro - 2 part demo
+History - CO, CSL, apps
+What is CSL
+	cross-platform C++ Library
+	DASP synth, proc, spat
+	Servers & GUI apps
+Demo
+	run from IDE or shell to show output
+Web site
+
+Part 2
+
+Coding CSL
+	UGENs, apps
+ProJUCER - files & GUI
+Xcode
+	project org
+	build
+Core classes
+Test mains
+Integration w other fmwrks
+Writing a UGEN - SimpleSine

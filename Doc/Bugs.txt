@@ -1,0 +1,40 @@
+CSL List of ThingsToDo
+
+Broken demo fcns:
+	Multi-tap delay demo mixer
+	testEnvScale has clicks
+	Sample-avg filter
+	HRTF pretty crappy, crashes (space leak?)
+	VBAP threading broken
+	FIR filter design breaks for complex filters
+	MIDI input hard-wired to device 0 and is very verbose
+	Audio input works, but mic processing is dodgy
+
+Windows issues:
+	FFT/IFFT untested
+	SHARC uses UNIX-specific code.
+
+Bugs:
+	Multi-out fan-out broken (see FIR demo)
+	Pink noise silent
+	Block resizer up-sampling
+	Env as scaled has clicks
+	Moog filter untested
+	ADSR/AR time scaling - setDuration should not scale whole envelope
+
+Unfinished:
+	InOut channel conversion handling
+
+Improvements:
+	ExpSeg and Spline envelopes
+	Add symmetrical filter constructors (cf/bw as floats/UGens)
+	Copy constructors all around
+
+New features:
+	SampleRateConvertor and support for multiple rates in a graph
+
+Meta-issues
+	Doc, doc, and more doc (CSL tutorial?)
+
+
+12.11 - 20.04

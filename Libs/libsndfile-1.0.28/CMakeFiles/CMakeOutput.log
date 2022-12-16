@@ -1,0 +1,1098 @@
+The system is: Darwin - 21.6.0 - arm64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc 
+Build flags: -Qunused-arguments;-w
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is AppleClang, found in "/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/3.24.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ 
+Build flags: -Qunused-arguments;-w;-std=c++11;-Wdynamic-exception-spec;-Wno-deprecated
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is AppleClang, found in "/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/3.24.1/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_8d0d0/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_8d0d0.dir/build.make CMakeFiles/cmTC_8d0d0.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCCompilerABI.c
+Apple clang version 14.0.0 (clang-1400.0.29.102)
+Target: arm64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -fno-rounding-math -funwind-tables=2 -fobjc-msgsend-selector-stubs -target-sdk-version=12.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +fp-armv8 -target-feature +neon -target-feature +crc -target-feature +crypto -target-feature +dotprod -target-feature +fp16fml -target-feature +ras -target-feature +lse -target-feature +rdm -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -debugger-tuning=lldb -target-linker-version 819.6 -v -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -w -fdebug-compilation-dir=/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.0 (clang-1400.0.29.102) default target arm64-apple-darwin21.6.0
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include"
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks (framework directory)
+End of search list.
+Linking C executable cmTC_8d0d0
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d0d0.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib -v -Wl,-v CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -o cmTC_8d0d0 
+Apple clang version 14.0.0 (clang-1400.0.29.102)
+Target: arm64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 12.0.0 12.3 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -w -o cmTC_8d0d0 -L/usr/local/lib -L/opt/homebrew/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-819.6
+BUILD 14:58:44 Aug  5 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+Library search paths:
+	/usr/local/lib
+	/opt/homebrew/lib
+	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib
+Framework search paths:
+	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+    add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+    add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  end of search list found
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  implicit include dirs: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_8d0d0/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_8d0d0.dir/build.make CMakeFiles/cmTC_8d0d0.dir/build]
+  ignore line: [gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.102)]
+  ignore line: [Target: arm64-apple-darwin21.6.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -fno-rounding-math -funwind-tables=2 -fobjc-msgsend-selector-stubs -target-sdk-version=12.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +fp-armv8 -target-feature +neon -target-feature +crc -target-feature +crypto -target-feature +dotprod -target-feature +fp16fml -target-feature +ras -target-feature +lse -target-feature +rdm -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -debugger-tuning=lldb -target-linker-version 819.6 -v -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -w -fdebug-compilation-dir=/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -x c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.102) default target arm64-apple-darwin21.6.0]
+  ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include"]
+  ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/Library/Frameworks"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks (framework directory)]
+  ignore line: [End of search list.]
+  ignore line: [Linking C executable cmTC_8d0d0]
+  ignore line: [/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8d0d0.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib -v -Wl -v CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -o cmTC_8d0d0 ]
+  ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.102)]
+  ignore line: [Target: arm64-apple-darwin21.6.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 12.0.0 12.3 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -w -o cmTC_8d0d0 -L/usr/local/lib -L/opt/homebrew/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [arm64] ==> ignore
+    arg [-platform_version] ==> ignore
+    arg [macos] ==> ignore
+    arg [12.0.0] ==> ignore
+    arg [12.3] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk] ==> ignore
+    arg [-w] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_8d0d0] ==> ignore
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/opt/homebrew/lib] ==> dir [/opt/homebrew/lib]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_8d0d0.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/local/lib;/opt/homebrew/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  Framework search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+  collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks]
+  implicit libs: []
+  implicit objs: []
+  implicit dirs: [/usr/local/lib;/opt/homebrew/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks]
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_4c819/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_4c819.dir/build.make CMakeFiles/cmTC_4c819.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -Qunused-arguments -w -std=c++11 -Wdynamic-exception-spec -Wno-deprecated  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk   -v -Wl,-v -MD -MT CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+Apple clang version 14.0.0 (clang-1400.0.29.102)
+Target: arm64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -fno-rounding-math -funwind-tables=2 -fobjc-msgsend-selector-stubs -target-sdk-version=12.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +fp-armv8 -target-feature +neon -target-feature +crc -target-feature +crypto -target-feature +dotprod -target-feature +fp16fml -target-feature +ras -target-feature +lse -target-feature +rdm -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -debugger-tuning=lldb -target-linker-version 819.6 -v -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -stdlib=libc++ -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wdynamic-exception-spec -Wno-deprecated -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -w -std=c++11 -fdebug-compilation-dir=/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 14.0.0 (clang-1400.0.29.102) default target arm64-apple-darwin21.6.0
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include"
+ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/Library/Frameworks"
+#include "..." search starts here:
+#include <...> search starts here:
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include
+ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include
+ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks (framework directory)
+End of search list.
+Linking CXX executable cmTC_4c819
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c819.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -Qunused-arguments -w -std=c++11 -Wdynamic-exception-spec -Wno-deprecated  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib -v -Wl,-v CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_4c819 
+Apple clang version 14.0.0 (clang-1400.0.29.102)
+Target: arm64-apple-darwin21.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 12.0.0 12.3 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -w -o cmTC_4c819 -L/usr/local/lib -L/opt/homebrew/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a
+@(#)PROGRAM:ld  PROJECT:ld64-819.6
+BUILD 14:58:44 Aug  5 2022
+configured to support archs: armv6 armv7 armv7s arm64 arm64e arm64_32 i386 x86_64 x86_64h armv6m armv7k armv7m armv7em
+Library search paths:
+	/usr/local/lib
+	/opt/homebrew/lib
+	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib
+Framework search paths:
+	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1]
+    add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+    add: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+    add: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  end of search list found
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1]
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+  collapse include dir [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include] ==> [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  implicit include dirs: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include;/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_4c819/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_4c819.dir/build.make CMakeFiles/cmTC_4c819.dir/build]
+  ignore line: [gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -Qunused-arguments -w -std=c++11 -Wdynamic-exception-spec -Wno-deprecated  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk   -v -Wl -v -MD -MT CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.102)]
+  ignore line: [Target: arm64-apple-darwin21.6.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  ignore line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang" -cc1 -triple arm64-apple-macosx12.0.0 -Wundef-prefix=TARGET_OS_ -Wdeprecated-objc-isa-usage -Werror=deprecated-objc-isa-usage -Werror=implicit-function-declaration -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=non-leaf -fno-strict-return -fno-rounding-math -funwind-tables=2 -fobjc-msgsend-selector-stubs -target-sdk-version=12.3 -fvisibility-inlines-hidden-static-local-var -target-cpu apple-m1 -target-feature +v8.5a -target-feature +fp-armv8 -target-feature +neon -target-feature +crc -target-feature +crypto -target-feature +dotprod -target-feature +fp16fml -target-feature +ras -target-feature +lse -target-feature +rdm -target-feature +rcpc -target-feature +zcm -target-feature +zcz -target-feature +fullfp16 -target-feature +sm4 -target-feature +sha3 -target-feature +sha2 -target-feature +aes -target-abi darwinpcs -fallow-half-arguments-and-returns -debugger-tuning=lldb -target-linker-version 819.6 -v -resource-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0 -dependency-file CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o.d -skip-unused-modulemap-deps -MT CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -stdlib=libc++ -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1 -internal-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include -internal-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include -internal-externc-isystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -Wdynamic-exception-spec -Wno-deprecated -Wno-reorder-init-list -Wno-implicit-int-float-conversion -Wno-c99-designator -Wno-final-dtor-non-final-class -Wno-extra-semi-stmt -Wno-misleading-indentation -Wno-quoted-include-in-framework-header -Wno-implicit-fallthrough -Wno-enum-enum-conversion -Wno-enum-float-conversion -Wno-elaborated-enum-base -Wno-reserved-identifier -Wno-gnu-folding-constant -Wno-cast-function-type -Wno-bitwise-instead-of-logical -w -std=c++11 -fdebug-compilation-dir=/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 1 -fstack-check -mdarwin-stkchk-strong-link -fblocks -fencode-extended-block-signature -fregister-global-dtors-with-atexit -fgnuc-version=4.2.1 -fno-cxx-modules -fcxx-exceptions -fexceptions -fmax-type-align=16 -fcommon -clang-vendor-feature=+messageToSelfInClassMethodIdReturnType -clang-vendor-feature=+disableInferNewAvailabilityFromInit -clang-vendor-feature=+disableNonDependentMemberExprInCurrentInstantiation -fno-odr-hash-protocols -clang-vendor-feature=+enableAggressiveVLAFolding -clang-vendor-feature=+revert09abecef7bbf -clang-vendor-feature=+thisNoAlignAttr -clang-vendor-feature=+thisNoNullAttr -mllvm -disable-aligned-alloc-awareness=1 -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -x c++ /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 14.0.0 (clang-1400.0.29.102) default target arm64-apple-darwin21.6.0]
+  ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/local/include"]
+  ignore line: [ignoring nonexistent directory "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/Library/Frameworks"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include]
+  ignore line: [ /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks (framework directory)]
+  ignore line: [End of search list.]
+  ignore line: [Linking CXX executable cmTC_4c819]
+  ignore line: [/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c819.dir/link.txt --verbose=1]
+  ignore line: [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -Qunused-arguments -w -std=c++11 -Wdynamic-exception-spec -Wno-deprecated  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl -search_paths_first -Wl -headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib -v -Wl -v CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_4c819 ]
+  ignore line: [Apple clang version 14.0.0 (clang-1400.0.29.102)]
+  ignore line: [Target: arm64-apple-darwin21.6.0]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin]
+  link line: [ "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld" -demangle -lto_library /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib -dynamic -arch arm64 -platform_version macos 12.0.0 12.3 -syslibroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -w -o cmTC_4c819 -L/usr/local/lib -L/opt/homebrew/lib -search_paths_first -headerpad_max_install_names -v CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o -lc++ -lSystem /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld] ==> ignore
+    arg [-demangle] ==> ignore
+    arg [-lto_library] ==> ignore, skip following value
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libLTO.dylib] ==> skip value of -lto_library
+    arg [-dynamic] ==> ignore
+    arg [-arch] ==> ignore
+    arg [arm64] ==> ignore
+    arg [-platform_version] ==> ignore
+    arg [macos] ==> ignore
+    arg [12.0.0] ==> ignore
+    arg [12.3] ==> ignore
+    arg [-syslibroot] ==> ignore
+    arg [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk] ==> ignore
+    arg [-w] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_4c819] ==> ignore
+    arg [-L/usr/local/lib] ==> dir [/usr/local/lib]
+    arg [-L/opt/homebrew/lib] ==> dir [/opt/homebrew/lib]
+    arg [-search_paths_first] ==> ignore
+    arg [-headerpad_max_install_names] ==> ignore
+    arg [-v] ==> ignore
+    arg [CMakeFiles/cmTC_4c819.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lc++] ==> lib [c++]
+    arg [-lSystem] ==> lib [System]
+    arg [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a] ==> lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+  Library search paths: [;/usr/local/lib;/opt/homebrew/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  Framework search paths: [;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/]
+  remove lib [System]
+  remove lib [/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/14.0.0/lib/darwin/libclang_rt.osx.a]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+  collapse library dir [/usr/local/lib] ==> [/usr/local/lib]
+  collapse library dir [/opt/homebrew/lib] ==> [/opt/homebrew/lib]
+  collapse library dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  collapse framework dir [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks/] ==> [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks]
+  implicit libs: [c++]
+  implicit objs: []
+  implicit dirs: [/usr/local/lib;/opt/homebrew/lib;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/lib]
+  implicit fwks: [/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/System/Library/Frameworks]
+
+
+Determining if the include file dlfcn.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_0cb77/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_0cb77.dir/build.make CMakeFiles/cmTC_0cb77.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0cb77.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_0cb77.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_0cb77.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_0cb77.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_0cb77
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0cb77.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_0cb77.dir/CheckIncludeFile.c.o -o cmTC_0cb77 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file inttypes.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_37320/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_37320.dir/build.make CMakeFiles/cmTC_37320.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_37320.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_37320.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_37320.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_37320.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_37320
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_37320.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_37320.dir/CheckIncludeFile.c.o -o cmTC_37320 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file locale.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_28199/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_28199.dir/build.make CMakeFiles/cmTC_28199.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_28199.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_28199.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_28199.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_28199.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_28199
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28199.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_28199.dir/CheckIncludeFile.c.o -o cmTC_28199 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file memory.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_a84e0/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_a84e0.dir/build.make CMakeFiles/cmTC_a84e0.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a84e0.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_a84e0.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_a84e0.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_a84e0.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_a84e0
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a84e0.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_a84e0.dir/CheckIncludeFile.c.o -o cmTC_a84e0 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdint.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_42378/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_42378.dir/build.make CMakeFiles/cmTC_42378.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_42378.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_42378.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_42378.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_42378.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_42378
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42378.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_42378.dir/CheckIncludeFile.c.o -o cmTC_42378 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stdlib.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_3a8e0/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_3a8e0.dir/build.make CMakeFiles/cmTC_3a8e0.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3a8e0.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_3a8e0.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_3a8e0.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_3a8e0.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_3a8e0
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a8e0.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_3a8e0.dir/CheckIncludeFile.c.o -o cmTC_3a8e0 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file string.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_59c39/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_59c39.dir/build.make CMakeFiles/cmTC_59c39.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_59c39.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_59c39.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_59c39.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_59c39.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_59c39
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59c39.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_59c39.dir/CheckIncludeFile.c.o -o cmTC_59c39 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file strings.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_1dc3d/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_1dc3d.dir/build.make CMakeFiles/cmTC_1dc3d.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1dc3d.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_1dc3d.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_1dc3d.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_1dc3d.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_1dc3d
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1dc3d.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_1dc3d.dir/CheckIncludeFile.c.o -o cmTC_1dc3d 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/stat.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_409dc/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_409dc.dir/build.make CMakeFiles/cmTC_409dc.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_409dc.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_409dc.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_409dc.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_409dc.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_409dc
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_409dc.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_409dc.dir/CheckIncludeFile.c.o -o cmTC_409dc 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/time.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_a3d15/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_a3d15.dir/build.make CMakeFiles/cmTC_a3d15.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a3d15.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_a3d15.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_a3d15.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_a3d15.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_a3d15
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a3d15.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_a3d15.dir/CheckIncludeFile.c.o -o cmTC_a3d15 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/types.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_fc881/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_fc881.dir/build.make CMakeFiles/cmTC_fc881.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fc881.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_fc881.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_fc881.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_fc881.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_fc881
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fc881.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_fc881.dir/CheckIncludeFile.c.o -o cmTC_fc881 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file sys/wait.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_e0eb0/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_e0eb0.dir/build.make CMakeFiles/cmTC_e0eb0.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e0eb0.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_e0eb0.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_e0eb0.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_e0eb0.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_e0eb0
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e0eb0.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_e0eb0.dir/CheckIncludeFile.c.o -o cmTC_e0eb0 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file unistd.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_ab61e/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_ab61e.dir/build.make CMakeFiles/cmTC_ab61e.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ab61e.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_ab61e.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_ab61e.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_ab61e.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ab61e
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ab61e.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_ab61e.dir/CheckIncludeFile.c.o -o cmTC_ab61e 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the include file stddef.h exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_68db7/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_68db7.dir/build.make CMakeFiles/cmTC_68db7.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_68db7.dir/CheckIncludeFile.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_68db7.dir/CheckIncludeFile.c.o -MF CMakeFiles/cmTC_68db7.dir/CheckIncludeFile.c.o.d -o CMakeFiles/cmTC_68db7.dir/CheckIncludeFile.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_68db7
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68db7.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_68db7.dir/CheckIncludeFile.c.o -o cmTC_68db7 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of double passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_86287/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_86287.dir/build.make CMakeFiles/cmTC_86287.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_86287.dir/size_double.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_86287.dir/size_double.c.o -MF CMakeFiles/cmTC_86287.dir/size_double.c.o.d -o CMakeFiles/cmTC_86287.dir/size_double.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_double.c
+Linking C executable cmTC_86287
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_86287.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_86287.dir/size_double.c.o -o cmTC_86287 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of float passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_a2725/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_a2725.dir/build.make CMakeFiles/cmTC_a2725.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a2725.dir/size_float.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_a2725.dir/size_float.c.o -MF CMakeFiles/cmTC_a2725.dir/size_float.c.o.d -o CMakeFiles/cmTC_a2725.dir/size_float.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_float.c
+Linking C executable cmTC_a2725
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2725.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_a2725.dir/size_float.c.o -o cmTC_a2725 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of int passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_04e6f/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_04e6f.dir/build.make CMakeFiles/cmTC_04e6f.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_04e6f.dir/size_int.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_04e6f.dir/size_int.c.o -MF CMakeFiles/cmTC_04e6f.dir/size_int.c.o.d -o CMakeFiles/cmTC_04e6f.dir/size_int.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_int.c
+Linking C executable cmTC_04e6f
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04e6f.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_04e6f.dir/size_int.c.o -o cmTC_04e6f 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of int64_t passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_11abf/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_11abf.dir/build.make CMakeFiles/cmTC_11abf.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_11abf.dir/size_int64_t.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_11abf.dir/size_int64_t.c.o -MF CMakeFiles/cmTC_11abf.dir/size_int64_t.c.o.d -o CMakeFiles/cmTC_11abf.dir/size_int64_t.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_int64_t.c
+Linking C executable cmTC_11abf
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_11abf.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_11abf.dir/size_int64_t.c.o -o cmTC_11abf 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of long passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_238dc/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_238dc.dir/build.make CMakeFiles/cmTC_238dc.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_238dc.dir/size_long.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_238dc.dir/size_long.c.o -MF CMakeFiles/cmTC_238dc.dir/size_long.c.o.d -o CMakeFiles/cmTC_238dc.dir/size_long.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_long.c
+Linking C executable cmTC_238dc
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_238dc.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_238dc.dir/size_long.c.o -o cmTC_238dc 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of long long passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_6d996/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_6d996.dir/build.make CMakeFiles/cmTC_6d996.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6d996.dir/size_long_long.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_6d996.dir/size_long_long.c.o -MF CMakeFiles/cmTC_6d996.dir/size_long_long.c.o.d -o CMakeFiles/cmTC_6d996.dir/size_long_long.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_long_long.c
+Linking C executable cmTC_6d996
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6d996.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_6d996.dir/size_long_long.c.o -o cmTC_6d996 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of off_t passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_d778e/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_d778e.dir/build.make CMakeFiles/cmTC_d778e.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d778e.dir/size_off_t.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_d778e.dir/size_off_t.c.o -MF CMakeFiles/cmTC_d778e.dir/size_off_t.c.o.d -o CMakeFiles/cmTC_d778e.dir/size_off_t.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_off_t.c
+Linking C executable cmTC_d778e
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d778e.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_d778e.dir/size_off_t.c.o -o cmTC_d778e 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of short passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_01689/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_01689.dir/build.make CMakeFiles/cmTC_01689.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_01689.dir/size_short.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_01689.dir/size_short.c.o -MF CMakeFiles/cmTC_01689.dir/size_short.c.o.d -o CMakeFiles/cmTC_01689.dir/size_short.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_short.c
+Linking C executable cmTC_01689
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_01689.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_01689.dir/size_short.c.o -o cmTC_01689 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of size_t passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_3a9e6/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_3a9e6.dir/build.make CMakeFiles/cmTC_3a9e6.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3a9e6.dir/size_size_t.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_3a9e6.dir/size_size_t.c.o -MF CMakeFiles/cmTC_3a9e6.dir/size_size_t.c.o.d -o CMakeFiles/cmTC_3a9e6.dir/size_size_t.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_size_t.c
+Linking C executable cmTC_3a9e6
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a9e6.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_3a9e6.dir/size_size_t.c.o -o cmTC_3a9e6 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of ssize_t passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_ed19b/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_ed19b.dir/build.make CMakeFiles/cmTC_ed19b.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ed19b.dir/size_ssize_t.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_ed19b.dir/size_ssize_t.c.o -MF CMakeFiles/cmTC_ed19b.dir/size_ssize_t.c.o.d -o CMakeFiles/cmTC_ed19b.dir/size_ssize_t.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_ssize_t.c
+Linking C executable cmTC_ed19b
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ed19b.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_ed19b.dir/size_ssize_t.c.o -o cmTC_ed19b 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of void* passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_136c4/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_136c4.dir/build.make CMakeFiles/cmTC_136c4.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_136c4.dir/size_void_P.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_136c4.dir/size_void_P.c.o -MF CMakeFiles/cmTC_136c4.dir/size_void_P.c.o.d -o CMakeFiles/cmTC_136c4.dir/size_void_P.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_void_P.c
+Linking C executable cmTC_136c4
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_136c4.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_136c4.dir/size_void_P.c.o -o cmTC_136c4 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining size of wchar_t passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_ab917/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_ab917.dir/build.make CMakeFiles/cmTC_ab917.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ab917.dir/size_wchar_t.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_ab917.dir/size_wchar_t.c.o -MF CMakeFiles/cmTC_ab917.dir/size_wchar_t.c.o.d -o CMakeFiles/cmTC_ab917.dir/size_wchar_t.c.o -c /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CheckTypeSize/size_wchar_t.c
+Linking C executable cmTC_ab917
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ab917.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w  -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_ab917.dir/size_wchar_t.c.o -o cmTC_ab917 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function floor exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_9c0f9/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_9c0f9.dir/build.make CMakeFiles/cmTC_9c0f9.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9c0f9.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=floor -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_9c0f9.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_9c0f9.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_9c0f9.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_9c0f9
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9c0f9.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=floor -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_9c0f9.dir/CheckFunctionExists.c.o -o cmTC_9c0f9  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function sqlite3_close exists in the sqlite3 passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_7ef6e/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_7ef6e.dir/build.make CMakeFiles/cmTC_7ef6e.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ef6e.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=sqlite3_close -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_7ef6e.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_7ef6e.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_7ef6e.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_7ef6e
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ef6e.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=sqlite3_close -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_7ef6e.dir/CheckFunctionExists.c.o -o cmTC_7ef6e  -lsqlite3 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function calloc exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_e69f5/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_e69f5.dir/build.make CMakeFiles/cmTC_e69f5.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e69f5.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=calloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_e69f5.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_e69f5.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_e69f5.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e69f5
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e69f5.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=calloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_e69f5.dir/CheckFunctionExists.c.o -o cmTC_e69f5 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function free exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_c167f/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_c167f.dir/build.make CMakeFiles/cmTC_c167f.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c167f.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=free -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_c167f.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_c167f.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_c167f.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c167f
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c167f.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=free -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_c167f.dir/CheckFunctionExists.c.o -o cmTC_c167f 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fstat exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_028ed/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_028ed.dir/build.make CMakeFiles/cmTC_028ed.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_028ed.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fstat -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_028ed.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_028ed.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_028ed.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_028ed
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_028ed.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fstat -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_028ed.dir/CheckFunctionExists.c.o -o cmTC_028ed 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fstat64 exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_bad37/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_bad37.dir/build.make CMakeFiles/cmTC_bad37.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bad37.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fstat64 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_bad37.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_bad37.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_bad37.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bad37
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bad37.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fstat64 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_bad37.dir/CheckFunctionExists.c.o -o cmTC_bad37 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fsync exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_5a559/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_5a559.dir/build.make CMakeFiles/cmTC_5a559.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5a559.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fsync -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_5a559.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_5a559.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_5a559.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_5a559
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5a559.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fsync -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_5a559.dir/CheckFunctionExists.c.o -o cmTC_5a559 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function ftruncate exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_b719a/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_b719a.dir/build.make CMakeFiles/cmTC_b719a.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b719a.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=ftruncate -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_b719a.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_b719a.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_b719a.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b719a
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b719a.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=ftruncate -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_b719a.dir/CheckFunctionExists.c.o -o cmTC_b719a 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function getpagesize exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_233b2/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_233b2.dir/build.make CMakeFiles/cmTC_233b2.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_233b2.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=getpagesize -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_233b2.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_233b2.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_233b2.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_233b2
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_233b2.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=getpagesize -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_233b2.dir/CheckFunctionExists.c.o -o cmTC_233b2 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function gettimeofday exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_69e5b/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_69e5b.dir/build.make CMakeFiles/cmTC_69e5b.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_69e5b.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gettimeofday -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_69e5b.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_69e5b.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_69e5b.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_69e5b
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69e5b.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gettimeofday -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_69e5b.dir/CheckFunctionExists.c.o -o cmTC_69e5b 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function gmtime exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_bbaf5/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_bbaf5.dir/build.make CMakeFiles/cmTC_bbaf5.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bbaf5.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gmtime -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_bbaf5.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_bbaf5.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_bbaf5.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bbaf5
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bbaf5.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gmtime -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_bbaf5.dir/CheckFunctionExists.c.o -o cmTC_bbaf5 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function gmtime_r exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_f0f99/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_f0f99.dir/build.make CMakeFiles/cmTC_f0f99.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f0f99.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gmtime_r -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_f0f99.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_f0f99.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_f0f99.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f0f99
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0f99.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=gmtime_r -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_f0f99.dir/CheckFunctionExists.c.o -o cmTC_f0f99 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function localtime exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_e6cf9/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_e6cf9.dir/build.make CMakeFiles/cmTC_e6cf9.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e6cf9.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=localtime -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_e6cf9.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_e6cf9.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_e6cf9.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_e6cf9
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e6cf9.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=localtime -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_e6cf9.dir/CheckFunctionExists.c.o -o cmTC_e6cf9 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function localtime_r exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_5f712/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_5f712.dir/build.make CMakeFiles/cmTC_5f712.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5f712.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=localtime_r -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_5f712.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_5f712.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_5f712.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_5f712
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5f712.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=localtime_r -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_5f712.dir/CheckFunctionExists.c.o -o cmTC_5f712 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function lseek exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_a513d/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_a513d.dir/build.make CMakeFiles/cmTC_a513d.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a513d.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lseek -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_a513d.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_a513d.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_a513d.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a513d
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a513d.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lseek -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_a513d.dir/CheckFunctionExists.c.o -o cmTC_a513d 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function malloc exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_d433b/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_d433b.dir/build.make CMakeFiles/cmTC_d433b.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d433b.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=malloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_d433b.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_d433b.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_d433b.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d433b
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d433b.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=malloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_d433b.dir/CheckFunctionExists.c.o -o cmTC_d433b 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function mmap exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_29893/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_29893.dir/build.make CMakeFiles/cmTC_29893.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_29893.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=mmap -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_29893.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_29893.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_29893.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_29893
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_29893.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=mmap -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_29893.dir/CheckFunctionExists.c.o -o cmTC_29893 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function open exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_d13d8/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_d13d8.dir/build.make CMakeFiles/cmTC_d13d8.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d13d8.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=open -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_d13d8.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_d13d8.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_d13d8.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d13d8
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d13d8.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=open -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_d13d8.dir/CheckFunctionExists.c.o -o cmTC_d13d8 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pipe exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_084c8/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_084c8.dir/build.make CMakeFiles/cmTC_084c8.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_084c8.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=pipe -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_084c8.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_084c8.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_084c8.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_084c8
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_084c8.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=pipe -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_084c8.dir/CheckFunctionExists.c.o -o cmTC_084c8 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function read exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_76547/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_76547.dir/build.make CMakeFiles/cmTC_76547.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_76547.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=read -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_76547.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_76547.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_76547.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_76547
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76547.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=read -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_76547.dir/CheckFunctionExists.c.o -o cmTC_76547 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function realloc exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_bab70/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_bab70.dir/build.make CMakeFiles/cmTC_bab70.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bab70.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=realloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_bab70.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_bab70.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_bab70.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_bab70
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bab70.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=realloc -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_bab70.dir/CheckFunctionExists.c.o -o cmTC_bab70 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function setlocale exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_91ff5/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_91ff5.dir/build.make CMakeFiles/cmTC_91ff5.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_91ff5.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=setlocale -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_91ff5.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_91ff5.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_91ff5.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_91ff5
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91ff5.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=setlocale -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_91ff5.dir/CheckFunctionExists.c.o -o cmTC_91ff5 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function snprintf exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_63cb1/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_63cb1.dir/build.make CMakeFiles/cmTC_63cb1.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_63cb1.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=snprintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_63cb1.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_63cb1.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_63cb1.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_63cb1
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_63cb1.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=snprintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_63cb1.dir/CheckFunctionExists.c.o -o cmTC_63cb1 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function vsnprintf exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_26e5c/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_26e5c.dir/build.make CMakeFiles/cmTC_26e5c.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_26e5c.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=vsnprintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_26e5c.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_26e5c.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_26e5c.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_26e5c
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_26e5c.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=vsnprintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_26e5c.dir/CheckFunctionExists.c.o -o cmTC_26e5c 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function waitpid exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_987c8/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_987c8.dir/build.make CMakeFiles/cmTC_987c8.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_987c8.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=waitpid -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_987c8.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_987c8.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_987c8.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_987c8
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_987c8.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=waitpid -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_987c8.dir/CheckFunctionExists.c.o -o cmTC_987c8 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function write exists passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_1e898/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_1e898.dir/build.make CMakeFiles/cmTC_1e898.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1e898.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=write -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_1e898.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_1e898.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_1e898.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_1e898
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1e898.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=write -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_1e898.dir/CheckFunctionExists.c.o -o cmTC_1e898 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function ceil exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_dbb03/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_dbb03.dir/build.make CMakeFiles/cmTC_dbb03.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_dbb03.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=ceil -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_dbb03.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_dbb03.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_dbb03.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_dbb03
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dbb03.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=ceil -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_dbb03.dir/CheckFunctionExists.c.o -o cmTC_dbb03  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function floor exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_2a55e/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_2a55e.dir/build.make CMakeFiles/cmTC_2a55e.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2a55e.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=floor -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_2a55e.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_2a55e.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_2a55e.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2a55e
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2a55e.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=floor -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_2a55e.dir/CheckFunctionExists.c.o -o cmTC_2a55e  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function fmod exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_264bb/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_264bb.dir/build.make CMakeFiles/cmTC_264bb.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_264bb.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fmod -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_264bb.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_264bb.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_264bb.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_264bb
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_264bb.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=fmod -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_264bb.dir/CheckFunctionExists.c.o -o cmTC_264bb  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function lrint exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_657c7/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_657c7.dir/build.make CMakeFiles/cmTC_657c7.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_657c7.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lrint -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_657c7.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_657c7.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_657c7.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_657c7
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_657c7.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lrint -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_657c7.dir/CheckFunctionExists.c.o -o cmTC_657c7  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function lrintf exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_8dada/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_8dada.dir/build.make CMakeFiles/cmTC_8dada.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_8dada.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lrintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_8dada.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_8dada.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_8dada.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_8dada
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8dada.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lrintf -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_8dada.dir/CheckFunctionExists.c.o -o cmTC_8dada  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function lround exists in the m passed with the following output:
+Change Dir: /Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/opt/homebrew/bin/gmake -f Makefile cmTC_52ac5/fast && /opt/homebrew/bin/gmake  -f CMakeFiles/cmTC_52ac5.dir/build.make CMakeFiles/cmTC_52ac5.dir/build
+gmake[1]: Entering directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_52ac5.dir/CheckFunctionExists.c.o
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc   -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lround -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -MD -MT CMakeFiles/cmTC_52ac5.dir/CheckFunctionExists.c.o -MF CMakeFiles/cmTC_52ac5.dir/CheckFunctionExists.c.o.d -o CMakeFiles/cmTC_52ac5.dir/CheckFunctionExists.c.o -c /opt/homebrew/Cellar/cmake/3.24.1/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTC_52ac5
+/opt/homebrew/Cellar/cmake/3.24.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_52ac5.dir/link.txt --verbose=1
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -Qunused-arguments -w -DCHECK_FUNCTION_EXISTS=lround -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names -L/usr/local/lib -L/opt/homebrew/lib  CMakeFiles/cmTC_52ac5.dir/CheckFunctionExists.c.o -o cmTC_52ac5  -lm 
+gmake[1]: Leaving directory '/Users/stp/Code/CSL6/Libs/libsndfile-1.0.28/CMakeFiles/CMakeTmp'
+
+
+
