@@ -229,21 +229,21 @@ float fTimeNow();							///< system or IO time in seconds
 
 float fRandZ(void);							///<  0 - 1			(name: zero)
 float fRand1(void);							///< -1 - 1			(one)
-float fRandV(float val);					///< 0 - v			(val)
+float fRandV(float val);						///< 0 - v			(val)
 
-float fRandM(float minV, float maxV);		///< min - max		(min/max)
+float fRandM(float minV, float maxV);			///< min - max		(min/max)
 float fRandR(float base, float range);		///< b +- (r * b)   (range)
 float fRandB(float base, float range);		///< b +- r			(base)
 
 /// Integer rands
 
-int iRandV(int val);						///< 0 - v			(val)
+int iRandV(int val);							///< 0 - v			(val)
 int iRandM(int minV, int maxV);				///< min - max		(min/max)
-int iRandB(int base, int range);			///< b +- r			(base)
+int iRandB(int base, int range);				///< b +- r			(base)
 
 // Bool coin-toss rands
 
-bool coin();								///< Answer true or false
+bool coin();									///< Answer true or false
 bool coin(float bias);						///< Answer with a bias (1 --> always true)
 
 

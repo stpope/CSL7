@@ -221,7 +221,7 @@ bool Envelope::isActive() {
 
 void Envelope::setDuration(float d) {
 	//if ((mDuration == 0.0f) || (! isnormal(mDuration))) {
-	if (mDuration == 0.0f) {
+	if (mDuration <= 0.0f) {
 		logMsg(kLogError, "Impossible env dur");
 		throw RunTimeError("Impossible env dur");
 	}

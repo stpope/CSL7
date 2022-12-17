@@ -484,12 +484,12 @@ void test_vector_ifft() {
 	
 	vox1.setBinMagPhase(4, 0.25, 0);			    // set different harmonics
 	vox1.setBinMagPhase(6, 0.25, 0);
-	LineSegment env1(dur, 0.5, 0.0001);
+	LineSegment env1(dur, 0.5, 0.00001, kExpon);	// fade-out
 	MulOp mul1(vox1, env1);						// use a MulOp
 
 	vox2.setBinMagPhase(5, 0.25, 0);			    // for the 2nd IFFT
 	vox2.setBinMagPhase(9, 0.25, 0);
-	LineSegment env2(dur, 0.0001, 0.5);
+	LineSegment env2(dur, 0.00001, 0.5, kExpon);	// fade-in
 	MulOp mul2(vox2, env2);
 
 	AddOp add(mul1, mul2);						// sum the MulOps

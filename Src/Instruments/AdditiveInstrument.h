@@ -84,6 +84,8 @@ public:
 	SumOfSines mSOS;				///< sum-of-sine oscillator
 	Panner mPanner;				///< stereo panner
 	PinkNoise mChiff;			///< attack chiff
+	Mixer mMix;				///< output summer
+
 protected:
 	void init();
 	void getSpectrum();			///< recompute the SOS spectrum from the SHARC data
@@ -102,8 +104,8 @@ protected:
 
 class VAdditiveInstrument : public Instrument {
 public:
-//	VAdditiveInstrument();		///< Constructor
 	VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum * spect2);
+	VAdditiveInstrument(SHARCInstrument * instr1, SHARCInstrument * instr2);
 	~VAdditiveInstrument();
 								/// Plug functions
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
@@ -115,13 +117,20 @@ public:
 				float att = 0.1, float dec = 0.1, float sus = 0.75, float rel = 0.2);
 	void playMIDI(float dur, int chan, int key, int vel);	
 
-	ADSR mAEnv1, mAEnv2;		///< amplitude envelope
-	LineSegment mXEnv1, mXEnv2;	///< cross-fade envelopes = line segs
-   	SumOfSines mSOS1, mSOS2;	///< 2 sum-of-sine oscillators
-	Mixer mMix;
-	Panner mPanner;				///< stereo panner
+	SHARCInstrument * mInstr1 = 0;	///< SHARC instruments, or 0 if SHARC spectra are used
+	SHARCInstrument * mInstr2 = 0;
+	ADSR mAEnv1, mAEnv2;				///< amplitude envelopes
+	AR mVEnv;						///< vibrato envelope
+	LineSegment mXEnv1, mXEnv2;		///< cross-fade envelopes = line segs
+   	SumOfSines mSOS1, mSOS2;			///< 2 sum-of-sine oscillators
+	Osc mVib;						///< vibrato oscillators
+	Mixer mMix;						///< output summer
+	Panner mPanner;					///< stereo panner
 protected:
 	void init();
+	void getSpectra();				///< recompute the 2 SOS spectra from the SHARC data
+	int mNoteFreq = 0;			///< freq of last note
+	float mFreq;
 };
 
 }

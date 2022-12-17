@@ -489,6 +489,14 @@
 			name = IO;
 			sourceTree = "<group>";
 		};
+		4C77728C294E109E0057B63B /* OSC Server */ = {
+			isa = PBXGroup;
+			children = (
+				86BEF0426F81E6B27F53A602 /* OSC_main.cpp */,
+			);
+			name = "OSC Server";
+			sourceTree = "<group>";
+		};
 		52A73B4BE93FC1395C769DDC /* Processors */ = {
 			isa = PBXGroup;
 			children = (
@@ -618,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				6E105E5AF03104A682BE2FA6 /* FilterData.h */,
-				86BEF0426F81E6B27F53A602 /* OSC_main.cpp */,
 				331D2D0A687651E40DD9C503 /* Test_Support.h */,
 				4E5D1FE291AF9E5A9E78BDEA /* Test_Support.cpp */,
 				76BB15707EAB8A36076F5CE8 /* Test_Oscillators.cpp */,
@@ -670,10 +677,10 @@
 				55C265D80AA3EEECA41392E5 /* Accessor.h */,
 				0B65F42593222F8906DE19E5 /* Instrument.h */,
 				CF7DA19736136564102AD653 /* Instrument.cpp */,
-				5ACBA9D1324EA4C83C47CE40 /* FMInstrument.cpp */,
 				1030DA6EC2BCAAEF91366FB7 /* FMInstrument.h */,
-				CCF10CC39FFCF2998ACE5ED5 /* StringInstrument.cpp */,
+				5ACBA9D1324EA4C83C47CE40 /* FMInstrument.cpp */,
 				1A37BB652DDFE41179C57915 /* StringInstrument.h */,
+				CCF10CC39FFCF2998ACE5ED5 /* StringInstrument.cpp */,
 				C350B5483F87EEEC99389D29 /* AdditiveInstrument.h */,
 				DAB96B3ECFFAA25EDD39B9FC /* AdditiveInstrument.cpp */,
 				5EB46A1D0ED7F46A7C66EA57 /* SndFileInstrument.h */,
@@ -704,6 +711,7 @@
 				BA046314B194C2F4C9E7558D /* Instruments */,
 				A61F3CDDA96146B30F07478A /* Utilities */,
 				8493CB0E0D942C9E52C26E2D /* Tests */,
+				4C77728C294E109E0057B63B /* OSC Server */,
 				2DDC19BC2582E0339BA8688D /* Demo_GUI */,
 			);
 			name = "CSL7-Demo";

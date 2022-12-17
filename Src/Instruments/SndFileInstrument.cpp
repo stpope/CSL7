@@ -92,7 +92,7 @@ void SndFileInstrument0::playOSC(int argc, void **argv, const char *types) {
 			}
 			mPanner.setScale(*fargs[0]);
 			mPanner.setPosition(*fargs[1]);
-			printf("\tSnd: a %5.3f  p %5.3f\n", *fargs[0], *fargs[1]);
+//			printf("\tSnd: a %5.3f  p %5.3f\n", *fargs[0], *fargs[1]);
 			break;
 		default:
 			logMsg(kLogError, "Invalid type string in OSC message: \"%s\"", types);
@@ -215,7 +215,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 			}
 			mPanner.setScale(*fargs[0]);
 			mPanner.setPosition(*fargs[1]);
-			printf("\tSndFileInstr: PN: %5.3f %5.3f\n", fargs[0], fargs[1]);
+//			printf("\tSndFileInstr: PN: %5.3f %5.3f\n", fargs[0], fargs[1]);
 			break;
 		case 3:					// ampl, pos, rate
 			if (strcmp(types, "fff") != 0) {
@@ -225,7 +225,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 			mPanner.setScale(*fargs[0]);
 			mPanner.setPosition(*fargs[1]);
 			mRate.setValue(*fargs[2]);
-			//			printf("\tSndFileInstr: PN: %g %g %g\n", fargs[0], fargs[1], fargs[2]);
+//			printf("\tSndFileInstr: PN: %g %g %g\n", fargs[0], fargs[1], fargs[2]);
 			break;
 		case 4:					// ampl, pos, start, stop
 			if (strcmp(types, "ffii") == 0) {				// start/stop at ints = sample index
@@ -233,7 +233,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 				mPanner.setPosition(*fargs[1]);
 				mPlayer.setStart(*iargs[2]);
 				mPlayer.setStop(*iargs[3]);
-				//				printf("\tSndFileInstr: PN: %g  %g  %d - %d\n", fargs[0], fargs[1], iargs[2], iargs[3]);
+//				printf("\tSndFileInstr: PN: %g  %g  %d - %d\n", fargs[0], fargs[1], iargs[2], iargs[3]);
 				break;
 			}
 			if (strcmp(types, "ffff") == 0) {				// start/stop at floats = relative
@@ -241,7 +241,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 				mPanner.setPosition(*fargs[1]);
 				mPlayer.setStartRatio(*fargs[2]);
 				mPlayer.setStopRatio(*fargs[3]);
-				//				printf("\tSndFileInstr: PN4: %g  %g\t\t%g - %g\n", fargs[0], fargs[1], fargs[2], fargs[3]);
+//				printf("\tSndFileInstr: PN4: %g  %g\t\t%g - %g\n", fargs[0], fargs[1], fargs[2], fargs[3]);
 				break;
 			}
 			logMsg(kLogError, "Invalid type string in OSC message, expected \"ffii\" got \"%s\"", types);
@@ -256,7 +256,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 			mRate.setValue(*fargs[2]);
 			mPlayer.setStartRatio(*iargs[3]);
 			mPlayer.setStopRatio(*iargs[4]);
-			//			printf("\tSndFileInstr: PN: %g %g %g %g-%g\n", fargs[0], fargs[1], fargs[2], iargs[3], iargs[4]);
+//			printf("\tSndFileInstr: PN: %g %g %g %g-%g\n", fargs[0], fargs[1], fargs[2], iargs[3], iargs[4]);
 			break;
 		case 6:					// ampl, pos, start, stop, attack, decay
 			if (strcmp(types, "ffiiff") != 0) {
@@ -269,7 +269,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 			mPlayer.setStop(*iargs[3]);
 			mEnvelope.setAttack(*fargs[4]);
 			mEnvelope.setRelease(*fargs[5]);
-			//			printf("\tSndFileInstr: PN: %g  %g   %g - %g\n", fargs[0], fargs[1], iargs[3], iargs[4]);
+//			printf("\tSndFileInstr: PN: %g  %g   %g - %g\n", fargs[0], fargs[1], iargs[3], iargs[4]);
 			break;
 		case 7:					// ampl, pos, rate, start, stop, attack, decay
 			if (strcmp(types, "fffiiff") != 0) {
@@ -283,7 +283,7 @@ void SndFileInstrument1::playOSC(int argc, void **argv, const char *types) {
 			mPlayer.setStop(*iargs[4]);
 			mEnvelope.setAttack(*fargs[5]);
 			mEnvelope.setRelease(*fargs[6]);
-			//			printf("\tSndFileInstr: PN: %g %g %d-%d\n", fargs[0], fargs[1], iargs[3], iargs[4]);
+//			printf("\tSndFileInstr: PN: %g %g %d-%d\n", fargs[0], fargs[1], iargs[3], iargs[4]);
 			break;
 		default:
 			logMsg(kLogError, "Invalid type string in OSC message: \"%s\"", types);

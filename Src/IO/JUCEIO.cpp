@@ -93,8 +93,8 @@ void JUCEIO::audioDeviceIOCallbackWithContext (const float * const * inData, int
 		for (unsigned i = 0; i < numOuts; i++) { 	// plug in output pointers
 			mOutputBuffer.setBuffer(i, (SampleBuffer) outData[i]);
 													// testing - write a sawtooth
-//			float val = -0.5f;
-//			float step = 0.01f;
+//			float val = -0.15f;
+//			float step = 0.002f;
 //			float * ptr = outData[i];
 //			for (unsigned j = 0; j < numSamples; j++) {
 //				*ptr++ = val;
@@ -103,13 +103,13 @@ void JUCEIO::audioDeviceIOCallbackWithContext (const float * const * inData, int
 //					val = -0.5f;
 //			}
 	}
-//	try {						//////////////
-//								//// Tell the IO to call its graph ------------------
-//								//////////////
-//			pullInput(mOutputBuffer, NULL);
-//		} catch (csl::CException e) {
-//			logMsg(kLogError, "Error running CSL: graph: %s\n", e.what());
-//		}
+	try {						//////////////
+								//// Tell the IO to call its graph ------------------
+								//////////////
+			pullInput(mOutputBuffer, NULL);
+		} catch (csl::CException e) {
+			logMsg(kLogError, "Error running CSL: graph: %s\n", e.what());
+		}
 		mNumFramesPlayed += numSamples;
 	}
 	return;

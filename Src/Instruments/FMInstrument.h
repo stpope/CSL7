@@ -80,6 +80,7 @@ public:
 	WhiteNoise mChiff;				///< chiff noise
 	Butter mChFilter;				///< chiff filter
 	Freeverb mReverb;
+	Mixer * mMix;					///< direct output
 };
 
 ///

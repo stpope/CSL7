@@ -87,7 +87,7 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 
 // -----------------------------------------------------------------------------------------------
 
-// MAIN with 10 plucked strings, 10 FM voices, 10 FM bells, 16 SHARC SOS voices, 4 snd file voices
+// MAIN with 10 plucked strings, 10 FM voices, 10 FM bells, 16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices
 
 #ifdef CSL_OSC_SERVER4
 
@@ -106,7 +106,8 @@ int main(int argc, const char * argv[]) {
 	printf("OSC server listening to port %s\n", CSL_mOSCPort);
 	initOSC(CSL_mOSCPort);				// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FM voices, 10 FM bells, 16 SHARC SOS voices, 4 snd file voices\n");
+	printf("Setting up library with 10 strings, 10 FM voices, 10 FM bells,\n16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices\n");
+	printf("Setting up library with 10 strings, 10 FM voices, 10 FM bells,\n16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -131,19 +132,19 @@ int main(int argc, const char * argv[]) {
 	SHARCLibrary::loadDefault();
 	SHARCLibrary * sharcLib = SHARCLibrary::library();
 	std::vector<SHARCInstrument *> sharcInstrs;
-	sharcInstrs.push_back(sharcLib->instrument("oboe"));
+	sharcInstrs.push_back(sharcLib->instrument("oboe"));				// 0
 	sharcInstrs.push_back(sharcLib->instrument("tuba"));
 	sharcInstrs.push_back(sharcLib->instrument("viola_vibrato"));
 	sharcInstrs.push_back(sharcLib->instrument("bass_clarinet"));
-	sharcInstrs.push_back(sharcLib->instrument("violinensemb"));
+	sharcInstrs.push_back(sharcLib->instrument("violinensemb"));		// 4
 	sharcInstrs.push_back(sharcLib->instrument("Eb_clarinet"));
 	sharcInstrs.push_back(sharcLib->instrument("alto_trombone"));
 	sharcInstrs.push_back(sharcLib->instrument("French_horn"));
-	sharcInstrs.push_back(sharcLib->instrument("altoflute_vibrato"));
+	sharcInstrs.push_back(sharcLib->instrument("altoflute_vibrato"));	// 8
 	sharcInstrs.push_back(sharcLib->instrument("cello_martele"));
 	sharcInstrs.push_back(sharcLib->instrument("Bach_trumpet"));
 	sharcInstrs.push_back(sharcLib->instrument("flute_vibrato"));
-	sharcInstrs.push_back(sharcLib->instrument("French_horn"));
+	sharcInstrs.push_back(sharcLib->instrument("bassflute_vibrato"));	// 12
 	sharcInstrs.push_back(sharcLib->instrument("C_trumpet"));
 	sharcInstrs.push_back(sharcLib->instrument("violin_vibrato"));
 	sharcInstrs.push_back(sharcLib->instrument("contrabass_clarinet"));
@@ -159,6 +160,20 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
+	VAdditiveInstrument * in;				//---- 4 Vector SOS voices
+	in = new VAdditiveInstrument(sharcInstrs[1], sharcInstrs[3]);
+	lib.push_back(in);
+	gIMix->addInput(*in);
+	in = new VAdditiveInstrument(sharcInstrs[6], sharcInstrs[7]);
+	lib.push_back(in);
+	gIMix->addInput(*in);
+	in = new VAdditiveInstrument(sharcInstrs[9], sharcInstrs[13]);
+	lib.push_back(in);
+	gIMix->addInput(*in);
+	in = new VAdditiveInstrument(sharcInstrs[15], sharcInstrs[12]);
+	lib.push_back(in);
+	gIMix->addInput(*in);
+
 #endif
 	Stereoverb rev(*gIMix);					// stereo reverb
 	rev.setRoomSize(0.98);					// medium-long reverb

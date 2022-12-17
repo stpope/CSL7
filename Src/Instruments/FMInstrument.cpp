@@ -136,17 +136,17 @@ void FMInstrument::parseArgs(int argc, void **argv, const char *types) {
 	unsigned nargs;
 	if (strcmp(types, "ffff") == 0) {
 		nargs = 4;
-		printf("\tFM:  d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", 
-			*fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+//		printf("\tFM:  d %5.2f   a %5.2f   f %7.1f   p %5.2f\n",
+//			*fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	} else if (strcmp(types, "ffffff") == 0) {
 		nargs = 6;
-		printf("\tFM: d %g   a %g c %g m %g i %g   p %g\n", 
-			*fargs[0], *fargs[1], *fargs[2], *fargs[3], *fargs[4], *fargs[5]);
+//		printf("\tFM: d %g   a %g c %g m %g i %g   p %g\n",
+//			*fargs[0], *fargs[1], *fargs[2], *fargs[3], *fargs[4], *fargs[5]);
 	} else if (strcmp(types, "ffffffffffffff") == 0) {
 		nargs = 14;
-		printf("\tFM: d %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
-			   *fargs[0], *fargs[2], *fargs[8], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
-			   *fargs[10], *fargs[11], *fargs[12], *fargs[13]);
+//		printf("\tFM: d %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
+//			   *fargs[0], *fargs[2], *fargs[8], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
+//			   *fargs[10], *fargs[11], *fargs[12], *fargs[13]);
 	} else {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		mAEnv.scaleValues(0.0f);
@@ -227,11 +227,11 @@ void FMInstrument::playMIDI(float dur, int chan, int key, int vel) {
 
 // FancyFMInstrument
 
-//	Envelope mVibEnv;				///< vibrato envelope
+//	Envelope mVibEnv;					///< vibrato envelope
 //	ADSR mChiffEnv;					///< attack-chiff envelope
 //  Sine mVibrato;					///< sine oscillator for vibrato
 //	WhiteNoise mChiff;				///< chiff noise
-//	Butter mChFilter;				///< chiff filter
+//	Butter mChFilter;					///< chiff filter
 //	Freeverb mReverb;
 
 FancyFMInstrument::FancyFMInstrument() :		// initializers for the UGens
@@ -241,15 +241,15 @@ FancyFMInstrument::FancyFMInstrument() :		// initializers for the UGens
 			mVibrato(6),									///< sine oscillator for vibrato
 			mChFilter(mChiff, BW_BAND_PASS, 4000.f, 200.f),	///< chiff filter
 			mReverb(mPanner) {					// reverb the panner
-	mVibEnv.setScale(8);						// scale vibrato envelope
+	mVibEnv.setScale(8);							// scale vibrato envelope
 	mVibrato.setScale(mVibEnv);
 	mVibrato.setOffset(BASE_FREQ);				// shift vibrato up
 
-	mChiffEnv.setScale(0.8);					// scale chiff envelope
+	mChiffEnv.setScale(0.8);						// scale chiff envelope
 	mChFilter.setScale(mChiffEnv);				// apply chiff envelope
 	mCar.setOffset(mChFilter);					// add in chiff
 
-	mMod.setOffset(mVibrato);					// add in vibrato and base freq
+	mMod.setOffset(mVibrato);						// add in vibrato and base freq
 
 	mName = "Fancy_FM";
 	mUGens["Vibrato"] = & mVibrato;
@@ -258,7 +258,7 @@ FancyFMInstrument::FancyFMInstrument() :		// initializers for the UGens
 	mUGens["Attack chiff env"] = & mChiffEnv;
 	mUGens["Attack noise"] = & mChiff;
 	mUGens["Reverb"] = & mReverb;
-	mEnvelopes.push_back(& mVibEnv);			// list envelopes for retrigger
+	mEnvelopes.push_back(& mVibEnv);				// list envelopes for retrigger
 	mEnvelopes.push_back(& mChiffEnv);
 }
 
@@ -457,7 +457,8 @@ void FMBell::parseArgs(int argc, void **argv, const char *types) {
 	mGliss.setStart(*fargs[2]);
 	mGliss.setEnd(*fargs[2] * *fargs[3]);
 	mIEnv.setStart(*fargs[5] * *fargs[2]);
-	mMod.setFrequency(*fargs[2] * *fargs[3]);
+	mIEnv.setEnd(*fargs[2]);
+	mMod.setFrequency(*fargs[2] * *fargs[4]);
 	mPanner.setPosition(*fargs[6]);
 #ifdef WET_DRY_MIX
 	float wet = *fargs[7];

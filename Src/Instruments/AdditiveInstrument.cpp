@@ -237,6 +237,8 @@ SHARCAddInstrument::~SHARCAddInstrument() { }
 void SHARCAddInstrument::init() {
 	mSOS.setScale(mAEnv);								// plug in the envelope
 	mChiff.setScale(mCEnv);
+	mMix.addInput(mSOS);
+	mMix.addInput(mChiff);
 	mNumChannels = 2;
 	mFreq = 220.0f;
 	mName = "SHARC";									// set graph's name
@@ -320,7 +322,7 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-	printf("\tAdd: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+//	printf("\tAdd: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);
 	mCEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);
@@ -329,7 +331,7 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 	mFreq = *fargs[2];
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
-		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
+//		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
 		mAEnv.setAttack(*fargs[4]);
 		mAEnv.setDecay(*fargs[5]);
 		mAEnv.setSustain(*fargs[6]);
@@ -410,14 +412,19 @@ VAdditiveInstrument::VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum *
 		Instrument(),
 		mAEnv1(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
 		mAEnv2(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),
-		mXEnv1(2.0f, 1.0f, 0.0001f),			// set up x-fade lin-segs
-		mXEnv2(2.0f, 0.0001f, 1.0f),
-		mSOS1(*spect1),							// SumOfSines init - use the given spectra
+		mVEnv(kExpon, 2.0f, 1.0f, 0.1f),
+		mXEnv1(2.0f, 1.0f, 0.00001f, kExpon),	// set up x-fade lin-segs
+		mXEnv2(2.0f, 0.00001f, 1.0f, kExpon),
+		mSOS1(*spect1),						// SumOfSines init - use the given spectra
 		mSOS2(*spect2),
 		mMix(2),								// mixer & panner
 		mPanner(mMix, 0.0) {					// init the panner
-	mSOS1.setFrequency(110.0f);
-	mSOS2.setFrequency(110.0f);
+	mVib.setFrequency(fRandM(4.0f, 6.0f));
+	mVEnv.setScale(10.0f);
+	mVEnv.setOffset(110.0f);
+	mVib.setScale(mVEnv);
+	mSOS1.setFrequency(mVEnv);
+	mSOS2.setFrequency(mVEnv);
 	mAEnv1.setScale(mXEnv1);
 	mAEnv2.setScale(mXEnv2);
 	mSOS1.setScale(mAEnv1);
@@ -427,13 +434,47 @@ VAdditiveInstrument::VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum *
 	this->init();
 }
 
+VAdditiveInstrument::VAdditiveInstrument(SHARCInstrument * i1, SHARCInstrument * i2) :
+		Instrument(),
+		mInstr1(i1),
+		mInstr2(i2),
+		mAEnv1(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
+		mAEnv2(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),
+		mVEnv(kExpon, 2.0f, 1.0f, 0.1f),
+		mXEnv1(2.0f, 1.0f, 0.00001f, kExpon),	// set up x-fade lin-segs
+		mXEnv2(2.0f, 0.00001f, 1.0f, kExpon),
+		mMix(2),								// mixer & panner
+		mPanner(mMix, 0.0) {					// init the panner
+	printf("\tV_AddInst: %s - %s\n", i1->_name, i2->_name);
+	mVib.setFrequency(fRandM(4.0f, 6.0f));	// vibrato freq
+	mVEnv.setScale(10.0f);
+	mVEnv.setOffset(110.0f);
+	mVib.setScale(mVEnv);
+//	mSOS1.setFrequency(mVEnv);
+//	mSOS2.setFrequency(mVEnv);
+	mAEnv1.setScale(mXEnv1);
+	mAEnv2.setScale(mXEnv2);
+	mAEnv2.setScale(mXEnv2);
+	mSOS1.setScale(mAEnv1);
+	mSOS2.setScale(mAEnv2);
+	mMix.addInput(mSOS1);
+	mMix.addInput(mSOS2);
+//	MulOp scale1(mAEnv1, mXEnv1);			// alternative using MulOps
+//	MulOp scale2(mAEnv2, mXEnv2);
+//	mSOS1.setScale(scale1);
+//	mSOS2.setScale(scale2);
+//	MulOp out1(mSOS1, scale1);
+//	MulOp out2(mSOS2, scale2);
+//	mMix.addInput(out1);
+//	mMix.addInput(out2);
+	this->init();
+}
+
 //VAdditiveInstrument::VAdditiveInstrument(VAdditiveInstrument&) {
 //
 //}
 
-VAdditiveInstrument::~VAdditiveInstrument() {
-	
-}
+VAdditiveInstrument::~VAdditiveInstrument() { }
 
 void VAdditiveInstrument::init() {
 	mNumChannels = 2;
@@ -451,6 +492,7 @@ void VAdditiveInstrument::init() {
 	mEnvelopes.push_back(& mAEnv2);
 	mEnvelopes.push_back(& mXEnv1);
 	mEnvelopes.push_back(& mXEnv2);
+	mEnvelopes.push_back(& mVEnv);
 												// set up accessor vector
 	mAccessors.push_back(new Accessor("du", set_duration_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
@@ -490,8 +532,11 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 				mAEnv2.setScale(d);
 				break;
 			case set_frequency_f:
+				mVEnv.setOffset(d);
+				mFreq = d;
 				mSOS1.setFrequency(d);
 				mSOS2.setFrequency(d);
+				this->getSpectra();
 				break;
 			case set_position_f:
 				mPanner.setPosition(d); 	break;
@@ -521,8 +566,8 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 
 /// Play functions
 /// OSC note formats (4 or 8 arguments):
-/// 	dur, ampl, c_fr, pos
-/// 	dur, ampl, c_fr, pos, att, dec, sus, rel
+/// 	dur, ampl, freq, pos
+/// 	dur, ampl, freq, pos, att, dec, sus, rel
 
 void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
@@ -542,10 +587,13 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	mAEnv2.setDuration(*fargs[0]);
 	mXEnv1.setDuration(*fargs[0]);
 	mXEnv2.setDuration(*fargs[0]);
+	mVEnv.setDuration(*fargs[0]);
 	mAEnv1.scaleValues(*fargs[1]);
 	mAEnv2.scaleValues(*fargs[1]);
+	mVEnv.setOffset(*fargs[2]);
 	mSOS1.setFrequency(*fargs[2]);
 	mSOS2.setFrequency(*fargs[2]);
+	mFreq = *fargs[2];
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -558,18 +606,19 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		mAEnv2.setSustain(*fargs[6]);
 		mAEnv2.setRelease(*fargs[7]);
 	}
+	this->getSpectra();
 	this->play();
 }
 
-void VAdditiveInstrument::playNote(float dur, float ampl, float c_fr, float pos, float att, float dec, float sus, float rel) {
+void VAdditiveInstrument::playNote(float dur, float ampl, float freq, float pos, float att, float dec, float sus, float rel) {
 	mAEnv1.setDuration(dur);
 	mAEnv2.setDuration(dur);
 	mXEnv1.setDuration(dur);
 	mXEnv2.setDuration(dur);
 	mAEnv1.scaleValues(ampl);
 	mAEnv2.scaleValues(ampl);
-	mSOS1.setFrequency(c_fr);
-	mSOS2.setFrequency(c_fr);
+	mVEnv.setOffset(freq);
+	mFreq = freq;
 	mPanner.setPosition(pos);
 	mAEnv1.setAttack(att);
 	mAEnv1.setDecay(dec);
@@ -579,6 +628,7 @@ void VAdditiveInstrument::playNote(float dur, float ampl, float c_fr, float pos,
 	mAEnv2.setDecay(dec);
 	mAEnv2.setSustain(sus);
 	mAEnv2.setRelease(rel);
+	this->getSpectra();
 	this->play();
 }
 
@@ -591,5 +641,29 @@ void VAdditiveInstrument::playMIDI(float dur, int chan, int key, int vel) {
 	mAEnv2.scaleValues(sqrtf((float) vel / 128.0f));
 	mSOS1.setFrequency(keyToFreq(key));
 	mSOS2.setFrequency(keyToFreq(key));
+	this->getSpectra();
 	this->play();
+}
+
+// recompute the SOS spectrum from the SHARC data
+
+void VAdditiveInstrument::getSpectra() {
+	if (mNoteFreq != mFreq) {
+		mSOS1.clearPartials();
+		SHARCSpectrum * spect = mInstr1->spectrum_with_frequency(mFreq);
+		for (unsigned i = 0; i < spect->_num_partials; i++) {
+			Partial * harm = spect->_partials[i];
+			mSOS1.addPartial(harm->number, harm->amplitude, harm->phase);
+		}
+		mSOS1.createCache();							// make the cached wavetable
+		
+		mSOS2.clearPartials();
+		spect = mInstr2->spectrum_with_frequency(mFreq);
+		for (unsigned i = 0; i < spect->_num_partials; i++) {
+			Partial * harm = spect->_partials[i];
+			mSOS2.addPartial(harm->number, harm->amplitude, harm->phase);
+		}
+		mSOS2.createCache();							// make the cached wavetable
+		mNoteFreq = mFreq;							// remember last freq
+	}
 }
