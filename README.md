@@ -1,7 +1,7 @@
 
-# CSL 6.0 README
+# CSL 7.0 README
 
-![CSL Logo](https://github.com/stpope/CSL6/blob/master/Doc/CSL6_Logo_tiny.jpg "CSL Logo")
+![CSL Logo](https://github.com/stpope/CSL7/blob/master/Doc/CSL7_Logo_tiny.jpg "CSL Logo")
 
 This directory contains the source code and documentation for the CREATE Signal 
 Library (CSL, pronounced "sizzle," previously called the CREATE Oscillator or CO). 
@@ -11,7 +11,7 @@ CSL was developed at the Center for Research in Electronic Art Technology
 (CREATE) and the Graduate Program in Media Arts and Technology (MAT) at the 
 University of California, Santa Barbara (UCSB) starting in the late 1990s.
 
-This is release 6.0, April, 2020.
+This is release 7.0, December, 2022.
 
 The home page for CSL is http://FASTLabInc.com/CSL. See the screen shots,
 documentation downloads and links to screencast demos there.
@@ -22,7 +22,7 @@ To get started with CSL, build the demo app (screen shot below)
 and use the combo boxes at the bottom-left to select among the tests, whose source code
 is in the Src/Tests folder. For the Mac, use the XCode project in the 
 Builds/MacOSX folder; for Linux, use the makefile in the Builds/LinuxMakefile folder.
-There are pre-compiled versions of the demo for MacOS, Linux and MS-Windows in the ZIP file https://github.com/stpope/CSL6/blob/master/Demo.zip
+There are pre-compiled versions of the demo for MacOS, Linux and MS-Windows in the ZIP file https://github.com/stpope/CSL7/blob/master/Demo.zip
 
 ### Links for the impatient
 
@@ -30,7 +30,7 @@ Basic CSL overview paper with code examples: http://www.fastlabinc.com/CSL/CSL_I
 
 Presentation slides for the really impatient: http://www.fastlabinc.com/CSL/CSL_Overview.pdf
 
-CSL Demo App quick start cheat sheet: https://github.com/stpope/CSL6/blob/master/Doc/6.0DemoQuickStart.pdf
+CSL Demo App quick start cheat sheet: https://github.com/stpope/CSL7/blob/master/Doc/7.0DemoQuickStart.pdf
 
 ### CSL Video Demos ("The CSL Show," 2012)
 
@@ -51,7 +51,7 @@ with JUCE, a comprehensive C++ class library for multimedia and GUI programming,
 but it can also be used for stand-alone "head-less" apps without JUCE, or with 
 other GUI frameworks such as Qt.
 
-![CSL Demo screen shot](https://github.com/stpope/CSL6/blob/master/Doc/6.0DemoScreen2.jpg "CSL Demo screen shot")
+![CSL Demo screen shot](https://github.com/stpope/CSL7/blob/master/Doc/7.0DemoScreen2.jpg "CSL Demo screen shot")
 
 The target users for CSL are C++ programmers (familiar with the 
 development tools of their platforms, e.g., Xcode on the Mac, Eclipse on Linux, or 
@@ -130,13 +130,13 @@ to do this, open a UNIX shell (terminal, or DOS prompt) and execute the commands
 
 1. change to the Includes folder
 
-	cd ~/Code/CSL6/Src/Includes
+	cd ~/Code/CSL7/Src/Includes
 
 2. make symbolic links from the include files to this folder
 
 	./remake (or use the .bat file for MS-Windows)
 
-Some of the code assumes that the CSL package is installed in ~/Code/CSL6; there are default settings 
+Some of the code assumes that the CSL package is installed in ~/Code/CSL7; there are default settings 
 in Src/Kernel/CSL_Types.h that have to be changed if you put it somewhere else.
 
 Note that the release contains a number of files that have not been ported to the 
@@ -154,7 +154,7 @@ Look at the files in the Src/Tests folder for details.
 	Android: recent releases and toolchains
 	RaspberryPi and Beaglebone: recent Debian releases and toolchains
 	MS-Windows: Windows 10 with VisualStudio 2019 (see note below)
-	All: JUCE 6.0
+	All: JUCE 7.0.3
 
 A few of the demonstrations are disabled on MS-Windows; the convolution and spatializers 
 haven't been tested (I'd love a Windows user to run these), and the SHARC code is 
@@ -185,9 +185,9 @@ in Sources/Spectral.h.
 
 Building CSL
 
- 	Use the JUCE projucer with the file CSL6.jucer to generate the build projects.
+ 	Use the JUCE projucer with the file CSL7.jucer to generate the build projects.
 
- 	On a Mac: Builds/MacOSX/CSL6Demo.xcodeproj
+ 	On a Mac: Builds/MacOSX/CSL7-Demo.xcodeproj
  	On MS-Windows: Builds/MS_Windows
  	On Linux: Builds/LinuxMakefiles; make
 
@@ -388,7 +388,7 @@ MIDI API
 
 OSC API
 
-	USE_LOSC - use LibLo for OSC (assumes liblio 0.26 is installed)
+	USE_LOSC - use LibLo for OSC (assumes liblio 0.31 is installed)
 
 Main function to use
 
@@ -400,7 +400,7 @@ See the PDF and HTML files in the Doc/ directory. (RTFM)
 
 See the file COPYRIGHT for the list of authors and UC copy-left.
 
-stp et al. - January, 1998 - November, 2012 - April, 2020
+stp et al. - January, 1998 - November, 2012 - April, 2020 - December, 2022
 
 Contact: stephen _at_ heaveneverywhere _dot_ com
 
