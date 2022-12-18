@@ -160,20 +160,37 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	VAdditiveInstrument * in;				//---- 4 Vector SOS voices
-	in = new VAdditiveInstrument(sharcInstrs[1], sharcInstrs[3]);
-	lib.push_back(in);
-	gIMix->addInput(*in);
-	in = new VAdditiveInstrument(sharcInstrs[6], sharcInstrs[7]);
-	lib.push_back(in);
-	gIMix->addInput(*in);
-	in = new VAdditiveInstrument(sharcInstrs[9], sharcInstrs[13]);
-	lib.push_back(in);
-	gIMix->addInput(*in);
-	in = new VAdditiveInstrument(sharcInstrs[15], sharcInstrs[12]);
-	lib.push_back(in);
-	gIMix->addInput(*in);
+//	VAdditiveInstrument * in;				//---- 4 Vector SOS voices
+//	in = new VAdditiveInstrument(sharcInstrs[1], sharcInstrs[3]);
+//	lib.push_back(in);
+//	gIMix->addInput(*in);
+//	in = new VAdditiveInstrument(sharcInstrs[6], sharcInstrs[7]);
+//	lib.push_back(in);
+//	gIMix->addInput(*in);
+//	in = new VAdditiveInstrument(sharcInstrs[9], sharcInstrs[13]);
+//	lib.push_back(in);
+//	gIMix->addInput(*in);
+//	in = new VAdditiveInstrument(sharcInstrs[15], sharcInstrs[12]);
+//	lib.push_back(in);
+//	gIMix->addInput(*in);
 
+	std::vector<SHARCSpectrum *> sharcSpectra;
+	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
+	sharcSpectra.push_back(sharcLib->spectrum("tuba", 36));
+	sharcSpectra.push_back(sharcLib->spectrum("viola_vibrato", 40));
+	sharcSpectra.push_back(sharcLib->spectrum("bass_clarinet", 28));
+	sharcSpectra.push_back(sharcLib->spectrum("violinensemb", 46));
+	sharcSpectra.push_back(sharcLib->spectrum("Eb_clarinet", 48));
+	sharcSpectra.push_back(sharcLib->spectrum("alto_trombone", 55));
+	sharcSpectra.push_back(sharcLib->spectrum("French_horn", 32));
+	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
+
+	for ( ; i < 54; i++) {							//---- 4 Vector SOS voices
+		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[iRandM(0,8)], sharcSpectra[iRandM(0,8)]);
+		lib.push_back(in);
+		gIMix->addInput(*in);
+	}
+	
 #endif
 	Stereoverb rev(*gIMix);					// stereo reverb
 	rev.setRoomSize(0.98);					// medium-long reverb

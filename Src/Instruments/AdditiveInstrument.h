@@ -123,7 +123,7 @@ public:
 	AR mVEnv;						///< vibrato envelope
 	LineSegment mXEnv1, mXEnv2;		///< cross-fade envelopes = line segs
    	SumOfSines mSOS1, mSOS2;			///< 2 sum-of-sine oscillators
-	Osc mVib;						///< vibrato oscillators
+	Osc mVib;						///< vibrato oscillator
 	Mixer mMix;						///< output summer
 	Panner mPanner;					///< stereo panner
 protected:

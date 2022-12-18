@@ -392,22 +392,6 @@ void SHARCAddInstrument::getSpectrum() {
 
 // Constructor
 
-//VAdditiveInstrument::VAdditiveInstrument() :
-//		Instrument(),
-//		mAEnv(2.0f, 0.03f, 0.06f, 0.5f, 0.15f),	// set up standard ADSR (1/4-sec duration)
-//		mXEnv1(2.0f, 1.0f, 0.0001f),			// set up x-fade lin-segs
-//		mXEnv2(2.0f, 0.0001f, 1.0f),
-//		mSOS1(),								// SumOfSines init
-//		mSOS2(),
-//		mMix(2),								// mixer & panner
-//		mPanner(mMix, 0.0f) {					// init the panner
-//	mSOS1.setScale(mXEnv1);
-//	mSOS1.setScale(mXEnv2);
-//	mMix.addInput(mSOS1);
-//	mMix.addInput(mSOS2);
-//	this->init();
-//}
-
 VAdditiveInstrument::VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum * spect2) :
 		Instrument(),
 		mAEnv1(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
@@ -606,7 +590,8 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		mAEnv2.setSustain(*fargs[6]);
 		mAEnv2.setRelease(*fargs[7]);
 	}
-	this->getSpectra();
+	if (mInstr1)
+		this->getSpectra();
 	this->play();
 }
 
@@ -628,7 +613,9 @@ void VAdditiveInstrument::playNote(float dur, float ampl, float freq, float pos,
 	mAEnv2.setDecay(dec);
 	mAEnv2.setSustain(sus);
 	mAEnv2.setRelease(rel);
-	this->getSpectra();
+	if (mInstr1)
+		this->getSpectra();
+		this->getSpectra();
 	this->play();
 }
 
