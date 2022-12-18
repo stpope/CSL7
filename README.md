@@ -1,7 +1,7 @@
 
 # CSL 7.0 README
 
-![CSL Logo](https://github.com/stpope/CSL7/blob/master/Doc/CSL7_Logo_tiny.jpg "CSL Logo")
+![CSL Logo](https://github.com/stpope/CSL7/blob/main/Doc/CSL7_Logo_tiny.jpg "CSL Logo")
 
 This directory contains the source code and documentation for the CREATE Signal 
 Library (CSL, pronounced "sizzle," previously called the CREATE Oscillator or CO). 
@@ -22,7 +22,7 @@ To get started with CSL, build the demo app (screen shot below)
 and use the combo boxes at the bottom-left to select among the tests, whose source code
 is in the Src/Tests folder. For the Mac, use the XCode project in the 
 Builds/MacOSX folder; for Linux, use the makefile in the Builds/LinuxMakefile folder.
-There are pre-compiled versions of the demo for MacOS, Linux and MS-Windows in the ZIP file https://github.com/stpope/CSL7/blob/master/Demo.zip
+There are pre-compiled versions of the demo for MacOS, Linux and MS-Windows in the ZIP file https://github.com/stpope/CSL7/blob/main/Demo.zip
 
 ### Links for the impatient
 
@@ -30,7 +30,7 @@ Basic CSL overview paper with code examples: http://www.fastlabinc.com/CSL/CSL_I
 
 Presentation slides for the really impatient: http://www.fastlabinc.com/CSL/CSL_Overview.pdf
 
-CSL Demo App quick start cheat sheet: https://github.com/stpope/CSL7/blob/master/Doc/7.0DemoQuickStart.pdf
+CSL Demo App quick start cheat sheet: https://github.com/stpope/CSL7/blob/main/Doc/7.0DemoQuickStart.pdf
 
 ### CSL Video Demos ("The CSL Show," 2012)
 
@@ -51,7 +51,7 @@ with JUCE, a comprehensive C++ class library for multimedia and GUI programming,
 but it can also be used for stand-alone "head-less" apps without JUCE, or with 
 other GUI frameworks such as Qt.
 
-![CSL Demo screen shot](https://github.com/stpope/CSL7/blob/master/Doc/7.0DemoScreen2.jpg "CSL Demo screen shot")
+![CSL Demo screen shot](https://github.com/stpope/CSL7/blob/main/Doc/7.0DemoScreen1.jpg "CSL Demo screen shot")
 
 The target users for CSL are C++ programmers (familiar with the 
 development tools of their platforms, e.g., Xcode on the Mac, Eclipse on Linux, or 
