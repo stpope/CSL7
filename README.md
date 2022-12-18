@@ -51,7 +51,7 @@ with JUCE, a comprehensive C++ class library for multimedia and GUI programming,
 but it can also be used for stand-alone "head-less" apps without JUCE, or with 
 other GUI frameworks such as Qt.
 
-![CSL Demo screen shot](https://github.com/stpope/CSL7/blob/main/Doc/6.0DemoScreen2.jpg "CSL Demo screen shot")
+![CSL Demo screen shot](https://github.com/stpope/CSL7/blob/main/Doc/7.0DemoScreen1.jpg "CSL Demo screen shot")
 
 The target users for CSL are C++ programmers (familiar with the 
 development tools of their platforms, e.g., Xcode on the Mac, Eclipse on Linux, or 
