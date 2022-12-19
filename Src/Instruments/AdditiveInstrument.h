@@ -61,7 +61,8 @@ protected:
 
 ///
 /// SHARCAddInstrument - uses the SHARC spectra to create sum-of-sines players.
-/// An example of adding features like attack chiff and vibrato with conditional compilation (messy, I know)
+/// An example of adding features like attack chiff and vibrato with conditional compilation
+/// (messy, I know; see the subclasses below)
 ///
 
 //#ifdef CSL_CHIFF				// not tested; see subclasses
@@ -106,7 +107,7 @@ protected:
 
 ///
 /// SHARCAddInstrumentV - uses the SHARC spectra to create sum-of-sines players.
-/// An example of adding features like vibrato in subclasses
+/// An example of adding vibrato in a subclass
 ///
 
 class SHARCAddInstrumentV : public SHARCAddInstrument {
@@ -125,18 +126,11 @@ public:
 				float att = 0.05, float dec = 0.05, float sus = 0.5, float rel = 0.5, float chiff = 0.05);
 	void playMIDI(float dur, int chan, int key, int vel);
 
-//	ADSR mAEnv;					///< amplitude envelope
 	ADSR mVEnv;					///< vibrato envelope
 	Osc mVib;					///< vibrato oscillator
-//	SumOfSines mSOS;				///< sum-of-sine oscillator
-//	Panner mPanner;				///< stereo panner
-//	SHARCInstrument * mInstr;		///< the SHARC list of spectra
 
 protected:
 	void init();
-//	void getSpectrum();			///< recompute the SOS spectrum from the SHARC data
-//	int mNoteFreq = 0;			///< freq of last note
-//	float mFreq;
 };
 
 ///

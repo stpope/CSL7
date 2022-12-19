@@ -366,12 +366,12 @@ void Envelope::nextBuffer(Buffer &outputBuffer, unsigned outBufNum) noexcept(fal
 /// Minimal version - ADSR . . . call the Super constructor, passing the appropriate points.
 
 csl::ADSR::ADSR(LineMode mode, float t, float a, float d, float s, float r)
-		: Envelope(mode, t, 0.0, 0.0, a, 1.0, a + d, s, t - r, s, t, 0.0) { };
+		: Envelope(mode, t, 0.0, 0.00001, a, 1.0, a + d, s, t - r, s, t, 0.00001) { };
 
 /// with initial delay - IADSR
 
 csl::ADSR::ADSR(LineMode mode, float t, float i, float a, float d, float s, float r)
-		: Envelope(mode, t, i, 0.0, i + a, 1.0, i + a + d, s, t - r, s, t, 0.0) { };
+		: Envelope(mode, t, i, 0.00001, i + a, 1.0, i + a + d, s, t - r, s, t, 0.00001) { };
 
 /// Minimal version - ADSR . . . call the Super constructor, passing the appropriate points.
 

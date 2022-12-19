@@ -351,7 +351,7 @@ void SHARCAddInstrument::setParameter(unsigned selector, int argc, void **argv, 
 
 // Play functions
 // ffff = dur, amp, pitch, pos
-// fffffffff = dur, amp, pitch, pos, att, dec, sus, rel, chiff
+// fffffffff = dur, amp, pitch, pos, att, dec, sus, rel
 
 void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
@@ -361,8 +361,8 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 	if (argc == 4)
 		nargs = 4;
 //	else if (strcmp(types, "ffffffff") == 0)
-	else if (argc == 9)
-		nargs = 9;
+	else if (argc == 8)
+		nargs = 8;
 	else {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
@@ -382,7 +382,7 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 #endif
 	mFreq = *fargs[2];
 	mPanner.setPosition(*fargs[3]);		// pos
-	if (nargs == 9) {
+	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
 		mAEnv.setAttack(*fargs[4]);
 		mAEnv.setDecay(*fargs[5]);
@@ -458,44 +458,32 @@ void SHARCAddInstrument::getSpectrum() {
 
 SHARCAddInstrumentV::SHARCAddInstrumentV() :
 		SHARCAddInstrument(),
-		mVEnv(kExpon, 2.0f, 1.0f, 0.1f, 1.0f, 0.2f) {		// vibrato env - slow attack
+		mVEnv(2.0f, 1.0f, 0.1f, 1.0f, 0.2f) {				// vibrato env - slow attack
 	this->init();
 }
 
 // c'tor with SHARCInstrument = the normal way to use this
 
 SHARCAddInstrumentV::SHARCAddInstrumentV(SHARCInstrument * in) :
-		SHARCAddInstrument(in),
-		mVEnv(kExpon, 2.0f, 1.0f, 0.1f, 1.0f, 0.2f)		// vibrato env - slow attack
-{
-	this->init();								// call init fcn.
+		SHARCAddInstrument(in),							// inherited c'tor calls init()
+		mVEnv(kExpon, 2.0f, 1.0f, 0.1f, 1.0f, 0.2f) {		// vibrato env - slow attack
+	this->init();										// call init fcn.
 }
-
-// copy c'tor
-
-//SHARCAddInstrumentV::SHARCAddInstrumentV(SHARCAddInstrument& in) :
-//		SHARCAddInstrument(in),
-//		mAEnv(in.mAEnv),
-////		mVEnv(in.mVEnv),
-//		mSOS(in.mSOS),
-//		mPanner(in.mPanner),
-//		mInstr(in.mInstr) {
-//	this->init();
-//}
 
 SHARCAddInstrumentV::~SHARCAddInstrumentV() { }
 	
 // init() = setup instance
 
 void SHARCAddInstrumentV::init() {
-	mVib.setFrequency(fRandM(5.0f, 9.0f));			// vibrato freq
-	mVib.setScale(mVEnv);
+	float vibDepth = fRandM(9.0f, 15.0f);
+	mVEnv.scaleValues(vibDepth);
+	mVib.setFrequency(fRandM(5.0f, 12.0f));					// vibrato freq
 	mVib.setOffset(110.0f);
-	mSOS.setFrequency(mVib);						// plug in the envelope
+	mSOS.setFrequency(mVib);								// plug in the envelope
 	mUGens["V env"] = & mVEnv;
 	mUGens["Vibrato"] = & mVib;
 
-//	mEnvelopes.push_back(& mVEnv);					// list envelopes for retrigger
+	mEnvelopes.push_back(& mVEnv);						// list envelopes for retrigger
 }
 	
 /// Plug functions
@@ -521,7 +509,7 @@ void SHARCAddInstrumentV::setParameter(unsigned selector, int argc, void **argv,
 			case set_amplitude_f:
 				mAEnv.setScale(d);		break;
 			case set_frequency_f:
-				mVEnv.setOffset(d);		break;
+				mVEnv.setOffset(d);		break;			// freq is the offset of the vibrato envelope
 				mFreq = d;				break;
 			case set_position_f:
 				mPanner.setPosition(d); 	break;
@@ -563,9 +551,13 @@ void SHARCAddInstrumentV::playOSC(int argc, void **argv, const char *types) {
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mVEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);			// amp
-	mVEnv.setOffset(*fargs[2]);			// freq
-	mSOS.setFrequency(mVib);
-	mFreq = *fargs[2];
+	float vibDepth = fRandM(9.0f, 15.0f);
+	mVEnv.scaleValues(vibDepth);
+	mFreq = *fargs[2];					// freq
+	mVEnv.setOffset(mFreq);
+	mVib.setFrequency(fRandM(5.0f, 12.0f));// vibrato freq
+	mVib.setOffset(mFreq);
+//	mSOS.setFrequency(mVib);				// plug in the envelope
 	mPanner.setPosition(*fargs[3]);		// pos
 	if (nargs == 8) {
 		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
