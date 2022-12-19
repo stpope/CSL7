@@ -210,11 +210,11 @@ class SumOfSines : public CompOrCacheOscillator {
 public:
 	SumOfSines();							/// Constructors
 	SumOfSines(float frequency);					///< empty constructor
-	SumOfSines(unsigned numHarms, float noise);		///< 1/f spectrum + noise
+	SumOfSines(unsigned numHarms, float noise);	///< 1/f spectrum + noise
 	SumOfSines(float frequency, unsigned numHarms, float noise);
-													/// given a var-args partials list
+												/// given a var-args partials list
 	SumOfSines(PartialDescriptionMode format, unsigned partialCount, ...);
-	SumOfSines(SHARCSpectrum & spect);				/// given a SHARC spectrum
+	SumOfSines(SHARCSpectrum & spect);			/// given a SHARC spectrum
 	
 	void addPartial(Partial * pt);
 	void addPartials(unsigned num_p, Partial ** pt);
@@ -223,14 +223,14 @@ public:
 	void addPartial(float nu, float amp, float phase);
 	void clearPartials();
 
-	void dump();						///< print the receiver for debugging
+	void dump();									///< print the receiver for debugging
 	
 protected:
 	std::vector<Partial *> mPartials;
 	void nextWaveInto(SampleBuffer dest, unsigned count, bool oneHz);
 
 private:
-	Buffer outputBuffer;			// kludj so we can use the inherited macros
+	Buffer outputBuffer;							// kludj so we can use the inherited macros
 };
 
 }

@@ -231,16 +231,16 @@ SHARCSpectrum * SHARCInstrument::spectrum_with_key(unsigned key) {
 }
 
 SHARCSpectrum * SHARCInstrument::spectrum_with_frequency(float freq) {
+	if (freq <= _spectra[0]->_actual_pitch)
+		return _spectra[0];
+	if (freq >= _spectra[_num_spectra - 1]->_actual_pitch)
+		return _spectra[_num_spectra - 1];
 	for (unsigned i = 0; i < _num_spectra; i++) {
 		if (_spectra[i]->_actual_pitch >= freq) {
 			return _spectra[i];
 		}
 	}
-	if (freq < _spectra[0]->_actual_pitch)
-		return _spectra[0];
-	if (freq > _spectra[_num_spectra - 1]->_actual_pitch)
-		return _spectra[_num_spectra - 1];
-	return (SHARCSpectrum *) 0;
+	return (SHARCSpectrum *) 0;		// never reached?
 }
 
 // Debugging functions

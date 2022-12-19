@@ -99,15 +99,14 @@ int main(int argc, const char * argv[]) {
 			else
 				printf("Unknown cmd-line option: \"%s\" ignored\n", argv[i]);
 
-	printf("CSL lib server running...\n");
+	printf("CSL OSC synth server running...\n");
 	gIMix = new Mixer(2);					// stereo instrument mixer (sent to reverb)
 	gOMix = new Mixer(2);					// stereo output mixer (reverb + dry signal)
 	InstrumentVector lib;					// instrument library
 	printf("OSC server listening to port %s\n", CSL_mOSCPort);
 	initOSC(CSL_mOSCPort);				// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FM voices, 10 FM bells,\n16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices\n");
-	printf("Setting up library with 10 strings, 10 FM voices, 10 FM bells,\n16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices\n");
+	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells,\n\t16 SHARC SOS, 4 snd file, 4 Vector SOS\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -150,7 +149,7 @@ int main(int argc, const char * argv[]) {
 	sharcInstrs.push_back(sharcLib->instrument("contrabass_clarinet"));
 
 	for ( ; i < 46; i++) {				//---- 16 SHARC SOS voices
-		SHARCAddInstrument * in = new SHARCAddInstrument(sharcInstrs[i - 30]);
+		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i - 30]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
@@ -160,7 +159,7 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-//	VAdditiveInstrument * in;				//---- 4 Vector SOS voices
+//	VAdditiveInstrument * in;				//---- 4 Vector SHARC SOS voices
 //	in = new VAdditiveInstrument(sharcInstrs[1], sharcInstrs[3]);
 //	lib.push_back(in);
 //	gIMix->addInput(*in);
@@ -186,12 +185,15 @@ int main(int argc, const char * argv[]) {
 	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
 
 	for ( ; i < 54; i++) {							//---- 4 Vector SOS voices
-		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[iRandM(0,8)], sharcSpectra[iRandM(0,8)]);
+		int i1 = iRandM(0,8);
+		int i2 = iRandM(0,8);
+		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
+		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[i1], sharcSpectra[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	
-#endif
+#endif // CSL_WINDOWS - for SHARC instruments
+
 	Stereoverb rev(*gIMix);					// stereo reverb
 	rev.setRoomSize(0.98);					// medium-long reverb
 	gOMix->addInput(rev);					// add reverb to output mixer
