@@ -1,9 +1,9 @@
 ///
-/// AdditiveInstrument.h -- Sum-of-sines synthesis instrument class.
+/// AdditiveInstrument.h -- Sum-of-sines synthesis instrument classes
+/// There are several simple and more-sophisticated additive instruments here.
 ///
 ///	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
 /// 
-///
 /// Accessors
 ///		"du", set_duration_f
 ///		"am", set_amplitude_f
@@ -30,7 +30,9 @@
 namespace csl  {
 
 ///
-/// AdditiveInstrument
+/// AdditiveInstrument - the simplest instruments using a computed som-of-sines oscillator.
+/// Use this to construct arbitrary spectra with the c'tors that take SumOfSines as arguments.
+/// Subclasses do more interesting things...
 ///
 
 class AdditiveInstrument : public Instrument {
@@ -62,7 +64,7 @@ protected:
 ///
 /// SHARCAddInstrument - uses the SHARC spectra to create sum-of-sines players.
 /// An example of adding features like attack chiff and vibrato with conditional compilation
-/// (messy, I know; see the subclasses below)
+/// (messy, I know; see the subclasses below for versions that work).
 ///
 
 //#ifdef CSL_CHIFF				// not tested; see subclasses
@@ -106,8 +108,9 @@ protected:
 };
 
 ///
-/// SHARCAddInstrumentV - uses the SHARC spectra to create sum-of-sines players.
-/// An example of adding vibrato in a subclass
+/// SHARCAddInstrumentV - uses the SHARC spectra to create sum-of-sines players with vibrato.
+/// ToDo: add OSC arguments for vibrato rate and depth.
+/// ToDo: add attack chiff.
 ///
 
 class SHARCAddInstrumentV : public SHARCAddInstrument {
@@ -134,11 +137,10 @@ protected:
 };
 
 ///
-/// VAdditiveInstrument = vector-additive - cross-fade between 2 SOS spectra
-///		Envelope mXEnv(dur, pause, xfade, 0.0f) 
-///			float paus = fRandV(0.5) * dur;
-///			float fade = fRandV(dur - paus);
-///		AR(float t, float i, float a, float r);
+/// VAdditiveInstrument = vector-additive - cross-fade between 2 SOS spectra.
+/// This is an example of a lower-level DSP graph (see c'tor implementations) that use
+/// explicit add/mul operators rather than the setScale() and setOffset() functions
+/// (MusicV- and cmusic-style) (no real difference in performance).
 ///
 
 class VAdditiveInstrument : public Instrument {
@@ -158,17 +160,19 @@ public:
 
 	SHARCInstrument * mInstr1 = 0;	///< SHARC instruments, or 0 if SHARC spectra are used
 	SHARCInstrument * mInstr2 = 0;
-	ADSR mAEnv1, mAEnv2;				///< amplitude envelopes
-	AR mVEnv;						///< vibrato envelope
+	ADSR mAEnv;						///< amplitude envelopes
+	ADSR mVEnv;						///< vibrato envelope
+	Osc mVib;						///< vibrato oscillator
 	LineSegment mXEnv1, mXEnv2;		///< cross-fade envelopes = line segs
    	SumOfSines mSOS1, mSOS2;			///< 2 sum-of-sine oscillators
-	Osc mVib;						///< vibrato oscillator
-	Mixer mMix;						///< output summer
+	MulOp mEMul1, mEMul2;			///< fade-in/out scalers
+	AddOp mVibAdd, mSummer;			///< summer of 2 oscs
+	MulOp mAMul;						///< final env multiplier
 	Panner mPanner;					///< stereo panner
 protected:
 	void init();
 	void getSpectra();				///< recompute the 2 SOS spectra from the SHARC data
-	int mNoteFreq = 0;			///< freq of last note
+	int mNoteFreq = 0;				///< freq of last note
 	float mFreq;
 };
 

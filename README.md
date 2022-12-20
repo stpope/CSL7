@@ -312,6 +312,42 @@ Test targets
 	MIDI_Test -- Reads MIDI in
 	CSL Client_Server -- compiles 2 executables for remote c/s streaming
 
+## OSC Testing
+
+The liblo OSC library includes a useful test program called oscsend, which allows one to 
+send OSC commands to a server from the UNIX shell.  To compile this tool, go to the 
+CSL7/Libs/liblo-0.31/src/tools folder and use a shell command such as,
+
+	gcc -I../.. -g -O2 -o oscsend oscsend-oscsend.o /usr/local/lib/liblo.7.dylib -lpthread -lm
+
+to compile and link the oscsend command -- the Makefile may of may not work; it depends
+on where you installed the liblo library goven in the command line.
+If you're running the CSL demo OSC synthesis server, you can now open
+a shell window and use commands such as,
+
+	# Plucked string (amp, pitch, pos)
+	oscsend localhost 54321 /i1/pn fff   0.77 207.67 -0.271	
+	
+	# FM (dur, amp, pitch, pos) or (dur, amp, c_fr, m_fr, ind, pos)
+	oscsend localhost 54321 /i11/pn ffff  3.0 0.177 207.67 -0.271
+	oscsend localhost 54321 /i12/pn ffff  3.0 0.177 207.6 207.6 0.0 0.0
+	
+	# FM bell
+	oscsend localhost 54321 /i21/pn fffffff  3.0 0.77 107.67 0.5 180.0 120.0 0.0 
+	
+	# SHARC add-syn
+	oscsend localhost 54321 /i31/pn ffff  3.0 0.77 207.67 -0.271
+	
+	# Snd file player (amp, pos)
+	oscsend localhost 54321 /i47/pn ff  3.0 0.0 
+	
+	# Vector SHARC add synth (dur, amp, pitch, pos)
+	oscsend localhost 54321 /i51/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i52/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i53/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i54/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i55/pn ffff  3.0 0.77 144.7 0.0
+	
 ## Source Code Organization
 
 The subdirectories of CSL are reflected in the project file categories:

@@ -32,7 +32,7 @@ public:								/// The constructor for dual-UnitGenerator operation
 	BinaryOp(float op1, UnitGenerator & op2);
 	virtual ~BinaryOp();				///< The destructor
 
-	void dump();					///< Prints instance info
+	void dump();						///< Prints instance info
 	void setOperand(float op);		///< Set the operand from a fixed float
 
 protected:	

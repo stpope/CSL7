@@ -109,7 +109,7 @@ oscdump_OBJECTS = $(am_oscdump_OBJECTS)
 oscdump_DEPENDENCIES = ../liblo.la
 AM_V_lt = $(am__v_lt_$(V))
 am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
-am__v_lt_0 = --silent
+am__v_lt_0 = # --silent
 am__v_lt_1 = 
 oscdump_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(oscdump_CFLAGS) \

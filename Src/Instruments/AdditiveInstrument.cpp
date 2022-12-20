@@ -477,7 +477,7 @@ SHARCAddInstrumentV::~SHARCAddInstrumentV() { }
 void SHARCAddInstrumentV::init() {
 	float vibDepth = fRandM(9.0f, 15.0f);
 	mVEnv.scaleValues(vibDepth);
-	mVib.setFrequency(fRandM(5.0f, 12.0f));					// vibrato freq
+	mVib.setFrequency(fRandM(5.0f, 12.0f));				// vibrato freq
 	mVib.setOffset(110.0f);
 	mSOS.setFrequency(mVib);								// plug in the envelope
 	mUGens["V env"] = & mVEnv;
@@ -551,13 +551,10 @@ void SHARCAddInstrumentV::playOSC(int argc, void **argv, const char *types) {
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mVEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);			// amp
-	float vibDepth = fRandM(9.0f, 15.0f);
-	mVEnv.scaleValues(vibDepth);
 	mFreq = *fargs[2];					// freq
 	mVEnv.setOffset(mFreq);
 	mVib.setFrequency(fRandM(5.0f, 12.0f));// vibrato freq
 	mVib.setOffset(mFreq);
-//	mSOS.setFrequency(mVib);				// plug in the envelope
 	mPanner.setPosition(*fargs[3]);		// pos
 	if (nargs == 8) {
 		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -604,27 +601,18 @@ void SHARCAddInstrumentV::playMIDI(float dur, int chan, int key, int vel) {
 
 VAdditiveInstrument::VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum * spect2) :
 		Instrument(),
-		mAEnv1(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
-		mAEnv2(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),
-		mVEnv(kExpon, 2.0f, 1.0f, 0.1f),
-		mXEnv1(2.0f, 1.0f, 0.00001f, kExpon),	// set up x-fade lin-segs
-		mXEnv2(2.0f, 0.00001f, 1.0f, kExpon),
+		mAEnv(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
+		mVEnv(2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),		// slower vibrato attack with initial delay
+		mXEnv1(2.0f, 1.0f, 0.0001f, kSquare),	// set up x-fade lin-segs
+		mXEnv2(2.0f, 0.0001f, 1.0f, kSquare),
 		mSOS1(*spect1),						// SumOfSines init - use the given spectra
 		mSOS2(*spect2),
-		mMix(2),								// mixer & panner
-		mPanner(mMix, 0.0) {					// init the panner
-//	mVib.setFrequency(fRandM(4.0f, 6.0f));
-//	mVEnv.setScale(10.0f);
-//	mVEnv.setOffset(110.0f);
-//	mVib.setScale(mVEnv);
-//	mSOS1.setFrequency(mVEnv);
-//	mSOS2.setFrequency(mVEnv);
-	mAEnv1.setScale(mXEnv1);
-	mAEnv2.setScale(mXEnv2);
-	mSOS1.setScale(mAEnv1);
-	mSOS2.setScale(mAEnv2);
-	mMix.addInput(mSOS1);
-	mMix.addInput(mSOS2);
+		mEMul1(mSOS1, mXEnv1)	,				// multiply cross-fade envs
+		mEMul2(mSOS2, mXEnv2),
+		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
+		mSummer(mEMul1, mEMul2),
+		mAMul(mSummer, mAEnv),				// apply main ampl envelope
+		mPanner(mAMul, 0.0) {					// init the panner
 	this->init();
 }
 
@@ -632,37 +620,20 @@ VAdditiveInstrument::VAdditiveInstrument(SHARCInstrument * i1, SHARCInstrument *
 		Instrument(),
 		mInstr1(i1),
 		mInstr2(i2),
-		mAEnv1(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
-		mAEnv2(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),
-		mVEnv(kExpon, 2.0f, 1.0f, 0.1f),
-		mXEnv1(2.0f, 1.0f, 0.00001f, kExpon),	// set up x-fade lin-segs
-		mXEnv2(2.0f, 0.00001f, 1.0f, kExpon),
-		mMix(2),								// mixer & panner
-		mPanner(mMix, 0.0) {					// init the panner
-	printf("\tV_AddInst: %s - %s\n", i1->_name, i2->_name);
-	mVib.setFrequency(fRandM(4.0f, 6.0f));	// vibrato freq
-	mVEnv.setScale(10.0f);
-	mVEnv.setOffset(110.0f);
-	mVib.setScale(mVEnv);
-//	mSOS1.setFrequency(mVEnv);
-//	mSOS2.setFrequency(mVEnv);
-	mAEnv1.setScale(mXEnv1);
-	mAEnv2.setScale(mXEnv2);
-	mAEnv2.setScale(mXEnv2);
-	mSOS1.setScale(mAEnv1);
-	mSOS2.setScale(mAEnv2);
-	mMix.addInput(mSOS1);
-	mMix.addInput(mSOS2);
-//	MulOp scale1(mAEnv1, mXEnv1);			// alternative using MulOps
-//	MulOp scale2(mAEnv2, mXEnv2);
-//	mSOS1.setScale(scale1);
-//	mSOS2.setScale(scale2);
-//	MulOp out1(mSOS1, scale1);
-//	MulOp out2(mSOS2, scale2);
-//	mMix.addInput(out1);
-//	mMix.addInput(out2);
+		mAEnv(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
+		mVEnv(2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),		// slower vibrato attack with initial delay
+		mXEnv1(2.0f, 1.0f, 0.0001f, kSquare),	// set up x-fade lin-segs
+		mXEnv2(2.0f, 0.0001f, 1.0f, kSquare),
+		mEMul1(mSOS1, mXEnv1)	,				// multiply cross-fade envs
+		mEMul2(mSOS2, mXEnv2),
+		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
+		mSummer(mEMul1, mEMul2),
+		mAMul(mSummer, mAEnv),				// apply main ampl envelope
+		mPanner(mAMul, 0.0) {					// init the panner
 	this->init();
 }
+
+// copy c'tor
 
 //VAdditiveInstrument::VAdditiveInstrument(VAdditiveInstrument&) {
 //
@@ -673,19 +644,24 @@ VAdditiveInstrument::~VAdditiveInstrument() { }
 void VAdditiveInstrument::init() {
 	mNumChannels = 2;
 	mName = "SpectralCrossFade";				// set graph's name
-	mGraph = & mPanner;							// store the root of the graph as the inst var _graph
+	mGraph = & mPanner;						// store the root of the graph as the inst var _graph
+	float vibDepth = fRandM(9.0f, 15.0f);
+	mVEnv.scaleValues(vibDepth);
+	mVib.setFrequency(fRandM(5.0f, 12.0f));	// vibrato freq
+	mVib.setScale(mVEnv);
+	mSOS1.setFrequency(mVibAdd);				// set main freq to const + vibrato freq
+	mSOS2.setFrequency(mVibAdd);
+
 	mUGens["Osc1"] = & mSOS1;					// add ugens that can be monitored to the map
 	mUGens["Osc2"] = & mSOS2;
-	mUGens["A env1"] = & mAEnv1;
-	mUGens["A env2"] = & mAEnv2;
+	mUGens["A env1"] = & mAEnv;
 	mUGens["X1 env"] = & mXEnv1;
 	mUGens["X2 env"] = & mXEnv2;
-	mUGens["Pos"] = & mPanner;
-	mUGens["Mix"] = & mMix;
-	mEnvelopes.push_back(& mAEnv1);				// list envelopes for retrigger
-	mEnvelopes.push_back(& mAEnv2);
+	mUGens["Pos"] = & mSummer;
+	
+	mEnvelopes.push_back(& mAEnv);				// list envelopes for retrigger
 	mEnvelopes.push_back(& mXEnv1);
-	mEnvelopes.push_back(& mXEnv2);
+	mEnvelopes.push_back(& mXEnv1);
 	mEnvelopes.push_back(& mVEnv);
 												// set up accessor vector
 	mAccessors.push_back(new Accessor("du", set_duration_f, CSL_FLOAT_TYPE));
@@ -716,40 +692,35 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 		logMsg("Set %d V_SOS params to (%s)\n", argc, types);
 		switch (selector) {					// switch on which parameter is being set
 			case set_duration_f:
-				mAEnv1.setDuration(d);
-				mAEnv2.setDuration(d);
+				mAEnv.setDuration(d);
+				mVEnv.setDuration(d);
 				mXEnv1.setDuration(d);
 				mXEnv2.setDuration(d);
 				break;
 			case set_amplitude_f:
-				mAEnv1.setScale(d);
-				mAEnv2.setScale(d);
+				mAEnv.setScale(d);
 				break;
 			case set_frequency_f:
-//				mVEnv.setOffset(d);
 				mFreq = d;
-				mSOS1.setFrequency(d);
-				mSOS2.setFrequency(d);
+//				mSOS1.setFrequency(d);
+//				mSOS2.setFrequency(d);
+				mVibAdd.setOperand(d);
 				if (mInstr1)
 					this->getSpectra();
 				break;
 			case set_position_f:
 				mPanner.setPosition(d); 	break;
 			case set_attack_f:
-				mAEnv1.setAttack(d);
-				mAEnv2.setAttack(d);
+				mAEnv.setAttack(d);
 				break;
 			case set_decay_f:
-				mAEnv1.setDecay(d);
-				mAEnv2.setDecay(d);
+				mAEnv.setDecay(d);
 				break;
 			case set_sustain_f:
-				mAEnv1.setSustain(d);
-				mAEnv2.setSustain(d);
+				mAEnv.setSustain(d);
 				break;
 			case set_release_f:
-				mAEnv1.setRelease(d);
-				mAEnv2.setRelease(d);
+				mAEnv.setRelease(d);
 				break;
 			default:
 				logMsg(kLogError, "Unknown selector in VAdditiveInstrument set_parameter selector: %d\n", selector);
@@ -778,28 +749,23 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	}
 //	if (gVerbose)
 		printf("\tV_Add: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
-	mAEnv1.setDuration(*fargs[0]);
-	mAEnv2.setDuration(*fargs[0]);
-	mXEnv1.setDuration(*fargs[0]);
-	mXEnv2.setDuration(*fargs[0]);
-	mVEnv.setDuration(*fargs[0]);
-	mAEnv1.scaleValues(*fargs[1]);
-	mAEnv2.scaleValues(*fargs[1]);
-	mVEnv.setOffset(*fargs[2]);
-	mSOS1.setFrequency(*fargs[2]);
-	mSOS2.setFrequency(*fargs[2]);
+	float dur = *fargs[0];
+	mAEnv.setDuration(dur);
+	mXEnv1.setDuration(dur);
+	mXEnv2.setDuration(dur);
+	mVEnv.setDuration(dur);
+	mAEnv.scaleValues(dur);
 	mFreq = *fargs[2];
+	mVibAdd.setOperand(mFreq);
+//	mSOS1.setFrequency(*fargs[2]);
+//	mSOS2.setFrequency(*fargs[2]);
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
-		mAEnv1.setAttack(*fargs[4]);
-		mAEnv1.setDecay(*fargs[5]);
-		mAEnv1.setSustain(*fargs[6]);
-		mAEnv1.setRelease(*fargs[7]);
-		mAEnv2.setAttack(*fargs[4]);
-		mAEnv2.setDecay(*fargs[5]);
-		mAEnv2.setSustain(*fargs[6]);
-		mAEnv2.setRelease(*fargs[7]);
+		mAEnv.setAttack(*fargs[4]);
+		mAEnv.setDecay(*fargs[5]);
+		mAEnv.setSustain(*fargs[6]);
+		mAEnv.setRelease(*fargs[7]);
 	}
 	if (mInstr1)
 		this->getSpectra();
@@ -807,35 +773,26 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 }
 
 void VAdditiveInstrument::playNote(float dur, float ampl, float freq, float pos, float att, float dec, float sus, float rel) {
-	mAEnv1.setDuration(dur);
-	mAEnv2.setDuration(dur);
+	mAEnv.setDuration(dur);
 	mXEnv1.setDuration(dur);
 	mXEnv2.setDuration(dur);
-	mAEnv1.scaleValues(ampl);
-	mAEnv2.scaleValues(ampl);
-	mVEnv.setOffset(freq);
+	mAEnv.scaleValues(ampl);
 	mFreq = freq;
 	mPanner.setPosition(pos);
-	mAEnv1.setAttack(att);
-	mAEnv1.setDecay(dec);
-	mAEnv1.setSustain(sus);
-	mAEnv1.setRelease(rel);
-	mAEnv2.setAttack(att);
-	mAEnv2.setDecay(dec);
-	mAEnv2.setSustain(sus);
-	mAEnv2.setRelease(rel);
+	mAEnv.setAttack(att);
+	mAEnv.setDecay(dec);
+	mAEnv.setSustain(sus);
+	mAEnv.setRelease(rel);
 	if (mInstr1)
 		this->getSpectra();
 	this->play();
 }
 
 void VAdditiveInstrument::playMIDI(float dur, int chan, int key, int vel) {
-	mAEnv1.setDuration(dur);
-	mAEnv2.setDuration(dur);
+	mAEnv.setDuration(dur);
 	mXEnv1.setDuration(dur);
 	mXEnv2.setDuration(dur);
-	mAEnv1.scaleValues(sqrtf((float) vel / 128.0f));
-	mAEnv2.scaleValues(sqrtf((float) vel / 128.0f));
+	mAEnv.scaleValues(sqrtf((float) vel / 128.0f));
 	mSOS1.setFrequency(keyToFreq(key));
 	mSOS2.setFrequency(keyToFreq(key));
 	if (mInstr1)
@@ -848,22 +805,22 @@ void VAdditiveInstrument::playMIDI(float dur, int chan, int key, int vel) {
 void VAdditiveInstrument::getSpectra() {
 	if ( ! mInstr1) return;
 	if ( ! mInstr2) return;
-	if (mNoteFreq != mFreq) {
-		mSOS1.clearPartials();
-		SHARCSpectrum * spect = mInstr1->spectrum_with_frequency(mFreq);
-		for (unsigned i = 0; i < spect->_num_partials; i++) {
-			Partial * harm = spect->_partials[i];
-			mSOS1.addPartial(harm->number, harm->amplitude, harm->phase);
-		}
-		mSOS1.createCache();							// make the cached wavetable
-		
-		mSOS2.clearPartials();
-		spect = mInstr2->spectrum_with_frequency(mFreq);
-		for (unsigned i = 0; i < spect->_num_partials; i++) {
-			Partial * harm = spect->_partials[i];
-			mSOS2.addPartial(harm->number, harm->amplitude, harm->phase);
-		}
-		mSOS2.createCache();							// make the cached wavetable
-		mNoteFreq = mFreq;							// remember last freq
+	if (mNoteFreq == mFreq) return;
+	
+	mSOS1.clearPartials();
+	SHARCSpectrum * spect = mInstr1->spectrum_with_frequency(mFreq);
+	for (unsigned i = 0; i < spect->_num_partials; i++) {
+		Partial * harm = spect->_partials[i];
+		mSOS1.addPartial(harm->number, harm->amplitude, harm->phase);
 	}
+	mSOS1.createCache();							// make the cached wavetable
+	
+	mSOS2.clearPartials();
+	spect = mInstr2->spectrum_with_frequency(mFreq);
+	for (unsigned i = 0; i < spect->_num_partials; i++) {
+		Partial * harm = spect->_partials[i];
+		mSOS2.addPartial(harm->number, harm->amplitude, harm->phase);
+	}
+	mSOS2.createCache();							// make the cached wavetable
+	mNoteFreq = mFreq;							// remember last freq
 }

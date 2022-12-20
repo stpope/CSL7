@@ -90,6 +90,15 @@ void LineSegment::nextBuffer(Buffer &outputBuffer, unsigned outBufNum, Port * sc
 				currentValue += increment;
 			}
 			break;
+		case kSquare:
+			increment = (mEnd - mStart) / (mDuration * rate);
+			for (i = 0; i < numFramesToCalc; i++) {			// Generate the interpolated frames
+				CHECK_UPDATE_SCALABLE_CONTROLS;				// update the dynamic scale/offset
+				float val = (currentValue * scaleValue) + offsetValue;
+				*outPtr++ = val * val;
+				currentValue += increment;
+			}
+			break;
 		case kExpon:
 			increment = pow(mEnd / mStart, 1/(mDuration * rate));
 			for (i = 0; i < numFramesToCalc; i++) {			// Generate the interpolated frames

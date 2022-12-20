@@ -9,10 +9,10 @@
 ///	 can scale the values or times of an existing envelope.
 ///
 ///	 Classes:
-///		LineSegment: A linearly interpolated segment with start and end values, and a duration (in seconds).
+///		LineSegment: A linearly/exponentially interpolated segment with start and end values, and a duration (in seconds).
 ///		Envelope: a collection of LineSegments; may have an input and act like an effect, 
 ///			or have no input and act like a control UnitGenerator
-///		Specific kinds of envelope (AR, ADSR, Triangle) and RandomEnvelope
+///		Specific kinds of envelope: AR, ADSR, IADSR, Triangle and RandomEnvelope
 ///
 
 #ifndef CSL_Envelope_H
@@ -30,11 +30,13 @@ namespace csl {
 #ifdef CSL_ENUMS
 typedef enum {			
 	kLine,		///< linear interpolation between start and end values.
+	kSquare,	///< squared linear interpolation (a bit more like expon).
 	kExpon,		///< linear interpolation between start and end values.
 } LineMode;
 #else
-	#define kLine 1
-	#define kExpon 2
+	#define kLine   1
+	#define kSquare 2
+	#define kExpon  3
 	typedef int LineMode;
 #endif
 

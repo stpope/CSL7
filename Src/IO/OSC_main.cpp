@@ -106,7 +106,7 @@ int main(int argc, const char * argv[]) {
 	printf("OSC server listening to port %s\n", CSL_mOSCPort);
 	initOSC(CSL_mOSCPort);				// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells,\n\t16 SHARC SOS, 4 snd file, 4 Vector SOS\n");
+	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells,\n\t16 SHARC SOS, 4 snd files, 5 Vector SOS, 5 fancy Vector SOS\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -159,20 +159,7 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-//	VAdditiveInstrument * in;				//---- 4 Vector SHARC SOS voices
-//	in = new VAdditiveInstrument(sharcInstrs[1], sharcInstrs[3]);
-//	lib.push_back(in);
-//	gIMix->addInput(*in);
-//	in = new VAdditiveInstrument(sharcInstrs[6], sharcInstrs[7]);
-//	lib.push_back(in);
-//	gIMix->addInput(*in);
-//	in = new VAdditiveInstrument(sharcInstrs[9], sharcInstrs[13]);
-//	lib.push_back(in);
-//	gIMix->addInput(*in);
-//	in = new VAdditiveInstrument(sharcInstrs[15], sharcInstrs[12]);
-//	lib.push_back(in);
-//	gIMix->addInput(*in);
-
+					// 9 fixed SHARC spectra for testing
 	std::vector<SHARCSpectrum *> sharcSpectra;
 	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
 	sharcSpectra.push_back(sharcLib->spectrum("tuba", 36));
@@ -183,15 +170,24 @@ int main(int argc, const char * argv[]) {
 	sharcSpectra.push_back(sharcLib->spectrum("alto_trombone", 55));
 	sharcSpectra.push_back(sharcLib->spectrum("French_horn", 32));
 	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
-
-	for ( ; i < 54; i++) {							//---- 4 Vector SOS voices
-		int i1 = iRandM(0,8);
-		int i2 = iRandM(0,8);
+													// Create SHARC vector synthesis instruments with fixed spectra
+	for ( ; i < 55; i++) {							//---- 5 Vector SOS voices
+		int i1 = iRandM(0,9);						// pick random pairs of spectra to use
+		int i2 = iRandM(0,9);
 		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
 		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[i1], sharcSpectra[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
+	for ( ; i < 61; i++) {							//---- 5 Vector SOS voices wit instruments (different spectra per-note)
+		int i1 = iRandM(0,16);						// pick random pairs of instruments to use
+		int i2 = iRandM(0,16);
+		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
+		VAdditiveInstrument * in = new VAdditiveInstrument(sharcInstrs[i1], sharcInstrs[i2]);
+		lib.push_back(in);
+		gIMix->addInput(*in);
+	}
+
 #endif // CSL_WINDOWS - for SHARC instruments
 
 	Stereoverb rev(*gIMix);					// stereo reverb
