@@ -255,7 +255,7 @@ void Envelope::scaleTimes(float s) {
 // scale values so that the env's max is s
 
 void Envelope::scaleValues(float s) {
-	float maxV = 0.0f;
+	float maxV = -100000000.0f;
 	for (unsigned i = 0; i < mSize; ++i) {
 		LineSegment * seg = mSegments[i];
 		if (seg->start() > maxV) maxV = seg->start();

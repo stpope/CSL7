@@ -174,7 +174,7 @@ int main(int argc, const char * argv[]) {
 	for ( ; i < 55; i++) {							//---- 5 Vector SOS voices
 		int i1 = iRandM(0,9);						// pick random pairs of spectra to use
 		int i2 = iRandM(0,9);
-		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
+//		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
 		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[i1], sharcSpectra[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
@@ -182,7 +182,7 @@ int main(int argc, const char * argv[]) {
 	for ( ; i < 61; i++) {							//---- 5 Vector SOS voices wit instruments (different spectra per-note)
 		int i1 = iRandM(0,16);						// pick random pairs of instruments to use
 		int i2 = iRandM(0,16);
-		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
+//		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
 		VAdditiveInstrument * in = new VAdditiveInstrument(sharcInstrs[i1], sharcInstrs[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);

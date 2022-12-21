@@ -811,6 +811,13 @@ Port::Port(float value) :
 
 Port::~Port() { }
 
+// plug in a new UGen for the value
+
+void Port::setValue(UnitGenerator * ug) {
+	mUGen = ug;
+	
+}
+
 // check the port's buffer and allocate it if needed
 
 void Port::checkBuffer() noexcept(false) {
@@ -829,7 +836,7 @@ void Port::checkBuffer() noexcept(false) {
 // Call this to reset the pointer without re-pulling the input (see SumOfSines)
 
 void Port::resetPtr() {
-	if (mPtrIncrement)								// if I'm dynamic
+	if (mPtrIncrement)						// if I'm dynamic
 		mValuePtr = (mBuffer->buffer(0)) - 1;	// set to -1 since nextValue does pre-increment
 }
 

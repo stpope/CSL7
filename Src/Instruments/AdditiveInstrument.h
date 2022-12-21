@@ -149,14 +149,14 @@ public:
 	VAdditiveInstrument(SHARCInstrument * instr1, SHARCInstrument * instr2);
 	~VAdditiveInstrument();
 								/// Plug functions
-	void setParameter(unsigned selector, int argc, void **argv, const char *types);
+	virtual void setParameter(unsigned selector, int argc, void **argv, const char *types);
 								/// Play functions
-	void playOSC(int argc, void **argv, const char *types);	
+	virtual void playOSC(int argc, void **argv, const char *types);
 	
-	void playNote(float dur = 2, float ampl = 1,
+	virtual void playNote(float dur = 2, float ampl = 1,
 				float c_fr = 110, float pos = 0,
 				float att = 0.1, float dec = 0.1, float sus = 0.75, float rel = 0.2);
-	void playMIDI(float dur, int chan, int key, int vel);	
+	virtual void playMIDI(float dur, int chan, int key, int vel);
 
 	SHARCInstrument * mInstr1 = 0;	///< SHARC instruments, or 0 if SHARC spectra are used
 	SHARCInstrument * mInstr2 = 0;
@@ -170,12 +170,39 @@ public:
 	MulOp mAMul;						///< final env multiplier
 	Panner mPanner;					///< stereo panner
 protected:
-	void init();
+	virtual void init();
 	void getSpectra();				///< recompute the 2 SOS spectra from the SHARC data
 	int mNoteFreq = 0;				///< freq of last note
 	float mFreq;
 };
 
-}
+///
+/// VAdditiveInstrumentR = vector-additive cross-fade between 2 SOS spectra
+/// with random-walk cross-fade envelope
+///
+
+class VAdditiveInstrumentR : public VAdditiveInstrument {
+public:
+	VAdditiveInstrumentR(SHARCSpectrum * spect1, SHARCSpectrum * spect2);
+	VAdditiveInstrumentR(SHARCInstrument * instr1, SHARCInstrument * instr2);
+	~VAdditiveInstrumentR();
+								/// Plug functions
+	void setParameter(unsigned selector, int argc, void **argv, const char *types);
+								/// Play functions
+	void playOSC(int argc, void **argv, const char *types);
+	
+	void playNote(float dur = 2, float ampl = 1,
+				float c_fr = 110, float pos = 0,
+				float att = 0.1, float dec = 0.1, float sus = 0.75, float rel = 0.2);
+	void playMIDI(float dur, int chan, int key, int vel);
+
+	RandEnvelope mREnv;					///< random cross-fade envelope
+	SubOp mESub;							///< SubOp for (1 - env) cross-fade
+protected:
+	void init();
+};
+
+} // namespace
 
 #endif
+

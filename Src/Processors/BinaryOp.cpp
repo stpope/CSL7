@@ -49,6 +49,15 @@ void BinaryOp::setOperand(float op) {
 	opPort->mValue = op;
 }
 
+// Set the operand from a UnitGenerator
+
+void BinaryOp::setOperand(UnitGenerator & op) {
+	Port * opPort = mInputs[CSL_OPERAND];
+	if (opPort->mUGen != 0)
+		throw RunTimeError("Can't set value of UGen port");
+	opPort->mValue = op;
+}
+
 // print info about this instance
 
 void BinaryOp::dump() {
@@ -70,17 +79,47 @@ AddOp::AddOp(float op1, UnitGenerator & op2) : BinaryOp(op1, op2) { }
 
 void AddOp::nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false) {
 #ifdef CSL_DEBUG
-	logMsg("AddOp nextBuffer");						// for verbose debugging (define CSL_DEBUG in CSL_Core.h)
+	logMsg("AddOp nextBuffer");					// for verbose debugging (define CSL_DEBUG in CSL_Core.h)
 #endif
 	SampleBuffer outputBufferPtr = outputBuffer.buffer(outBufNum);
 	unsigned numFrames = outputBuffer.mNumFrames;
 	DECLARE_OPERAND_CONTROLS;						// Declare and load the operand
 	LOAD_OPERAND_CONTROLS;
 	for (unsigned i = 0; i < numFrames; i++) {
-		*outputBufferPtr++ = *inValue + opValue;		// Do the actual add
+		*outputBufferPtr++ = *inValue + opValue;// Do the actual addition
 		UPDATE_OPERAND_CONTROLS;					// Update both the operand
 	}
 }
+
+// SubOp
+
+SubOp::SubOp(UnitGenerator & op1, UnitGenerator & op2, bool dir) : BinaryOp(op1, op2) { mDirection = dir; }
+
+SubOp::SubOp(UnitGenerator & op1, float op2, bool dir) : BinaryOp(op1, op2) { mDirection = dir; }
+
+SubOp::SubOp(float op1, UnitGenerator & op2, bool dir) : BinaryOp(op1, op2) { mDirection = dir; }
+
+void SubOp::nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false) {
+#ifdef CSL_DEBUG
+	logMsg("AddOp nextBuffer");					// for verbose debugging (define CSL_DEBUG in CSL_Core.h)
+#endif
+	SampleBuffer outputBufferPtr = outputBuffer.buffer(outBufNum);
+	unsigned numFrames = outputBuffer.mNumFrames;
+	DECLARE_OPERAND_CONTROLS;						// Declare and load the operand
+	LOAD_OPERAND_CONTROLS;
+	if (mDirection) {
+		for (unsigned i = 0; i < numFrames; i++) {
+			*outputBufferPtr++ = opValue - *inValue;// Do the actual subtraction
+			UPDATE_OPERAND_CONTROLS;					// Update both the operand
+		}
+	} else {
+		for (unsigned i = 0; i < numFrames; i++) {
+			*outputBufferPtr++ = *inValue - opValue;// Do the actual subtraction
+			UPDATE_OPERAND_CONTROLS;					// Update both the operand
+		}
+	}
+}
+
 // MulOp
 
 MulOp::MulOp(UnitGenerator & op1, UnitGenerator & op2) : BinaryOp(op1, op2) { }
@@ -91,7 +130,7 @@ MulOp::MulOp(float op1, UnitGenerator & op2) : BinaryOp(op1, op2) { }
 
 void MulOp::nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false)  {
 #ifdef CSL_DEBUG
-	logMsg("MulOp nextBuffer");								// for verbose debugging (define CSL_DEBUG in CSL_Core.h)
+	logMsg("MulOp nextBuffer");						// for verbose debugging (define CSL_DEBUG in CSL_Core.h)
 #endif
 	SampleBuffer outputBufferPtr = outputBuffer.buffer(outBufNum);
 	unsigned numFrames = outputBuffer.mNumFrames;
@@ -99,7 +138,7 @@ void MulOp::nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false
 	LOAD_OPERAND_CONTROLS;
 
 	for (unsigned i = 0; i < numFrames; i++) {
-		*outputBufferPtr++ = * inValue * opValue;		// Do the actual multiply
+		*outputBufferPtr++ = * inValue * opValue;	// Do the actual multiply
 		UPDATE_OPERAND_CONTROLS;						// Update both the operand
 	}
 }

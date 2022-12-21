@@ -342,11 +342,20 @@ a shell window and use commands such as,
 	oscsend localhost 54321 /i47/pn ff  3.0 0.0 
 	
 	# Vector SHARC add synth (dur, amp, pitch, pos)
+	# Version 1 with fixed spectrum across frequencies.
 	oscsend localhost 54321 /i51/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i52/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i53/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i54/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i55/pn ffff  3.0 0.77 144.7 0.0
+		
+	# Vector SHARC add synth (dur, amp, pitch, pos)
+	# Version 2 with SHARC instruments, i.e., different spectra per-note
+	oscsend localhost 54321 /i56/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i57/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i58/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i59/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i60/pn ffff  3.0 0.77 144.7 0.0
 	
 ## Source Code Organization
 

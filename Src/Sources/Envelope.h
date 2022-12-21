@@ -9,7 +9,7 @@
 ///	 can scale the values or times of an existing envelope.
 ///
 ///	 Classes:
-///		LineSegment: A linearly/exponentially interpolated segment with start and end values, and a duration (in seconds).
+///		LineSegment: A linearly/exponentiallyell interpolated segment with start and end values, and a duration (in seconds).
 ///		Envelope: a collection of LineSegments; may have an input and act like an effect, 
 ///			or have no input and act like a control UnitGenerator
 ///		Specific kinds of envelope: AR, ADSR, IADSR, Triangle and RandomEnvelope
@@ -75,7 +75,7 @@ protected:
 	float mEnd;					///< Ending value
 	float mDuration	;			///< Length of the line segment (IN SECONDS)
 	LineMode mMode;				///< How am I to calculate the values from start to end values of the line.
-	float mCurrentValue;		///< Internal book-keeping
+	float mCurrentValue;			///< Internal book-keeping
 	unsigned mCurrentFrame;		///< cache
 };
 
@@ -250,7 +250,7 @@ class RandEnvelope : public Envelope {
 public:										/// defaults are 1 Hz, +- 1.0 range
 	RandEnvelope(float frequency = 1, float amplitude = 1, float offset = 0, float step = 0);
 	~RandEnvelope() { };
-						/// Accessors
+							/// Accessors
 	void setWalk(bool walk) { mWalk = walk; };
 	void setAmplitude(float amplitude) { mAmplitude = amplitude; };
 	void setFrequency(float frequency) { mFrequency = frequency; };
@@ -258,12 +258,12 @@ public:										/// defaults are 1 Hz, +- 1.0 range
 	void setOffset(float offset) { mOffset = offset; };
 
 	virtual bool isActive() { return false; };
-					/// These are no-ops in Random envelopes
+							/// These are no-ops in Random envelopes
 	void reset() { };				///< reset internal time to restart envelope
 	void trigger() { };				///< reset internal time to restart envelope
-	void dump() { };				///< print the receiver
+	void dump() { };					///< print the receiver
 	void setDuration(float d) { };	///< set/scale durations
-	void scaleTimes(float s) { };	///< scale durations
+	void scaleTimes(float s) { };		///< scale durations
 
 								/// The main UGen work method
 	void nextBuffer(Buffer &outputBuffer, unsigned outBufNum) noexcept(false);
@@ -275,7 +275,7 @@ protected:
 	float mStep;					///< max step between values (+-)
 	float mOffset;				///< DC offset
 	unsigned mCurrentIndex;		///< current index in line segment
-	unsigned mSegmentLength;	///< line segment's length in frames
+	unsigned mSegmentLength;		///< line segment's length in frames
 	bool mWalk;					///< whether to produce random values or a random walk
 	LineSegment mSegment;		///< single line segment
 	

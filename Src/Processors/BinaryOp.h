@@ -34,6 +34,7 @@ public:								/// The constructor for dual-UnitGenerator operation
 
 	void dump();						///< Prints instance info
 	void setOperand(float op);		///< Set the operand from a fixed float
+	void setOperand(UnitGenerator & op);	///< Set the operand from a fixed float
 
 protected:	
 									/// Abstract function that will do the processing for each buffer
@@ -94,7 +95,26 @@ public:								/// The constructor for dual-UnitGenerator operation
 //	float nextValue() noexcept(false);
 
 protected:							/// Function that implements the adding routine
-	void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false) ;
+	void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false);
+};
+
+///
+/// SubOp -- A BinaryOp that subtracts two UnitGenerators or fixed constants,
+/// or (most usefully) a UG from a constant as in 1.0 - envelope
+///
+
+class SubOp : public BinaryOp {
+
+public:								/// The constructor for dual-UnitGenerator operation
+	SubOp(UnitGenerator & op1, UnitGenerator & op2, bool direction = true);
+									/// Constructuctor for operating a UnitGenerator and a fixed float
+	SubOp(UnitGenerator & op1, float op2, bool direction = true);
+									/// Returns the next individual frame (for fixed values)
+	SubOp(float op1, UnitGenerator & op2, bool direction = true);
+	
+protected:							/// Function that implements the adding routine
+	void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false);
+	bool mDirection;					/// determines which operand is subtracted from which?
 };
 
 ///
@@ -114,7 +134,7 @@ public:								/// The constructor for dual-UnitGenerator operation
 //	float nextValue() noexcept(false);
 
 //protected:							/// Function that implements the multiplying routine
-	void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false) ;
+	void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false);
 
 };
 

@@ -317,7 +317,7 @@ public:
 	Port(float value);					///< given a float, hold it as the static value
 	virtual ~Port();						///< Destructor
 
-										// public data members
+									// public data members
 	UnitGenerator * mUGen;				///< my unit generator (pointer or NULL)
 	Buffer * mBuffer;					///< the buffer used to hold my output
 	float mValue;						///< my value (in case I'm fixed [mUGen == NULL])
@@ -327,6 +327,7 @@ public:
 
 	void checkBuffer() noexcept(false);	///< check the port's buffer and allocate it if needed
 	inline Sample nextValue();			///< answer the next value (dynamic or constant)
+	void setValue(UnitGenerator * ug);	///< plug in a new UGen for the value
 	inline void nextFrame(SampleBuffer where);	///< write the val to a buffer
 	inline bool isReady();				///< answer whether I'm ready to be read
 	void resetPtr();						///< reset the buffer pointer without re-pulling the input
