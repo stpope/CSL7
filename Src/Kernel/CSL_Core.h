@@ -158,10 +158,11 @@ public:									/// Constructor: default is mono and default-size
 	virtual void setBuffer(unsigned bufNum, SampleBuffer sPtr) { mBuffers[bufNum] = sPtr; };
 	virtual void setBuffer(unsigned bufNum, unsigned offset, Sample samp) { *((mBuffers[bufNum]) + offset) = samp; };
 
-	float normalize(float maxVal);			///< normalize the buffer(s) to the given max; answer the prior max
+	float normalize(float maxVal = 1.0f);					///< normalize the buffer(s) to the given max; answer the prior max
 	float normalize(float maxVal, float from, float to);	///< normalize the given region only
-    void removeDC();                        ///< normalize the buffer(s) so that the average is 0.0
-    
+    void removeDC();             						///< normalize the buffer(s) so that the average is 0.0
+	void dumpSamples(int which, int num, int spacing);	///< Print a few samples for debugging; num samples every spacing
+
 /// Buffer Sample Processing (optional).
 /// One could also easily add Buffer operators, such as (Buffer + Buffer) or (Buffer * Buffer)
 

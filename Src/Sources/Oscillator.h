@@ -69,7 +69,7 @@ class WavetableOscillator : public Oscillator {
 public:
 	WavetableOscillator(Buffer & wave);
 #ifndef SWIG_ONLY						// SWIG can't handle the initializers
-	WavetableOscillator(float frequency = 1, float ampl = 1.0, float offset = 0.0, float phase = 0.0);
+	WavetableOscillator(float frequency = 1.0f, float ampl = 1.0f, float offset = 0.0f, float phase = 0.0f);
 #else
 	WavetableOscillator(Buffer & wave, float frequency = 220.0f);
 	WavetableOscillator(Buffer & wave, float frequency = 220.0f, float phase = 0.0f);
@@ -79,11 +79,11 @@ public:
 	void setWaveform(Buffer & wave, bool freeBufs = true);	///< plug in waveforms
 										/// set the interpolation flag
 	void setInterpolate(InterpolationPolicy whether) { mInterpolate = whether; };
-										// get the next buffer of samples
+										/// get the next buffer of samples
 	virtual void nextBuffer(Buffer & outputBuffer, unsigned outBufNum) noexcept(false);
 
 	InterpolationPolicy mInterpolate;	///< whether/how I should interpolate between samples
-	Buffer mWavetable;					///< the stored wave form
+	Buffer mWavetable;					///< the stored waveform
 
 protected:
 	void fillSine();					///< fill the shared wavetable with 1 cycle of a sine wave

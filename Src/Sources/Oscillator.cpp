@@ -213,6 +213,7 @@ void CompOrCacheOscillator::createCache(void) {
 	mUseCache = true;
 	mWavetable.allocateBuffers();
 	this->nextWaveInto(mWavetable.buffer(0), mWavetable.mNumFrames, true);
+	mWavetable.normalize();
 }
 
 // nextBuffer either calls the inherited wavetable method, or does the computation on-demand here
@@ -525,16 +526,16 @@ void SumOfSines::clearPartials() {
 void SumOfSines::nextWaveInto(SampleBuffer dest, unsigned count, bool oneHz) {
 	float incr, t_incr, phase, ampl;
 	SampleBuffer out_ptr;
-	unsigned numFrames = count;							// the number of frames to fill
+	unsigned numFrames = count;						// the number of frames to fill
 	DECLARE_PHASED_CONTROLS;							// declare the frequency buffer and value
-	DECLARE_SCALABLE_CONTROLS;							// declare the scale/offset buffers and values
+	DECLARE_SCALABLE_CONTROLS;						// declare the scale/offset buffers and values
 
 	if (oneHz) {										// if we're creating a wavetable
 		incr = CSL_TWOPI / (float) count;
 	} else {											// otherwise compute phase increment scale
 		incr = CSL_TWOPI / (float) mFrameRate;
 		LOAD_PHASED_CONTROLS;							// load the freqC from the constant or dynamic value
-		LOAD_SCALABLE_CONTROLS;							// load the scaleC and offsetC from the constant or dynamic value
+		LOAD_SCALABLE_CONTROLS;						// load the scaleC and offsetC from the constant or dynamic value
 	}
 	for (unsigned i = 0; i < mPartials.size(); i++) {	// partials loop
 		Partial * p = mPartials[i];
@@ -552,13 +553,13 @@ void SumOfSines::nextWaveInto(SampleBuffer dest, unsigned count, bool oneHz) {
 			for (unsigned j = 0; j < numFrames; j++) {	// sample loop
 				*out_ptr++ += (sinf(phase) * ampl * scaleValue) + offsetValue;
 				phase += (t_incr * freqValue);
-				UPDATE_PHASED_CONTROLS;					// update the dynamic frequency
+				UPDATE_PHASED_CONTROLS;				// update the dynamic frequency
 				UPDATE_SCALABLE_CONTROLS;				// update the dynamic scale/offset
 //				if (j == 1) fprintf(stderr, "\t\t\t%g : %g : %g\n", freqValue, scaleValue, offsetValue);
 			}
 		}
 		if ( ! oneHz) {
-			freqPort->resetPtr();						// reset control pointers after each loop through a partial
+			freqPort->resetPtr();					// reset control pointers after each loop through a partial
 			scalePort->resetPtr();
 			offsetPort->resetPtr();
 			freqValue = freqPort->nextValue();

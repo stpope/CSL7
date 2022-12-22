@@ -246,7 +246,7 @@ void testSOSInstrument() {
 	AdditiveInstrument * vox2 = new AdditiveInstrument(48, 1.75f);
 	AdditiveInstrument * vox3 = new AdditiveInstrument(48, 1.75f);
 	logMsg("Playing 3 SOS instruments...");
-    vox1->playMIDI(1.0f, 1, 30, 80);        // MIDI msg: dur, chan, key, vel
+	vox1->playMIDI(1.0f, 1, 30, 80);        // MIDI msg: dur, chan, key, vel
 	runTest(*vox1, 1.0f);
 	vox2->playMIDI(1.0f, 1, 30, 80);
 	runTest(*vox2, 1.0f);
@@ -262,6 +262,26 @@ void testSOSInstrument() {
 	delete vox1;
 	delete vox2;
 	delete vox3;
+}
+
+/// Test SHARC random-cross-fade instrument - dur, ampl, freq, pos
+
+void testSHARCInstrument() {
+	SHARCLibrary::loadDefault();				// Load SHARC database (takes a few secs)
+	SHARCLibrary * sharcLib = SHARCLibrary::library();
+											// create rand additive instrument with 2 SHARC spectra
+	VAdditiveInstrument * vox = new VAdditiveInstrument(sharcLib->spectrum("oboe", 50), sharcLib->spectrum("French_horn", 32));
+											// argv for OSC-like instrument call
+	float argv[] = { 5.0f , 0.5f , 80.0f , 0.0f };
+	float * argp[] = { &argv[0], &argv[1], &argv[2], &argv[3] };
+//	void ** argx = (void **) argv;
+	int argc = 4;
+	char * types = "ffff";
+	logMsg("Playing random mix of 2 SHARC instruments ...");
+	vox->playOSC(argc, (void **) & argp, types);        // OSC msg: dur, ampl, freq, pos
+	runTest(*vox, 5.0f);
+	logMsg("done.");
+	delete vox;
 }
 
 void testFancyFMInstrument() {
@@ -541,6 +561,7 @@ testStruct srcTestList[] = {
 	"Fancy FM instrument",		testFancyFMInstrument,	"FM note with attack chiff and vibrato",
 	"FM bell instrument",			testFMBellInstrument,		"FM bell with glissando",
 	"SumOfSines instrument",		testSOSInstrument,		"Demonstrate the SumOfSines instrument",
+	"Spectral mix SOS instrument",	testSHARCInstrument, 		"Random cross-fade between 2 instrumental timbres",
 	"Snd file instrument (buggy)",	testSndFileInstrument,	"Test the sound file instrument",
 	"WaveShaping synthesis",		testWaveShaper,			"Play 2 wave-shaper notes with envelopes",
     "IFFT synthesis", 			test_ifft,  				"Make a sound with IFFT synthesis",

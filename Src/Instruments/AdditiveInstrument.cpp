@@ -206,18 +206,7 @@ SHARCAddInstrument::SHARCAddInstrument	() :
 		Instrument(),
 		mAEnv(0.5, 0.05, 0.06, 0.5, 0.15),		// set up standard ADSR (1/2-sec duration)
 		mPanner(mSOS, 0.0),
-		mSOS(16, 0.1f)								// SumOfSines init -- 1/f spectrum + noise
-#ifdef CSL_CHIFF
-		, mCEnv(0.25, 0.03, 0.03, 0.0, 0.),
-		mMix(2),
-		mPanner(mMix, 0.0)
-#endif
-#ifdef CSL_VIBRATO
-		, mVEnv(kExpon, 2.0f, 1.0f, 0.2f),
-		mVEnv.setOffset(100.0f),
-		mVib.setScale(mVEnv)
-#endif
-{
+		mSOS(16, 0.1f) {							// SumOfSines init -- 1/f spectrum + noise
 	this->init();
 }
 
@@ -226,17 +215,8 @@ SHARCAddInstrument::SHARCAddInstrument	() :
 SHARCAddInstrument::SHARCAddInstrument(SHARCInstrument * in) :
 		Instrument(),
 		mAEnv(0.5, 0.06, 0.06, 0.5, 0.1),			// ampl envelope
-		mSOS(100.0f)								// SumOfSines init -- 1/f spectrum + noise
-#ifdef CSL_CHIFF
-		, mCEnv(0.25, 0.03, 0.03, 0.0, 0.),
-		mMix(2),
-		mPanner(mMix, 0.0)
-#endif
-#ifdef CSL_VIBRATO
-		, mVEnv(kExpon, 2.0f, 1.0f, 0.2f),
-		mVib.setScale(mVEnv)
-#endif
-		, mPanner(mSOS, 0.0),						// stereo panner
+		mSOS(100.0f),							// SumOfSines init -- 1/f spectrum + noise
+		mPanner(mSOS, 0.0),						// stereo panner
 		mInstr(in) {
 	this->init();								// call init fcn.
 }
@@ -246,14 +226,6 @@ SHARCAddInstrument::SHARCAddInstrument(SHARCInstrument * in) :
 SHARCAddInstrument::SHARCAddInstrument(SHARCAddInstrument& in) :
 		Instrument(in),
 		mAEnv(in.mAEnv),
-#ifdef CSL_CHIFF
-		mCEnv(in.mCEnv),
-		mMix(in.mMix),
-#endif
-#ifdef CSL_VIBRATO
-		mVEnv(in.mVEnv),
-		mVib.setScale(mVEnv),
-#endif
 		mSOS(in.mSOS),
 		mPanner(in.mPanner),
 		mInstr(in.mInstr) {
@@ -268,31 +240,13 @@ void SHARCAddInstrument::init() {
 	mNumChannels = 2;
 	mSOS.setFrequency(110.0);							// temp freq
 	mSOS.setScale(mAEnv);
-#ifdef CSL_CHIFF
-	mChiff.setScale(mCEnv);
-	mMix.addInput(mSOS);
-	mMix.addInput(mChiff);
-#endif
-#ifdef CSL_VIBRATO
-	mVib.setScale(mVEnv);
-	mSOS.setFrequency(mVib);						// plug in the envelope
-#endif
 	mName = "SHARC";									// set graph's name
 	mGraph = & mPanner;								// store the root of the graph as the inst var _graph
 	mUGens["Osc"] = & mSOS;							// add ugens that can be monitored to the map
 	mUGens["A env"] = & mAEnv;
-#ifdef CSL_CHIFF
-	mUGens["C env"] = & mCEnv;
-#endif
 	mUGens["Pos"] = & mPanner;
 	
 	mEnvelopes.push_back(& mAEnv);					// list envelopes for retrigger
-#ifdef CSL_CHIFF
-	mEnvelopes.push_back(& mCEnv);
-#endif
-#ifdef CSL_VIBRATO
-	mEnvelopes.push_back(& mVEnv);
-#endif
 													// set up accessor vector
 	mAccessors.push_back(new Accessor("du", set_duration_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
@@ -369,19 +323,10 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-	printf("\tSHARC: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+	printf("\tSHARC0: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mAEnv.scaleValues(*fargs[1]);			// amp
-#ifdef CSL_CHIFF
-	mCEnv.setDuration(*fargs[0]);
-	mCEnv.scaleValues(*fargs[1]);
-#endif
-#ifdef CSL_VIBRATO
-	mVEnv.setOffset(*fargs[2]);
-	mSOS.setFrequency(mVib);
-#else
 	mSOS.setFrequency(*fargs[2]);			// freq
-#endif
 	mFreq = *fargs[2];
 	mPanner.setPosition(*fargs[3]);		// pos
 	if (nargs == 8) {
@@ -390,9 +335,6 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 		mAEnv.setDecay(*fargs[5]);
 		mAEnv.setSustain(*fargs[6]);
 		mAEnv.setRelease(*fargs[7]);
-#ifdef CSL_CHIFF
-		mCEnv.scaleValues(*fargs[1] * *fargs[8]);
-#endif
 	}
 	this->getSpectrum();
 	this->play();
@@ -402,15 +344,7 @@ void SHARCAddInstrument::playNote(float dur, float ampl, float pitch, float pos,
 				float att, float dec, float sus, float rel, float chiff) {
 	mAEnv.setDuration(dur);
 	mAEnv.scaleValues(ampl);
-#ifdef CSL_CHIFF
-	mCEnv.setDuration(dur);
-	mCEnv.scaleValues(ampl);
-#endif
 	mSOS.setFrequency(pitch);
-#ifdef CSL_VIBRATO
-	mVEnv.setOffset(pitch);
-	mSOS.setFrequency(mVib);
-#endif
 	mFreq = pitch;
 	mPanner.setPosition(pos);
 	mAEnv.setAttack(att);
@@ -424,16 +358,8 @@ void SHARCAddInstrument::playNote(float dur, float ampl, float pitch, float pos,
 void SHARCAddInstrument::playMIDI(float dur, int chan, int key, int vel) {
 	mAEnv.setDuration(dur);
 	mAEnv.scaleValues(sqrtf((float) vel / 128.0f));
-#ifdef CSL_CHIFF
-	mCEnv.setDuration(dur);
-	mCEnv.scaleValues(sqrtf((float) vel / 128.0f));
-#endif
 	float frq = keyToFreq(key);
 	mSOS.setFrequency(frq);
-#ifdef CSL_VIBRATO
-	mVEnv.setOffset(frq);
-	mSOS.setFrequency(mVib);
-#endif
 	mFreq = frq;
 	this->getSpectrum();
 	this->play();
@@ -451,6 +377,7 @@ void SHARCAddInstrument::getSpectrum() {
 		}
 		mSOS.createCache();							// make the cached wavetable
 		mNoteFreq = mFreq;
+//		mSOS.mWavetable.dumpSamples(0, 10, 50);		// print some buffer values for debugging
 	}
 }
 
@@ -478,15 +405,15 @@ SHARCAddInstrumentV::~SHARCAddInstrumentV() { }
 
 void SHARCAddInstrumentV::init() {
 	SHARCAddInstrument::init();
-	float vibDepth = fRandM(9.0f, 15.0f);
-	mVEnv.scaleValues(vibDepth);
-	mVib.setFrequency(fRandM(5.0f, 12.0f));				// vibrato freq
-	mVib.setOffset(110.0f);
-	mSOS.setFrequency(mVib);								// plug in the envelope
-	mUGens["V env"] = & mVEnv;
-	mUGens["Vibrato"] = & mVib;
+//	float vibDepth = fRandM(9.0f, 15.0f);
+//	mVEnv.scaleValues(vibDepth);
+//	mVib.setFrequency(fRandM(5.0f, 12.0f));				// vibrato freq
+//	mVib.setOffset(110.0f);
+//	mSOS.setFrequency(mVib);								// plug in the vi
+//	mUGens["V env"] = & mVEnv;
+//	mUGens["Vibrato"] = & mVib;
 
-	mEnvelopes.push_back(& mVEnv);						// list envelopes for retrigger
+//	mEnvelopes.push_back(& mVEnv);						// list envelopes for retrigger
 }
 	
 /// Plug functions
@@ -550,14 +477,15 @@ void SHARCAddInstrumentV::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-	printf("\tSHARC: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+	printf("\tSHARC1: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
-	mVEnv.setDuration(*fargs[0]);
+//	mVEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);			// amp
 	mFreq = *fargs[2];					// freq
-	mVEnv.setOffset(mFreq);
-	mVib.setFrequency(fRandM(5.0f, 12.0f));// vibrato freq
-	mVib.setOffset(mFreq);
+//	mVEnv.setOffset(mFreq);
+	mSOS.setFrequency(mFreq);
+//	mVib.setFrequency(fRandM(5.0f, 12.0f));// vibrato freq
+//	mVib.setOffset(mFreq);
 	mPanner.setPosition(*fargs[3]);		// pos
 	if (nargs == 8) {
 		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -689,7 +617,7 @@ void SHARCAddInstrumentC::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-	printf("\tSHARC: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+	printf("\tSHARC2: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mCEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);			// amp
@@ -1068,8 +996,8 @@ void VAdditiveInstrumentR::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		return;
 	}
-	if (gVerbose)
-		printf("\tV_Add: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+//	if (gVerbose)
+		printf("\tV_AddR: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	float dur = *fargs[0];
 	mAEnv.setDuration(dur);
 	mXEnv1.setDuration(dur);

@@ -429,6 +429,16 @@ void Buffer::removeDC() {
     }
 }
 
+///< Print a few samples for debugging; num samples every spacing
+///<
+void Buffer::dumpSamples(int which, int num, int spacing) {
+	printf("\nBuffer data: ");
+	for (int i = 0; i < num; i++)
+		printf("%5.3f ", mBuffers[which][i * spacing]);
+	printf("\n\n");
+}
+
+
 #ifdef USE_SRC // sample-rate conversion methods
 
 // convert the sample rate using libSampleRate

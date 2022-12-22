@@ -30,9 +30,9 @@
 namespace csl  {
 
 ///
-/// AdditiveInstrument - the simplest instruments using a computed som-of-sines oscillator.
-/// Use this to construct arbitrary spectra with the c'tors that take SumOfSines as arguments.
-/// Subclasses do more interesting things...
+/// AdditiveInstrument - the simplest instruments using a computed sum-of-sines oscillator.
+/// Use this to construct arbitrary spectra with the c'tors that take SumOfSines or SHARC
+/// spectra as arguments.  Subclasses do more interesting things...
 ///
 
 class AdditiveInstrument : public Instrument {
@@ -63,12 +63,9 @@ protected:
 
 ///
 /// SHARCAddInstrument - uses the SHARC spectra to create sum-of-sines players.
-/// An example of adding features like attack chiff and vibrato with conditional compilation
-/// (messy, I know; see the subclasses below for versions that work).
+/// These are created with SHARCInstrument objects, i.e., different spectra per note, and
+/// recompute the wave table when necessary.  Subclasses add features like attack chiff and vibrato.
 ///
-
-//#ifdef CSL_CHIFF				// not tested; see subclasses
-//#ifdef CSL_VIBRATO
 
 class SHARCAddInstrument : public Instrument {
 public:
@@ -87,15 +84,6 @@ public:
 	virtual void playMIDI(float dur, int chan, int key, int vel);
 
 	ADSR mAEnv;					///< amplitude envelope
-#ifdef CSL_VIBRATO
-	AR mVEnv;					///< vibrato envelope
-	Osc mVib;					///< vibrato oscillator
-#endif
-#ifdef CSL_CHIFF
-	ADSR mCEnv;					///< chiff envelope
-	PinkNoise mChiff;			///< attack chiff
-	Mixer mMix;					///< output summer
-#endif
 	SumOfSines mSOS;				///< sum-of-sines oscillator
 	Panner mPanner;				///< stereo panner
 	SHARCInstrument * mInstr;		///< the SHARC list of spectra
@@ -108,7 +96,7 @@ protected:
 };
 
 ///
-/// SHARCAddInstrumentV - uses the SHARC spectra to create sum-of-sines players with vibrato.
+/// SHARCAddInstrumentV - version with vibrato.
 /// ToDo: add OSC arguments for vibrato rate and depth.
 ///
 

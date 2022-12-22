@@ -153,13 +153,13 @@ int main(int argc, const char * argv[]) {
 	sharcInstrs.push_back(sharcLib->instrument("contrabass_clarinet"));
 
 	for ( ; i < 50; i++) {				//---- 16 SHARC SOS voices w vibrato
-		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i - 30]);
+		SHARCAddInstrument * in = new SHARCAddInstrument(sharcInstrs[i - 34]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
 	for ( ; i < 55; i++) {				//---- 5 SHARC SOS voices w attack chiff
 		int i1 = iRandM(0,16);			// pick random instruments to use
-		SHARCAddInstrumentC * in = new SHARCAddInstrumentC(sharcInstrs[i1]);
+		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i1]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
