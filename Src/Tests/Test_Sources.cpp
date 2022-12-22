@@ -198,19 +198,19 @@ void testWaveShaper() {
 	runTest(mul, 3);
 	logMsg("done.");
     
-	WaveShaper wv2(110, 2);					// wave-shape 1 = clipping
+	WaveShaper wv2(110, 2);					// wave-shape 2 = cubic shape
 	csl::ADSR ads2(3.0, 1, 1, 0.7, 1);
 	wv2.setScale(ads2);
-    MulOp mu2(wv2, 0.4);                    // using a MulOp with a constant
+    MulOp mu2(wv2, 0.4);
 	logMsg("Playing WaveShaper 2");
 	ads2.trigger();
 	runTest(mu2, 3);
 	logMsg("done.");
     
-	WaveShaper wv3(110, 1);					// wave-shape 1 = clipping
+	WaveShaper wv3(110, 1);					// wave-shape 3 = other shape
 	csl::ADSR ads3(3.0, 1, 1, 0.7, 1);
 	wv3.setScale(ads3);
-    MulOp mu3(wv3, 0.4);                    // using a MulOp with a constant
+    MulOp mu3(wv3, 0.4);
 	logMsg("Playing WaveShaper 3");
 	ads3.trigger();
 	runTest(mu3, 3);
@@ -305,7 +305,7 @@ void testFMBellInstrument() {
 	Stereoverb rev(mix);							// stereo reverb
 	rev.setRoomSize(0.94);							// medium-length reverb
 	theIO->setRoot(rev);							// send mix to IO
-	logMsg("playing 16-bell chorus...");
+	logMsg("playing bells...");
 	
 	float cfreq, frRat, indF, pos, gliss;			// params and ptrs
 	float * cPtr = & cfreq;
@@ -441,8 +441,8 @@ void testGrainCloud() {
 	cloud.mDensityRange = 10.0f;
 	cloud.mWidthBase = 0.0f;
 	cloud.mWidthRange = 1.0f;
-	cloud.mVolumeBase = 8.0f;
-	cloud.mVolumeRange = 20.5f;
+	cloud.mVolumeBase = 4.0f;
+	cloud.mVolumeRange = 10.5f;
 	cloud.mEnvelopeBase = 0.5f;
 	cloud.mEnvelopeRange = 0.49f;
 	logMsg("playing Granular cloud.");
@@ -484,16 +484,16 @@ void test_vector_ifft() {
 	
 	vox1.setBinMagPhase(4, 0.25, 0);			    // set different harmonics
 	vox1.setBinMagPhase(6, 0.25, 0);
-	LineSegment env1(dur, 0.5, 0.00001, kExpon);	// fade-out
+	LineSegment env1(dur, 0.5, 0.00001, kSquare);	// fade-out
 	MulOp mul1(vox1, env1);						// use a MulOp
 
 	vox2.setBinMagPhase(5, 0.25, 0);			    // for the 2nd IFFT
 	vox2.setBinMagPhase(9, 0.25, 0);
-	LineSegment env2(dur, 0.00001, 0.5, kExpon);	// fade-in
+	LineSegment env2(dur, 0.00001, 0.5, kSquare);	// fade-in
 	MulOp mul2(vox2, env2);
 
 	AddOp add(mul1, mul2);						// sum the MulOps
-    csl::ADSR adsr(dur, 0.02, 0.04, 0.4, 1);
+    csl::ADSR adsr(dur, 0.02, 0.04, 0.6, 1);
     MulOp summ(add, adsr);
 	env1.trigger();
 	env2.trigger();

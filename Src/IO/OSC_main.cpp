@@ -49,7 +49,7 @@
 
 //#define CSL_OSC_SERVER2			// 64 instruments: KS strings, snd-files, vector SOS & 2 FM variations
 //#define CSL_OSC_SERVER3			// 32 fm bells for booh
-#define CSL_OSC_SERVER4			// 50 instruments: KS strings, SHARC SOS, 2 FM variations, 4 SndFiles
+#define CSL_OSC_SERVER4			// 65 instruments: KS strings, several SHARC SOS versions, 2 FM variations, 4 SndFiles
 
 // NB: the rest of these still need to be ported; see below
 
@@ -92,9 +92,9 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 #ifdef CSL_OSC_SERVER4
 
 int main(int argc, const char * argv[]) {
-	for (int i = 1; i < argc; i++ ) 			// check the command line - so far only -v is handled
+	for (int i = 1; i < argc; i++ ) 		// check the command line - so far only -v is handled
 		if (argv[i] && (argv[i][0] == '-') && (strlen(argv[i]) > 1))
-			if (argv[i][1] == 'v')			// verbose flag
+			if (argv[i][1] == 'v')		// verbose flag
 				gVerbose = true;
 			else
 				printf("Unknown cmd-line option: \"%s\" ignored\n", argv[i]);
@@ -106,7 +106,7 @@ int main(int argc, const char * argv[]) {
 	printf("OSC server listening to port %s\n", CSL_mOSCPort);
 	initOSC(CSL_mOSCPort);				// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells,\n\t16 SHARC SOS, 4 snd files, 5 Vector SOS, 5 fancy Vector SOS\n");
+	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w att chiff, 5 Vector SOS, 5 fancy Vector SOS\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -114,7 +114,7 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	for ( ; i < 20; i++) {				//---- 10 FM voices
+	for ( ; i < 20; i++) {				//---- 10 FM instruments
 		FMInstrument * in = new FMInstrument();
 		lib.push_back(in);
 		gIMix->addInput(*in);
@@ -123,9 +123,13 @@ int main(int argc, const char * argv[]) {
 		FMBell * in = new FMBell();
 		lib.push_back(in);
 		gIMix->addInput(*in, 1.0f);
-#ifdef WET_DRY_MIX
-		gOMix->addInput(*in, 0.0f);		// this also has wet/dry signal mixing
-#endif
+	}
+										// test sound files
+	char *names[] = { "moon.snd", "wet.snd", "round.snd", "shine.snd"};
+	for ( ; i < 34; i++) {				//---- 4 snd file players
+		SndFileInstrument0 * in = new SndFileInstrument0(CGestalt::dataFolder(), names[i % 4]);
+		lib.push_back(in);
+		gIMix->addInput(*in);
 	}
 #ifndef CSL_WINDOWS						// load spectra from the SHARC library
 	SHARCLibrary::loadDefault();
@@ -148,18 +152,18 @@ int main(int argc, const char * argv[]) {
 	sharcInstrs.push_back(sharcLib->instrument("violin_vibrato"));
 	sharcInstrs.push_back(sharcLib->instrument("contrabass_clarinet"));
 
-	for ( ; i < 46; i++) {				//---- 16 SHARC SOS voices
+	for ( ; i < 50; i++) {				//---- 16 SHARC SOS voices w vibrato
 		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i - 30]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	char *names[] = { "moon.snd", "wet.snd", "round.snd", "shine.snd"};
-	for ( ; i < 50; i++) {				//---- 4 snd file players
-		SndFileInstrument0 * in = new SndFileInstrument0(CGestalt::dataFolder(), names[i % 4]);
+	for ( ; i < 55; i++) {				//---- 5 SHARC SOS voices w attack chiff
+		int i1 = iRandM(0,16);			// pick random instruments to use
+		SHARCAddInstrumentC * in = new SHARCAddInstrumentC(sharcInstrs[i1]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-					// 9 fixed SHARC spectra for testing
+										// 9 fixed SHARC spectra for testing
 	std::vector<SHARCSpectrum *> sharcSpectra;
 	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
 	sharcSpectra.push_back(sharcLib->spectrum("tuba", 36));
@@ -170,41 +174,41 @@ int main(int argc, const char * argv[]) {
 	sharcSpectra.push_back(sharcLib->spectrum("alto_trombone", 55));
 	sharcSpectra.push_back(sharcLib->spectrum("French_horn", 32));
 	sharcSpectra.push_back(sharcLib->spectrum("oboe", 50));
-													// Create SHARC vector synthesis instruments with fixed spectra
-	for ( ; i < 55; i++) {							//---- 5 Vector SOS voices
-		int i1 = iRandM(0,9);						// pick random pairs of spectra to use
+										// Create SHARC vector synthesis instruments with fixed spectra
+	for ( ; i < 61; i++) {				//---- 5 Vector SOS voices
+		int i1 = iRandM(0,9);			// pick random pairs of spectra to use
 		int i2 = iRandM(0,9);
 //		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
 		VAdditiveInstrument * in = new VAdditiveInstrument(sharcSpectra[i1], sharcSpectra[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	for ( ; i < 61; i++) {							//---- 5 Vector SOS voices wit instruments (different spectra per-note)
-		int i1 = iRandM(0,16);						// pick random pairs of instruments to use
+	for ( ; i < 66; i++) {				//---- 5 Vector SOS voices with instruments (different spectra per-note)
+		int i1 = iRandM(0,16);			// pick random pairs of instruments to use
 		int i2 = iRandM(0,16);
 //		printf("  VAdditiveInstrument: %d - %d\n", i1, i2);
-		VAdditiveInstrument * in = new VAdditiveInstrument(sharcInstrs[i1], sharcInstrs[i2]);
+		VAdditiveInstrumentR * in = new VAdditiveInstrumentR(sharcInstrs[i1], sharcInstrs[i2]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
 
 #endif // CSL_WINDOWS - for SHARC instruments
 
-	Stereoverb rev(*gIMix);					// stereo reverb
-	rev.setRoomSize(0.98);					// medium-long reverb
-	gOMix->addInput(rev);					// add reverb to output mixer
+	Stereoverb rev(*gIMix);				// stereo reverb
+	rev.setRoomSize(0.98);				// medium-long reverb
+	gOMix->addInput(rev);				// add reverb to output mixer
 
-	setupOSCInstrLibrary(lib);				// add the instrument library OSC
+	setupOSCInstrLibrary(lib);			// add the instrument library OSC
 
 	theIO = new IO_CLASS(CGestalt::frameRate(),	// create the IO object
 						 CGestalt::blockSize(),
-						 -1, -1,				// use default I/O devices
-						 0, 2);    			// stereo out by default
-	theIO->setRoot(*gOMix);					// plug the mixer in as the IO client
-	theIO->open();							// open the IO
-	theIO->start();							// start the IO
+						 -1, -1,			// use default I/O devices
+						 0, 2);    		// stereo out by default
+	theIO->setRoot(*gOMix);				// plug the mixer in as the IO client
+	theIO->open();						// open the IO
+	theIO->start();						// start the IO
 	printf("Starting OSC loop\n");
-	mainOSCLoop(NULL);						// Run the main loop function (returns on quit)
+	mainOSCLoop(NULL);					// Run the main loop function (returns on quit)
 	theIO->stop();
 	theIO->close();
 }

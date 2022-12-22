@@ -110,7 +110,6 @@ protected:
 ///
 /// SHARCAddInstrumentV - uses the SHARC spectra to create sum-of-sines players with vibrato.
 /// ToDo: add OSC arguments for vibrato rate and depth.
-/// ToDo: add attack chiff.
 ///
 
 class SHARCAddInstrumentV : public SHARCAddInstrument {
@@ -118,7 +117,6 @@ public:
 	SHARCAddInstrumentV();			///< Constructor
 	SHARCAddInstrumentV(SHARCInstrument *);
 
-	SHARCAddInstrumentV(SHARCAddInstrument &);		///< copy constructor
 	~SHARCAddInstrumentV();
 								/// Plug functions
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
@@ -131,6 +129,30 @@ public:
 
 	ADSR mVEnv;					///< vibrato envelope
 	Osc mVib;					///< vibrato oscillator
+
+protected:
+	void init();
+};
+
+///
+/// SHARCAddInstrumentC - uses the SHARC spectra to create sum-of-sines players with attack chiff.
+///
+
+class SHARCAddInstrumentC : public SHARCAddInstrument {
+public:
+	SHARCAddInstrumentC();			///< Constructor
+	SHARCAddInstrumentC(SHARCInstrument *);
+
+	SHARCAddInstrumentC(SHARCAddInstrumentC &);		///< copy constructor
+	~SHARCAddInstrumentC();
+								/// Plug functions
+	void setParameter(unsigned selector, int argc, void **argv, const char *types);
+								/// Play functions
+	void playOSC(int argc, void **argv, const char *types);
+
+	ADSR mCEnv;					///< chiff envelope
+	PinkNoise mChiff;			///< attack chiff
+	Mixer mMix;					///< output summer
 
 protected:
 	void init();
@@ -190,11 +212,6 @@ public:
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
 								/// Play functions
 	void playOSC(int argc, void **argv, const char *types);
-	
-	void playNote(float dur = 2, float ampl = 1,
-				float c_fr = 110, float pos = 0,
-				float att = 0.1, float dec = 0.1, float sus = 0.75, float rel = 0.2);
-	void playMIDI(float dur, int chan, int key, int vel);
 
 	RandEnvelope mREnv;					///< random cross-fade envelope
 	SubOp mESub;							///< SubOp for (1 - env) cross-fade

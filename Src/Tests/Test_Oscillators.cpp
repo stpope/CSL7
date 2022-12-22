@@ -303,8 +303,9 @@ void test_SHARC() {
 	SHARCInstrument * inst = lib->instrument_named("bassoon");
 	SHARCSpectrum * spect = inst->_spectra[4];	// get a spectrum and make a SumOfSines
 	SumOfSines sos(* spect);
-	sos.setFrequency(110);
+	sos.setFrequency(110.0f);
 	csl::ADSR adsr(2, 0.04, 0.1, 0.6, 1.0);			// make an ADSR
+	adsr.scaleValues(0.1f);
 	sos.setScale(adsr);
 	logMsg("playing SHARC sum of sines...");
 	adsr.trigger();	
@@ -329,11 +330,12 @@ void test_SHARC2() {
 	sos2.setFrequency(220);
 	sos3.setFrequency(110);
 												// 3 envelopes
-	LineSegment env1(dur, 1, 0.0001, kExpon);		// fade out
+	LineSegment env1(dur, 0.5f, 0.00001f, kSquare);// fade out
 	sos1.setScale(env1);
-	Triangle env2(dur);							// triangle
+	Triangle env2(kSquare, dur);					// triangle
+	env2.scaleValues(0.5f);
 	sos2.setScale(env2);
-	LineSegment env3(dur, 0.0001, 1, kExpon);		// fade in
+	LineSegment env3(dur, 0.00001f, 0.5f, kSquare);// fade in
 	sos3.setScale(env3);
 	Mixer mix(1);								// mix 'em
 	mix.addInput(sos1);

@@ -322,6 +322,41 @@ CSL7/Libs/liblo-0.31/src/tools folder and use a shell command such as,
 
 to compile and link the oscsend command -- the Makefile may of may not work; it depends
 on where you installed the liblo library goven in the command line.
+
+Default CSL Synthesis Server Instruments (see CSL7/Src/IO/OSC_main.cpp)
+
+	1 - 10 ---- 10 plucked strings
+		 "fff" - amp, pitch, pos
+	11 - 20 ---- 10 FM instruments
+		"ffff" - dur amp pitch pos
+		"ffffff" - dur, ampl, c_fr, m_fr, ind, pos
+	21 - 30 ---- 10 FM bells
+		 "fffffff" - dur, ampl, pitch,  gliss, rat,  ind,  pos
+	31 - 34 ---- 4 sound files (single words)
+		"ff" - amp, pos
+	35 - 50 ---- 16 SHARC SOS instruments (different spectra) w vibrato
+		dur, ampl, pitch, pos
+		dur, ampl, pitch, pos, att, dec, sus, rel
+	51 - 55 ---- 5 SHARC SOS additive instruments w att chiff
+		dur, ampl, pitch, pos
+		dur, ampl, pitch, pos, att, dec, sus, rel
+	56 - 61 ---- 5 SHARC additive cross-fade instruments
+		dur, ampl, pitch, pos
+		dur, ampl, pitch, pos, att, dec, sus, rel
+	62 - 66 ---- 5 SHARC additive random-walk cross-fade instruments
+		dur, ampl, pitch, pos
+		dur, ampl, pitch, pos, att, dec, sus, rel
+
+----
+
+The liblo OSC library includes a useful test program called oscsend, which allows one to 
+send OSC commands to a server from the UNIX shell.  To compile this tool, go to the 
+CSL7/Libs/liblo-0.31/src/tools folder and use a shell command such as,
+
+	gcc -I../.. -g -O2 -o oscsend oscsend-oscsend.o /usr/local/lib/liblo.7.dylib -lpthread -lm
+
+to compile and link the oscsend command -- the Makefile may of may not work; it depends
+on where you installed the liblo library goven in the command line.
 If you're running the CSL demo OSC synthesis server, you can now open
 a shell window and use commands such as,
 
@@ -334,29 +369,33 @@ a shell window and use commands such as,
 	
 	# FM bell
 	oscsend localhost 54321 /i21/pn fffffff  3.0 0.77 107.67 0.5 180.0 120.0 0.0 
-	
-	# SHARC add-syn
-	oscsend localhost 54321 /i31/pn ffff  3.0 0.77 207.67 -0.271
-	
+
 	# Snd file player (amp, pos)
-	oscsend localhost 54321 /i47/pn ff  3.0 0.0 
+	oscsend localhost 54321 /i31/pn ff  3.0 0.0 
+	oscsend localhost 54321 /i32/pn ff  3.0 0.0 
 	
-	# Vector SHARC add synth (dur, amp, pitch, pos)
-	# Version 1 with fixed spectrum across frequencies.
-	oscsend localhost 54321 /i51/pn ffff  3.0 0.77 144.7 0.0
-	oscsend localhost 54321 /i52/pn ffff  3.0 0.77 144.7 0.0
-	oscsend localhost 54321 /i53/pn ffff  3.0 0.77 144.7 0.0
-	oscsend localhost 54321 /i54/pn ffff  3.0 0.77 144.7 0.0
-	oscsend localhost 54321 /i55/pn ffff  3.0 0.77 144.7 0.0
-		
-	# Vector SHARC add synth (dur, amp, pitch, pos)
-	# Version 2 with SHARC instruments, i.e., different spectra per-note
+	# SHARC add-syn - basic version w vibrato
+	oscsend localhost 54321 /i35/pn ffff  3.0 0.77 207.67 -0.271
+	oscsend localhost 54321 /i36/pn ffff  3.0 0.77 207.67 -0.271
+	
+	# SHARC add-syn - basic version w attack chiff
+	oscsend localhost 54321 /i51/pn ffff  3.0 0.77 207.67 -0.271
+	oscsend localhost 54321 /i52/pn ffff  3.0 0.77 207.67 -0.271
+	
+	# Vector-synth SHARC add synth (dur, amp, pitch, pos)
+	# Version with SHARC instruments, i.e., different spectra per-note and straight cross-fade
 	oscsend localhost 54321 /i56/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i57/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i58/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i59/pn ffff  3.0 0.77 144.7 0.0
 	oscsend localhost 54321 /i60/pn ffff  3.0 0.77 144.7 0.0
 	
+	# Vector-synth SHARC add synth (dur, amp, pitch, pos)
+	# Version with SHARC instruments and random-walk cross-fade
+	oscsend localhost 54321 /i62/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i63/pn ffff  3.0 0.77 144.7 0.0
+	oscsend localhost 54321 /i64/pn ffff  3.0 0.77 144.7 0.0
+
 ## Source Code Organization
 
 The subdirectories of CSL are reflected in the project file categories:

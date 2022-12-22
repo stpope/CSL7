@@ -376,13 +376,14 @@ public:
 	virtual ~Controllable();					///< Destructor (remove the output links of the ports)
 
 	Port * getPort(CSL_MAP_KEY name);
-protected:
-	PortMap mInputs;							///< the map of my inputs or controls (used by the mix-in classes)
-
 											/// Plug in a unit generator to the named input slot
 	void addInput(CSL_MAP_KEY name, UnitGenerator & ugen);
 											/// Plug in a float to the named input slot
 	void addInput(CSL_MAP_KEY name, float value);
+
+protected:
+	PortMap mInputs;						///< the map of my inputs or controls (used by the mix-in classes)
+
 											/// method to read the control values (in case they're dynamic).
 											/// this sends nextBuffer() to the input.
 	void pullInput(Port * thePort, unsigned numFrames) noexcept(false);
@@ -470,12 +471,12 @@ public:
 	Effect();									///< Constructors
 	Effect(UnitGenerator & input);				///< use the given input
 
-	virtual bool isActive();					///< am I active?
+	virtual bool isActive();						///< am I active?
 
 	void setInput(UnitGenerator & inp);			///< set the receiver's input generator
 //	UnitGenerator *input() { return mInputs[CSL_INPUT]->mUGen; }	// no getter for now
 	bool isInline;								///< whether to use input or buffer as source
-	void setInline() { isInline = true; }		///< set the Effect to be inline
+	void setInline() { isInline = true; }			///< set the Effect to be inline
 	
 protected:
 	SampleBuffer mInputPtr;						///< A pointer to my input's data.

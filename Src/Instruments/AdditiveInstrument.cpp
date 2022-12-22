@@ -21,6 +21,8 @@
 
 #include "AdditiveInstrument.h"
 
+extern bool gVerbose;
+
 using namespace csl;
 
 // The constructor initializes the DSP graph's UGens
@@ -475,6 +477,7 @@ SHARCAddInstrumentV::~SHARCAddInstrumentV() { }
 // init() = setup instance
 
 void SHARCAddInstrumentV::init() {
+	SHARCAddInstrument::init();
 	float vibDepth = fRandM(9.0f, 15.0f);
 	mVEnv.scaleValues(vibDepth);
 	mVib.setFrequency(fRandM(5.0f, 12.0f));				// vibrato freq
@@ -589,6 +592,118 @@ void SHARCAddInstrumentV::playMIDI(float dur, int chan, int key, int vel) {
 	float frq = keyToFreq(key);
 	mVEnv.setOffset(frq);
 	mFreq = frq;
+	this->getSpectrum();
+	this->play();
+}
+
+#pragma mark SHARCAddInstrumentC // ------------------------------------------------------
+
+// Default constructor (unused)
+
+SHARCAddInstrumentC::SHARCAddInstrumentC() :
+		SHARCAddInstrument(),
+		mCEnv(2.0f, 0.05f, 0.05f, 0.0f, 0.2f) {			// chiff env - fast attack/decay
+	this->init();
+}
+
+// c'tor with SHARCInstrument = the normal way to use this
+
+SHARCAddInstrumentC::SHARCAddInstrumentC(SHARCInstrument * in) :
+		SHARCAddInstrument(in),							// inherited c'tor calls init()
+		mCEnv(2.0f, 0.05f, 0.05f, 0.0f, 0.2f) {			// chiff env - fast attack/decay
+	this->init();										// call init fcn.
+}
+
+SHARCAddInstrumentC::~SHARCAddInstrumentC() { }
+	
+// init() = setup instance
+
+void SHARCAddInstrumentC::init() {
+	SHARCAddInstrument::init();
+	float chiffMix = fRandM(0.1f, 0.2f);
+	mChiff.setScale(mCEnv);
+	mMix.addInput(mSOS);
+	mMix.addInput(mChiff, chiffMix);
+	mEnvelopes.push_back(& mCEnv);						// list envelopes for retrigger
+}
+	
+/// Plug functions
+
+void SHARCAddInstrumentC::setParameter(unsigned selector, int argc, void **argv, const char *types) {
+	if (argc == 1) {
+		float d = * (float *) argv[0];
+		if (types[0] == 'i')
+			d = (float) (* (int *) argv[0]);
+		float s;
+		if (types[0] == 'i')
+			d = (float) (* (int *) argv[0]);
+		if (argc > 1) {
+			s = * (float *) argv[1];
+			if (types[1] == 'i')
+				s = (float) (* (int *) argv[1]);
+		}
+//		logMsg("Set %d SOS params to (%s)\n", argc, types);
+		switch (selector) {					// switch on which parameter is being set
+			case set_duration_f:
+				mAEnv.setDuration(d);		break;
+				mCEnv.setDuration(d);		break;
+			case set_amplitude_f:
+				mAEnv.setScale(d);
+				mCEnv.setScale(d);		break;
+			case set_frequency_f:
+				mSOS.setFrequency(d);				// freq is the offset of the vibrato envelope
+				mFreq = d;				break;
+			case set_position_f:
+				mPanner.setPosition(d); 	break;
+			case set_attack_f:
+				mAEnv.setAttack(d);		break;
+			case set_decay_f:
+				mAEnv.setDecay(d);		break;
+			case set_sustain_f:
+				mAEnv.setSustain(d);		break;
+			case set_release_f:
+				mAEnv.setRelease(d);		break;
+			default:
+				logMsg(kLogError, "Unknown selector in SHARCAddInstrument set_parameter selector: %d\n", selector);
+		 }
+	} else  {
+		logMsg(kLogError, "Unknown multi-arg (%d) setter in SHARCAddInstrument: %s\n", argc, types);
+	}
+}
+
+// Play functions
+// ffff = dur, amp, pitch, pos
+// fffffffff = dur, amp, pitch, pos, att, dec, sus, rel
+
+void SHARCAddInstrumentC::playOSC(int argc, void **argv, const char *types) {
+	float ** fargs = (float **) argv;
+	unsigned nargs;
+
+//	if (strcmp(types, "ffff") == 0)
+	if (argc == 4)
+		nargs = 4;
+//	else if (strcmp(types, "fffffff") == 0)
+	else if (argc == 8)
+		nargs = 8;
+	else {
+		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
+		return;
+	}
+	printf("\tSHARC: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+	mAEnv.setDuration(*fargs[0]);			// dur
+	mCEnv.setDuration(*fargs[0]);
+	mAEnv.scaleValues(*fargs[1]);			// amp
+	mCEnv.scaleValues(*fargs[1]);
+	mFreq = *fargs[2];					// freq
+	mSOS.setFrequency(mFreq);
+	mPanner.setPosition(*fargs[3]);		// pos
+	if (nargs == 8) {
+		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
+		mAEnv.setAttack(*fargs[4]);
+		mAEnv.setDecay(*fargs[5]);
+		mAEnv.setSustain(*fargs[6]);
+		mAEnv.setRelease(*fargs[7]);
+	}
 	this->getSpectrum();
 	this->play();
 }
@@ -757,8 +872,6 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	mAEnv.scaleValues(dur);
 	mFreq = *fargs[2];
 	mVibAdd.setOperand(mFreq);
-//	mSOS1.setFrequency(*fargs[2]);
-//	mSOS2.setFrequency(*fargs[2]);
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -834,18 +947,14 @@ void VAdditiveInstrument::getSpectra() {
 VAdditiveInstrumentR::VAdditiveInstrumentR(SHARCSpectrum * spect1, SHARCSpectrum * spect2) :
 		VAdditiveInstrument(spect1, spect2),
 		mREnv(2, 1.0, 0.5, 0.2),				// ampl env = random (frq, amp, off, step)
-		mESub(mREnv, 1.0),
-		mEMul1(mSOS1, mESub),				// multiply cross-fade envs
-		mEMul2(mSOS2, mESub) {
+		mESub(mREnv, 1.0) {
 	this->init();
 }
 
 VAdditiveInstrumentR::VAdditiveInstrumentR(SHARCInstrument * i1, SHARCInstrument * i2) :
 		VAdditiveInstrument(i1, i2),
 		mREnv(2, 1.0, 0.5, 0.2),				// ampl env = random (frq, amp, off, step)
-		mESub(mREnv, 1.0),
-		mEMul1(mSOS1, mESub),				// multiply cross-fade envs
-		mEMul2(mSOS2, mESub) {
+		mESub(mREnv, 1.0) {
 	this->init();
 }
 
@@ -855,6 +964,10 @@ void VAdditiveInstrumentR::init() {
 	mNumChannels = 2;
 	mName = "SpectralCrossFade";				// set graph's name
 	mGraph = & mPanner;						// store the root of the graph as the inst var _graph
+	mEMul1.addInput(CSL_INPUT, mSOS1);			// low-level UGen patching here
+	mEMul1.addInput(CSL_OPERAND, mREnv);
+	mEMul2.addInput(CSL_INPUT, mSOS2);
+	mEMul2.addInput(CSL_OPERAND, mESub);
 	float vibDepth = fRandM(9.0f, 15.0f);
 	mVEnv.scaleValues(vibDepth);
 	mVib.setFrequency(fRandM(5.0f, 12.0f));	// vibrato freq
@@ -886,7 +999,7 @@ void VAdditiveInstrumentR::init() {
 
 /// Plug functions
 
-void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv, const char *types) {
+void VAdditiveInstrumentR::setParameter(unsigned selector, int argc, void **argv, const char *types) {
 	if (argc == 1) {
 		float d = * (float *) argv[0];
 		if (types[0] == 'i')
@@ -912,9 +1025,7 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 				break;
 			case set_frequency_f:
 				mFreq = d;
-//				mSOS1.setFrequency(d);
-//				mSOS2.setFrequency(d);
-				mVibAdd.setOperand(d);
+				mVibAdd.setOperand(mFreq);
 				if (mInstr1)
 					this->getSpectra();
 				break;
@@ -945,7 +1056,7 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 /// 	dur, ampl, freq, pos
 /// 	dur, ampl, freq, pos, att, dec, sus, rel
 
-void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
+void VAdditiveInstrumentR::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
 	unsigned nargs;
 	
@@ -957,7 +1068,7 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		return;
 	}
-//	if (gVerbose)
+	if (gVerbose)
 		printf("\tV_Add: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	float dur = *fargs[0];
 	mAEnv.setDuration(dur);
@@ -967,8 +1078,6 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	mAEnv.scaleValues(dur);
 	mFreq = *fargs[2];
 	mVibAdd.setOperand(mFreq);
-//	mSOS1.setFrequency(*fargs[2]);
-//	mSOS2.setFrequency(*fargs[2]);
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -981,57 +1090,3 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		this->getSpectra();
 	this->play();
 }
-
-void VAdditiveInstrument::playNote(float dur, float ampl, float freq, float pos, float att, float dec, float sus, float rel) {
-	mAEnv.setDuration(dur);
-	mXEnv1.setDuration(dur);
-	mXEnv2.setDuration(dur);
-	mAEnv.scaleValues(ampl);
-	mFreq = freq;
-	mPanner.setPosition(pos);
-	mAEnv.setAttack(att);
-	mAEnv.setDecay(dec);
-	mAEnv.setSustain(sus);
-	mAEnv.setRelease(rel);
-	if (mInstr1)
-		this->getSpectra();
-	this->play();
-}
-
-void VAdditiveInstrument::playMIDI(float dur, int chan, int key, int vel) {
-	mAEnv.setDuration(dur);
-	mXEnv1.setDuration(dur);
-	mXEnv2.setDuration(dur);
-	mAEnv.scaleValues(sqrtf((float) vel / 128.0f));
-	mSOS1.setFrequency(keyToFreq(key));
-	mSOS2.setFrequency(keyToFreq(key));
-	if (mInstr1)
-		this->getSpectra();
-	this->play();
-}
-
-// recompute the SOS spectrum from the SHARC data
-
-void VAdditiveInstrument::getSpectra() {
-	if ( ! mInstr1) return;
-	if ( ! mInstr2) return;
-	if (mNoteFreq == mFreq) return;
-	
-	mSOS1.clearPartials();
-	SHARCSpectrum * spect = mInstr1->spectrum_with_frequency(mFreq);
-	for (unsigned i = 0; i < spect->_num_partials; i++) {
-		Partial * harm = spect->_partials[i];
-		mSOS1.addPartial(harm->number, harm->amplitude, harm->phase);
-	}
-	mSOS1.createCache();							// make the cached wavetable
-	
-	mSOS2.clearPartials();
-	spect = mInstr2->spectrum_with_frequency(mFreq);
-	for (unsigned i = 0; i < spect->_num_partials; i++) {
-		Partial * harm = spect->_partials[i];
-		mSOS2.addPartial(harm->number, harm->amplitude, harm->phase);
-	}
-	mSOS2.createCache();							// make the cached wavetable
-	mNoteFreq = mFreq;							// remember last freq
-}
-

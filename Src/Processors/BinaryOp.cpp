@@ -55,7 +55,7 @@ void BinaryOp::setOperand(UnitGenerator & op) {
 	Port * opPort = mInputs[CSL_OPERAND];
 	if (opPort->mUGen != 0)
 		throw RunTimeError("Can't set value of UGen port");
-	opPort->mValue = op;
+//	opPort->mValue = op;
 }
 
 // print info about this instance

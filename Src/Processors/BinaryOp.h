@@ -34,7 +34,7 @@ public:								/// The constructor for dual-UnitGenerator operation
 
 	void dump();						///< Prints instance info
 	void setOperand(float op);		///< Set the operand from a fixed float
-	void setOperand(UnitGenerator & op);	///< Set the operand from a fixed float
+	void setOperand(UnitGenerator & op);	///< Set the operand from a UGen
 
 protected:	
 									/// Abstract function that will do the processing for each buffer
