@@ -24,7 +24,7 @@ Mixer::Mixer(unsigned chans) : UnitGenerator(), Scalable(1, 0) {
 	allocateOpBuffer(chans);
 }
 
-Mixer::Mixer(UnitGenerator & aa) : UnitGenerator(), Scalable(aa, 0) {
+Mixer::Mixer(UnitGenerator & ug) : UnitGenerator(), Scalable(ug, 0) {
 	mNumChannels = 1;
 	allocateOpBuffer(1);
 }

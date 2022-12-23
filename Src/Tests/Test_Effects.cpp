@@ -318,7 +318,7 @@ void testReverb() {
 ///  Play noise bursts into reverb
 
 void testStereoverb() {
-	csl::ADSR mEnv(1, 0.005, 0.01, 0.0, 1.5);			// attack-chiff envelope
+	csl::ADSR mEnv(1, 0.005, 0.01, 0.0, 1.5);		// attack-chiff envelope
 	WhiteNoise mChiff;							// attack-chiff noise source
 	float ctrFrq = fRandB(3000, 1000);			// filter center freq
 	Butter mFilter(mChiff, BW_BAND_PASS, ctrFrq, 500.0f);	// BP filter
@@ -350,7 +350,7 @@ void testStereoverb() {
 ///  Play noise bursts into multi-tap delay line
 
 void testMultiTap() {
-	csl::ADSR mChiffEnv(1, 0.01, 0.01, 0.0, 1.5);		// attack-chiff envelope
+	csl::ADSR mChiffEnv(1, 0.01, 0.01, 0.0, 1.5);	// attack-chiff envelope
 	WhiteNoise mChiff;							// attack-chiff noise source
 	Butter mChFilter(mChiff, BW_BAND_PASS, 2000.0f, 500.0f);	// and filter
 	mChiffEnv.setScale(10);						// scale chiff envelope
@@ -404,29 +404,29 @@ void testBlockUpsizer() {
 /// Test a block resizer by running a random gliss with a huge block size
 
 void testBlockDownsizer() {
-	float dur = 6.0f;							// seconds to play each test for
+	float dur = 6.0f;						// seconds to play each test for
 	Osc vox;									// declare an oscillator
-	AR a_env(6, 1, 1);							// dur, att, rel
-	RandEnvelope f_env(3, 80, 200, 40);			// freq env = random walk
+	AR a_env(6, 1, 1);						// dur, att, rel
+	RandEnvelope f_env(3, 80, 200, 40);		// freq env = random walk
 	vox.setFrequency(f_env);					// set the carrier's frequency
 	vox.setScale(a_env);						// multiply index envelope by mod freq
 	a_env.trigger();	
 	BlockResizer blocker(vox, 1100);			// large buffer, not a multiple of CSL's block size
 	logMsg("playing random gliss in a block down-sizer...");
-	runTest(blocker, dur);						// run test
+	runTest(blocker, dur);					// run test
 	logMsg("done.");
 }
 
 /// Test a Split/Join with a cross-over filter pair LPF to left, HPF to the right
 
 void testSplitJoin1() {
-	float dur = 6.0f;							// seconds to play each test for
+	float dur = 6.0f;						// seconds to play each test for
 	SumOfSines sos1(16, 0.5);					// create a cmoplex sum-of-sines
-	sos1.createCache();							// make the cached wavetable
-	AR a_env(6, 1, 1);							// dur, att, rel
+	sos1.createCache();						// make the cached wavetable
+	AR a_env(6, 1, 1);						// dur, att, rel
 	RandEnvelope f_env(3, 180, 300, 40);		// freq env = random walk
-	sos1.setFrequency(f_env);					// set the carrier's frequency
-	sos1.setScale(a_env);						// multiply index envelope by mod freq
+	sos1.setFrequency(f_env);				// set the carrier's frequency
+	sos1.setScale(a_env);					// multiply index envelope by mod freq
 	a_env.trigger();							// start the envelope
 	Panner pan(sos1, 0);						// stereo panner, center
 
@@ -436,7 +436,7 @@ void testSplitJoin1() {
 	Joiner join(lpf, hpf);						// mono-to-stereo joiner
 
 	logMsg("playing splitter/joiner/mixer-based crossover filter...");
-	runTest(join, dur);							// run test
+	runTest(join, dur);						// run test
 	logMsg("done.");
 }
 
@@ -444,16 +444,16 @@ void testSplitJoin1() {
 /// mixer added in just for show
 
 void testSplitJoin2() {
-	float dur = 6.0f;							// seconds to play each test for
+	float dur = 6.0f;						// seconds to play each test for
 	SumOfSines sos1(16, 0.5);					// create a cmoplex sum-of-sines
-	sos1.createCache();							// make the cached wavetable
-	AR a_env(6, 1, 1);							// dur, att, rel
+	sos1.createCache();						// make the cached wavetable
+	AR a_env(6, 1, 1);						// dur, att, rel
 	RandEnvelope f_env(3, 180, 300, 40);		// freq env = random walk
-	sos1.setFrequency(f_env);					// set the carrier's frequency
-	sos1.setScale(a_env);						// multiply index envelope by mod freq
+	sos1.setFrequency(f_env);				// set the carrier's frequency
+	sos1.setScale(a_env);					// multiply index envelope by mod freq
 	a_env.trigger();							// start the envelope
 	Panner pan(sos1, 0);						// stereo panner, center
-	Mixer mix1(2);								// stereo mixer, fixed
+	Mixer mix1(2);							// stereo mixer, fixed
 	mix1.addInput(pan);
 
 	Splitter split(mix1);						// stereo-to-mono splitter
@@ -486,30 +486,30 @@ void testFanMix1() {
 	mix.addInput(pan);
 
 	logMsg("playing fan-out + mixer 1...");
-	runTest(mix, dur);							// run test
+	runTest(mix, dur);						// run test
 	logMsg("done.");
 }
 
 /// Test a real fan-out + mixer
 
 void testFanMix2() {
-	float dur = 6.0f;							// seconds to play each test for
+	float dur = 6.0f;						// seconds to play each test for
 	Osc vox;									// declare an oscillator
-	AR a_env(6, 1, 1);							// dur, att, rel
-	RandEnvelope f_env(3, 80, 200, 40);			// freq env = random walk
+	AR a_env(6, 1, 1);						// dur, att, rel
+	RandEnvelope f_env(3, 80, 200, 40);		// freq env = random walk
 	vox.setFrequency(f_env);					// set the carrier's frequency
 	a_env.setScale(0.5);						// multiply index envelope by mod freq
 	vox.setScale(a_env);						// multiply index envelope by mod freq
 	a_env.trigger();							// start the envelope
-	Panner pan(vox, fRand1());					// stereo panner
+	Panner pan(vox, fRand1());				// stereo panner
 
-	FanOut fan(pan, 2);							// send the panner to 2 mixer ins
-	Mixer mix(2);								// stereo mixer, fixed
-	mix.addInput(fan);							// add fan-out twice
+	FanOut fan(pan, 2);						// send the panner to 2 mixer ins
+	Mixer mix(2);							// stereo mixer, fixed
+	mix.addInput(fan);						// add fan-out twice
 	mix.addInput(fan);
 
 	logMsg("playing fan-out + mixer 2...");
-	runTest(mix, dur);							// run test
+	runTest(mix, dur);						// run test
 	logMsg("done.");
 }
 

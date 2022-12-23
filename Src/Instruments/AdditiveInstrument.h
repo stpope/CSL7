@@ -32,7 +32,7 @@ namespace csl  {
 ///
 /// AdditiveInstrument - the simplest instruments using a computed sum-of-sines oscillator.
 /// Use this to construct arbitrary spectra with the c'tors that take SumOfSines or SHARC
-/// spectra as arguments.  Subclasses do more interesting things...
+/// spectra as arguments.  Subsequent versions below do more interesting things...
 ///
 
 class AdditiveInstrument : public Instrument {
@@ -55,16 +55,22 @@ public:
 	void playMIDI(float dur, int chan, int key, int vel);
 
 	ADSR mAEnv;					///< amplitude envelope
-	SumOfSines mSOS;				///< sum-of-sine oscillator
+	SumOfSines mSOS;			///< sum-of-sine oscillator
 	Panner mPanner;				///< stereo panner
 protected:
 	void init();
 };
 
+/// recompute the SOS spectrum from the SHARC data
+
+void getSHARCSpectrum(SHARCInstrument * inst, float freq, SumOfSines * sos);
+
 ///
 /// SHARCAddInstrument - uses the SHARC spectra to create sum-of-sines players.
 /// These are created with SHARCInstrument objects, i.e., different spectra per note, and
-/// recompute the wave table when necessary.  Subclasses add features like attack chiff and vibrato.
+/// recompute the wave table when necessary.
+/// Other implementations add features like attack chiff and vibrato.
+/// Not sure why they aren't subclasses...
 ///
 
 class SHARCAddInstrument : public Instrument {
@@ -75,13 +81,13 @@ public:
 	SHARCAddInstrument(SHARCAddInstrument &);		///< copy constructor
 	~SHARCAddInstrument();
 								/// Plug functions
-	virtual void setParameter(unsigned selector, int argc, void **argv, const char *types);
+	void setParameter(unsigned selector, int argc, void **argv, const char *types);
 								/// Play functions
-	virtual void playOSC(int argc, void **argv, const char *types);
+	void playOSC(int argc, void **argv, const char *types);
 	
-	virtual void playNote(float dur = 1, float ampl = 1, float pitch = 220.0, float pos = 0.5,
+	void playNote(float dur = 1, float ampl = 1, float pitch = 220.0, float pos = 0.5,
 				float att = 0.05, float dec = 0.05, float sus = 0.5, float rel = 0.5, float chiff = 0.05);
-	virtual void playMIDI(float dur, int chan, int key, int vel);
+	void playMIDI(float dur, int chan, int key, int vel);
 
 	ADSR mAEnv;					///< amplitude envelope
 	SumOfSines mSOS;				///< sum-of-sines oscillator
@@ -89,18 +95,18 @@ public:
 	SHARCInstrument * mInstr;		///< the SHARC list of spectra
 
 protected:
-	virtual void init();			///< set up the instrument's ugen graph and reflective accessors
-	void getSpectrum();			///< recompute the SOS spectrum from the SHARC data
+	void init();					///< set up the instrument's ugen graph and reflective accessors
 	int mNoteFreq = 0;			///< freq of last note
 	float mFreq;
 };
 
 ///
-/// SHARCAddInstrumentV - version with vibrato.
+/// SHARCAddInstrumentV - SHARC-based SOS - version with vibrato.
+/// 
 /// ToDo: add OSC arguments for vibrato rate and depth.
 ///
 
-class SHARCAddInstrumentV : public SHARCAddInstrument {
+class SHARCAddInstrumentV : public Instrument {
 public:
 	SHARCAddInstrumentV();			///< Constructor
 	SHARCAddInstrumentV(SHARCInstrument *);
@@ -115,35 +121,54 @@ public:
 				float att = 0.05, float dec = 0.05, float sus = 0.5, float rel = 0.5, float chiff = 0.05);
 	void playMIDI(float dur, int chan, int key, int vel);
 
+	ADSR mAEnv;					///< amplitude envelope
+	SumOfSines mSOS;				///< sum-of-sines oscillator
+	Panner mPanner;				///< stereo panner
 	ADSR mVEnv;					///< vibrato envelope
 	Osc mVib;					///< vibrato oscillator
+	SHARCInstrument * mInstr;		///< the SHARC list of spectra
 
 protected:
 	void init();
+	int mNoteFreq = 0;			///< freq of last note
+	float mFreq;
 };
 
 ///
-/// SHARCAddInstrumentC - uses the SHARC spectra to create sum-of-sines players with attack chiff.
+/// SHARCAddInstrumentC - SHARC-based SOS - version with attack chiff.
+///
+/// ToDo: add OSC arguments for chiff volume and att/dec.
 ///
 
-class SHARCAddInstrumentC : public SHARCAddInstrument {
+class SHARCAddInstrumentC : public Instrument {
 public:
 	SHARCAddInstrumentC();			///< Constructor
 	SHARCAddInstrumentC(SHARCInstrument *);
 
-	SHARCAddInstrumentC(SHARCAddInstrumentC &);		///< copy constructor
+//	SHARCAddInstrumentC(SHARCAddInstrumentC &);		///< copy constructor
 	~SHARCAddInstrumentC();
 								/// Plug functions
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
 								/// Play functions
 	void playOSC(int argc, void **argv, const char *types);
 
+//	void playNote(float dur = 1, float ampl = 1, float pitch = 220.0, float pos = 0.5,
+//				float att = 0.05, float dec = 0.05, float sus = 0.5, float rel = 0.5, float chiff = 0.05);
+//	void playMIDI(float dur, int chan, int key, int vel);
+
+	ADSR mAEnv;					///< amplitude envelope
+	SumOfSines mSOS;				///< sum-of-sines oscillator
+	Panner mPanner;				///< stereo panner
 	ADSR mCEnv;					///< chiff envelope
 	PinkNoise mChiff;			///< attack chiff
+	Biquad mBPFilter;			///< band-pass filter for the noise chiff
 	Mixer mMix;					///< output summer
+	SHARCInstrument * mInstr;		///< the SHARC list of spectra
 
 protected:
 	void init();
+	int mNoteFreq = 0;			///< freq of last note
+	float mFreq;
 };
 
 ///

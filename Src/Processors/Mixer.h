@@ -71,8 +71,8 @@ public:
 	Panner(UnitGenerator &input, UnitGenerator &position);	///< given input and position stream
 	Panner(UnitGenerator &input, float position);			///< given an input and an amplitude const
 	Panner(UnitGenerator &input, UnitGenerator &position, UnitGenerator &amplitude);///< given an amplitude stream
-	Panner(UnitGenerator &input, UnitGenerator &position, float amplitude);			///< given an amplitude value
-	Panner(UnitGenerator &input, float position, float amplitude);					///< given an amplitude value and pan value
+	Panner(UnitGenerator &input, UnitGenerator &position, float amplitude);	///< given an amplitude value
+	Panner(UnitGenerator &input, float position, float amplitude);				///< given an amplitude value and pan value
 	~Panner();
 						/// Operations
 	void setPosition(UnitGenerator &pan);						///< set the position to a UGen

@@ -241,10 +241,10 @@ void Envelope::scaleTimes(float s) {
 	if (s != 1) {
 		for (unsigned i = 0; i < mSize; ++i) {
 			mSegmentMap.erase(mValues[i]);			// Erase old values.
-			mValues[i] *= s;						// update the stored values to the new scaled ones.
+			mValues[i] *= s;							// update the stored values to the new scaled ones.
 		}
 		for (unsigned i = 0; i < mSize; ++i) {
-			mSegmentMap[mValues[i]] = mSegments[i]; // Add the new values to the map
+			mSegmentMap[mValues[i]] = mSegments[i];	// Add the new values to the map
 			mSegments[i]->reset();					// Reset all segments.
 		}		
 	}
