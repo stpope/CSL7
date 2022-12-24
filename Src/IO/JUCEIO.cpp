@@ -104,7 +104,7 @@ void JUCEIO::audioDeviceIOCallbackWithContext (const float * const * inData, int
 //			}
 	}
 	try {						//////////////
-								//// Tell the IO to call its graph ------------------
+								//// Tell the IO to call its graph here ------------------
 								//////////////
 			pullInput(mOutputBuffer, NULL);
 		} catch (csl::CException e) {

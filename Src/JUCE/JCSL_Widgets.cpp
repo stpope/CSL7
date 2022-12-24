@@ -791,11 +791,9 @@ void VUMeter::paint (juce::Graphics& g) {
 
 // The callback simply sets the meter's value to the peak level (no rms yet - fix me)
 
-void VUMeter::audioDeviceIOCallback (const float** inputChannelData,
-							int totalNumInputChannels,
-							float** outputChannelData,
-							int totalNumOutputChannels,
-							int numSamples) {
+void VUMeter::audioDeviceIOCallbackWithContext (const float *const * inputChannelData, int numInputChannels,
+                                     float * const * outputChannelData, int numOutputChannels,
+                                     int numSamples, const juce::AudioIODeviceCallbackContext & context) {
 	float peak = 0.0;
 	float samp = 0.0f;
 	float * sampPtr = outputChannelData[m_channel];

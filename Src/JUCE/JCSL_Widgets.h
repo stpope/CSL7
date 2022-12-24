@@ -178,9 +178,9 @@ public:
 	float getValue() { return m_value; }
 	void setSkewFactor(float skew) { m_skew = skew; }
 	
-	void audioDeviceIOCallback (const float** inputChannelData, int totalNumInputChannels,
-                                float** outputChannelData, int totalNumOutputChannels, int numSamples);
-    void audioDeviceAboutToStart (double sampleRate, int numSamplesPerBlock) { };
+	void audioDeviceIOCallbackWithContext (const float *const * inputChannelData, int numInputChannels,
+                                           float * const * outputChannelData, int numOutputChannels,
+                                           int numSamples, const juce::AudioIODeviceCallbackContext & context);
     void audioDeviceStopped() { };
     void audioDeviceAboutToStart (juce::AudioIODevice* device) { };
 
