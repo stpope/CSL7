@@ -422,7 +422,7 @@ void SHARCAddInstrumentV::init() {
 	mNumChannels = 2;
 	float vibDepth = fRandM(2.0f, 4.0f);
 	mVEnv.scaleValues(vibDepth);
-	mVib.setFrequency(fRandM(4.0f, 8.0f));				// vibrato freq
+	mVib.setFrequency(fRandM(4.0f, 10.0f));			// vibrato freq
 	mVib.setOffset(110.0f);
 	mVib.setScale(mVEnv);
 	mSOS.setScale(mAEnv);
@@ -516,8 +516,7 @@ void SHARCAddInstrumentV::playOSC(int argc, void **argv, const char *types) {
 	mVEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);			// amp
 	mFreq = *fargs[2];					// freq
-	mVEnv.setOffset(mFreq);
-	mVib.setFrequency(fRandM(5.0f, 12.0f));// vibrato freq
+	mVib.setFrequency(fRandM(5.0f, 8.0f));// vibrato freq
 	mVib.setOffset(mFreq);
 	mPanner.setPosition(*fargs[3]);		// pos
 	if (nargs == 8) {
@@ -567,6 +566,9 @@ void SHARCAddInstrumentV::playMIDI(float dur, int chan, int key, int vel) {
 }
 
 #pragma mark SHARCAddInstrumentC // ------------------------------------------------------
+
+// Why does this produce silence??
+// ToDo: Fix it!
 
 // Default constructor (unused)
 
@@ -717,7 +719,7 @@ void SHARCAddInstrumentC::playOSC(int argc, void **argv, const char *types) {
 
 // missing MIDI fcns
 
-#pragma mark VAdditiveInstrument // ------------------------------------------------------
+#pragma mark VAdditiveInstrument // -------------------------------------------------------------------------------
 
 // VAdditiveInstrument
 
@@ -726,17 +728,19 @@ void SHARCAddInstrumentC::playOSC(int argc, void **argv, const char *types) {
 VAdditiveInstrument::VAdditiveInstrument(SHARCSpectrum * spect1, SHARCSpectrum * spect2) :
 		Instrument(),
 		mAEnv(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
-		mVEnv(2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),		// slower vibrato attack with initial delay
+//		mVEnv(kSquare, 2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),	// slower vibrato attack with initial delay
 		mXEnv1(2.0f, 1.0f, 0.0001f, kSquare),	// set up x-fade lin-segs
 		mXEnv2(2.0f, 0.0001f, 1.0f, kSquare),
 		mSOS1(*spect1),						// SumOfSines init - use the given spectra
 		mSOS2(*spect2),
-		mEMul1(mSOS1, mXEnv1),				// multiply cross-fade envs
-		mEMul2(mSOS2, mXEnv2),
-		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
-		mSummer(mEMul1, mEMul2),
-		mAMul(mSummer, mAEnv),				// apply main ampl envelope
-		mPanner(mAMul, 0.0) {					// init the panner
+//		mEMul1(mSOS1, mXEnv1),				// multiply cross-fade envs
+//		mEMul2(mSOS2, mXEnv2),
+//		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
+//		mSummer(mEMul1, mEMul2),
+//		mAMul(mSummer, mAEnv),				// apply main ampl envelope
+//		mPanner(mAMul, 0.0) {					// init the panner
+		mSummer(mSOS1, mSOS2),
+		mPanner(mSummer, 0.0) {					// init the panner
 	this->init();
 }
 
@@ -745,15 +749,17 @@ VAdditiveInstrument::VAdditiveInstrument(SHARCInstrument * i1, SHARCInstrument *
 		mInstr1(i1),
 		mInstr2(i2),
 		mAEnv(2.0f, 0.5f, 0.1f, 1.0f, 0.5f),	// set up standard ADSRs (2-sec duration)
-		mVEnv(2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),		// slower vibrato attack with initial delay
-		mXEnv1(2.0f, 1.0f, 0.0001f, kSquare),	// set up x-fade lin-segs
-		mXEnv2(2.0f, 0.0001f, 1.0f, kSquare),
-		mEMul1(mSOS1, mXEnv1),				// multiply cross-fade envs
-		mEMul2(mSOS2, mXEnv2),
-		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
-		mSummer(mEMul1, mEMul2),
-		mAMul(mSummer, mAEnv),				// apply main ampl envelope
-		mPanner(mAMul, 0.0) {					// init the panner
+//		mVEnv(2.0f, 0.5f, 1.0f, 0.1f, 1.0f, 0.2f),		// slower vibrato attack with initial delay
+		mXEnv1(1.0f, 1.0f, 0.0001f, kSquare),	// set up x-fade lin-segs
+		mXEnv2(1.0f, 0.0001f, 1.0f, kSquare),
+//		mEMul1(mSOS1, mXEnv1),				// multiply cross-fade envs
+//		mEMul2(mSOS2, mXEnv2),
+//		mVibAdd(mVEnv, 110.0f),				// add vib env and freq
+//		mSummer(mEMul1, mEMul2),
+//		mAMul(mSummer, mAEnv),				// apply main ampl envelope
+//		mPanner(mAMul, 0.0) {					// init the panner
+		mSummer(mSOS1, mSOS2),
+		mPanner(mSummer, 0.0) {				// init the panner
 	this->init();
 }
 
@@ -767,15 +773,18 @@ VAdditiveInstrument::~VAdditiveInstrument() { }
 
 void VAdditiveInstrument::init() {
 	mNumChannels = 2;
+	float vibDepth = fRandM(9.0f, 12.0f);
+//	mVEnv.scaleValues(vibDepth);
+//	mVib.setFrequency(fRandM(5.0f, 12.0f));	// vibrato freq
+//	mVib.setScale(mVEnv);
+//	mSOS1.setFrequency(mVib);					// set main freq to const + vibrato freq
+//	mSOS2.setFrequency(mVib);
+	mSOS1.setScale(mXEnv1);
+	mSOS2.setScale(mXEnv2);
+	mPanner.setScale(mAEnv);
+
 	mName = "SpectralCrossFade";				// set graph's name
 	mGraph = & mPanner;						// store the root of the graph as the inst var _graph
-	float vibDepth = fRandM(9.0f, 15.0f);
-	mVEnv.scaleValues(vibDepth);
-	mVib.setFrequency(fRandM(5.0f, 12.0f));	// vibrato freq
-	mVib.setScale(mVEnv);
-	mSOS1.setFrequency(mVibAdd);				// set main freq to const + vibrato freq
-	mSOS2.setFrequency(mVibAdd);
-
 	mUGens["Osc1"] = & mSOS1;					// add ugens that can be monitored to the map
 	mUGens["Osc2"] = & mSOS2;
 	mUGens["A env1"] = & mAEnv;
@@ -783,11 +792,11 @@ void VAdditiveInstrument::init() {
 	mUGens["X2 env"] = & mXEnv2;
 	mUGens["Pos"] = & mSummer;
 	
-	mEnvelopes.push_back(& mAEnv);				// list envelopes for retrigger
+	mEnvelopes.push_back(& mAEnv);			// list envelopes for retrigger
+//	mEnvelopes.push_back(& mVEnv);
 	mEnvelopes.push_back(& mXEnv1);
 	mEnvelopes.push_back(& mXEnv1);
-	mEnvelopes.push_back(& mVEnv);
-												// set up accessor vector
+											// set up accessor vector
 	mAccessors.push_back(new Accessor("du", set_duration_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("fr", set_frequency_f, CSL_FLOAT_TYPE));
@@ -817,7 +826,7 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 		switch (selector) {					// switch on which parameter is being set
 			case set_duration_f:
 				mAEnv.setDuration(d);
-				mVEnv.setDuration(d);
+//				mVEnv.setDuration(d);
 				mXEnv1.setDuration(d);
 				mXEnv2.setDuration(d);
 				break;
@@ -826,9 +835,9 @@ void VAdditiveInstrument::setParameter(unsigned selector, int argc, void **argv,
 				break;
 			case set_frequency_f:
 				mFreq = d;
-//				mSOS1.setFrequency(d);
-//				mSOS2.setFrequency(d);
-				mVibAdd.setOperand(d);
+				mSOS1.setFrequency(d);
+				mSOS2.setFrequency(d);
+//				mVibAdd.setOperand(d);
 				if (mInstr1)
 					this->getSpectra();
 				break;
@@ -863,9 +872,9 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
 	unsigned nargs;
 	
-	if ((argc == 4) && (strcmp(types, "ffff") == 0))
+	if (argc == 4)
 		nargs = 4;
-	else if ((argc == 8) && (strcmp(types, "ffffffff") == 0))
+	else if (argc == 8)
 		nargs = 8;
 	else {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
@@ -877,10 +886,10 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 	mAEnv.setDuration(dur);
 	mXEnv1.setDuration(dur);
 	mXEnv2.setDuration(dur);
-	mVEnv.setDuration(dur);
-	mAEnv.scaleValues(dur);
+	mAEnv.scaleValues(*fargs[1]);
 	mFreq = *fargs[2];
-	mVibAdd.setOperand(mFreq);
+	mSOS1.setFrequency(mFreq);
+	mSOS2.setFrequency(mFreq);
 	mPanner.setPosition(*fargs[3]);
 	if (nargs == 8) {
 //		printf("\t\ta %5.2f d %5.2f s %5.2f r %5.2f\n", fargs[4], fargs[5], fargs[6], fargs[7]);
@@ -889,8 +898,11 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		mAEnv.setSustain(*fargs[6]);
 		mAEnv.setRelease(*fargs[7]);
 	}
-	if (mInstr1)
-		this->getSpectra();
+	if ((mInstr1) && (mNoteFreq != mFreq)) {
+		getSHARCSpectrum(mInstr1, mFreq, & mSOS1);
+		getSHARCSpectrum(mInstr2, mFreq, & mSOS2);
+		mNoteFreq = mFreq;
+	}
 	this->play();
 }
 
@@ -952,6 +964,8 @@ void VAdditiveInstrument::getSpectra() {
 // VAdditiveInstrumentR
 
 // Constructor
+
+# if 0 // still not debugged
 
 VAdditiveInstrumentR::VAdditiveInstrumentR(SHARCSpectrum * spect1, SHARCSpectrum * spect2) :
 		VAdditiveInstrument(spect1, spect2),
@@ -1099,3 +1113,4 @@ void VAdditiveInstrumentR::playOSC(int argc, void **argv, const char *types) {
 		this->getSpectra();
 	this->play();
 }
+#endif

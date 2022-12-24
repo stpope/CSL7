@@ -137,6 +137,8 @@ protected:
 ///
 /// SHARCAddInstrumentC - SHARC-based SOS - version with attack chiff.
 ///
+/// NB - still broken - no output
+///
 /// ToDo: add OSC arguments for chiff volume and att/dec.
 ///
 
@@ -195,14 +197,10 @@ public:
 
 	SHARCInstrument * mInstr1 = 0;	///< SHARC instruments, or 0 if SHARC spectra are used
 	SHARCInstrument * mInstr2 = 0;
-	ADSR mAEnv;						///< amplitude envelopes
-	ADSR mVEnv;						///< vibrato envelope
-	Osc mVib;						///< vibrato oscillator
+	ADSR mAEnv;						///< amplitude envelope
 	LineSegment mXEnv1, mXEnv2;		///< cross-fade envelopes = line segs
-   	SumOfSines mSOS1, mSOS2;			///< 2 sum-of-sine oscillators
-	MulOp mEMul1, mEMul2;			///< fade-in/out scalers
-	AddOp mVibAdd, mSummer;			///< summer of 2 oscs
-	MulOp mAMul;						///< final env multiplier
+   	SumOfSines mSOS1, mSOS2;		///< 2 sum-of-sine oscillators
+	AddOp mSummer;					///< summer of 2 oscs
 	Panner mPanner;					///< stereo panner
 protected:
 	virtual void init();
@@ -211,11 +209,12 @@ protected:
 	float mFreq;
 };
 
+#if 0		// still not debugged
+
 ///
 /// VAdditiveInstrumentR = vector-additive cross-fade between 2 SOS spectra
 /// with random-walk cross-fade envelope
 ///
-
 class VAdditiveInstrumentR : public VAdditiveInstrument {
 public:
 	VAdditiveInstrumentR(SHARCSpectrum * spect1, SHARCSpectrum * spect2);
@@ -232,7 +231,8 @@ protected:
 	void init();
 };
 
+#endif // 0
+
 } // namespace
 
-#endif
-
+#endif // INCLUDE_ADDITIVE_Instrument_H

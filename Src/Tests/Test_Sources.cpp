@@ -7,11 +7,11 @@
 // There are other source tests in Test_Oscillators.cpp and Test_Envelopes.cpp
 //
 
-#ifndef USE_JUCE
-#define USE_TEST_MAIN			// use the main() function in test_support.h
-#include "Test_Support.cpp"		// include all of CSL core and the test support functions
+#ifdef USE_JUCE
+	#include "Test_Support.h"
 #else
-#include "Test_Support.h"
+	#define USE_TEST_MAIN				// use the main() function in test_support.h
+	#include "Test_Support.cpp"		// include all of CSL core and the test support functions
 #endif
 
 /////////////////////// Here are the actual unit tests ////////////////////
@@ -329,13 +329,13 @@ void testSHARCXFadeInstrument() {
 		SHARCLibrary::loadDefault();				// Load SHARC database (takes a few secs)
 		sharcLib = SHARCLibrary::library();
 	}										// create rand additive instrument with 2 SHARC spectra
-	VAdditiveInstrument vox(sharcLib->spectrum("oboe", 50), sharcLib->spectrum("French_horn", 32));
+	VAdditiveInstrument vox(sharcLib->spectrum("bass_clarinet", 32), sharcLib->spectrum("French_horn", 32));
 											// argv for OSC-like instrument call
 	float argv[] = { 5.0f , 0.5f , 80.0f , 0.0f };
 	float * argp[] = { &argv[0], &argv[1], &argv[2], &argv[3] };
 	int argc = 4;
 	char * types = "ffff";
-	logMsg("Playing random mix of 2 SHARC instruments ...");
+	logMsg("Playing cross-fade of 2 SHARC instruments ...");
 	vox.playOSC(argc, (void **) & argp, types);        // OSC msg: dur, ampl, freq, pos
 	runTest(vox, 5.0f);
 	logMsg("done.");
@@ -343,22 +343,22 @@ void testSHARCXFadeInstrument() {
 
 /// Test SHARC random-cross-fade instrument - dur, ampl, freq, pos
 
-void testRandSHARCInstrument() {
-	if ( ! sharcLib) {
-		SHARCLibrary::loadDefault();				// Load SHARC database (takes a few secs)
-		sharcLib = SHARCLibrary::library();
-	}										// create rand additive instrument with 2 SHARC spectra
-	VAdditiveInstrumentR vox(sharcLib->spectrum("oboe", 50), sharcLib->spectrum("French_horn", 32));
-											// argv for OSC-like instrument call
-	float argv[] = { 5.0f , 0.5f , 80.0f , 0.0f };
-	float * argp[] = { &argv[0], &argv[1], &argv[2], &argv[3] };
-	int argc = 4;
-	char * types = "ffff";
-	logMsg("Playing random mix of 2 SHARC instruments ...");
-	vox.playOSC(argc, (void **) & argp, types);        // OSC msg: dur, ampl, freq, pos
-	runTest(vox, 5.0f);
-	logMsg("done.");
-}
+//void testRandSHARCInstrument() {
+//	if ( ! sharcLib) {
+//		SHARCLibrary::loadDefault();				// Load SHARC database (takes a few secs)
+//		sharcLib = SHARCLibrary::library();
+//	}										// create rand additive instrument with 2 SHARC spectra
+//	VAdditiveInstrumentR vox(sharcLib->spectrum("oboe", 50), sharcLib->spectrum("French_horn", 32));
+//											// argv for OSC-like instrument call
+//	float argv[] = { 5.0f , 0.5f , 80.0f , 0.0f };
+//	float * argp[] = { &argv[0], &argv[1], &argv[2], &argv[3] };
+//	int argc = 4;
+//	char * types = "ffff";
+//	logMsg("Playing random mix of 2 SHARC instruments ...");
+//	vox.playOSC(argc, (void **) & argp, types);        // OSC msg: dur, ampl, freq, pos
+//	runTest(vox, 5.0f);
+//	logMsg("done.");
+//}
 
 void testFancyFMInstrument() {
 	FancyFMInstrument * vox = new FancyFMInstrument;
@@ -589,7 +589,7 @@ void test_vector_ifft() {
 	MulOp mul2(vox2, env2);
 
 	AddOp add(mul1, mul2);						// sum the MulOps
-    csl::ADSR adsr(dur, 0.02, 0.04, 0.6, 1);
+	csl::ADSR adsr(dur, 0.02, 0.04, 0.6, 1);
     MulOp summ(add, adsr);
 	env1.trigger();
 	env2.trigger();
@@ -639,9 +639,9 @@ testStruct srcTestList[] = {
 	"SumOfSines (SOS) instrument",	testSOSInstrument,		"Demonstrate the SumOfSines instrument",
 	"SHARC SOS instrument",		testSHARCInstrument1, 	"SumOfSines based on SHARC instrumental timbres",
 	"SHARC SOS w vibrato",		testSHARCInstrument2, 	"SumOfSines based on SHARC instrumental timbres",
-	"SHARC SOS w attack chiff",	testSHARCInstrument3, 	"SumOfSines based on SHARC instrumental timbres",
+//	"SHARC SOS w attack chiff",	testSHARCInstrument3, 	"SumOfSines based on SHARC instrumental timbres",
 	"SHARC SOS w cross-fade",		testSHARCXFadeInstrument, "SumOfSines based on SHARC instrumental timbres",
-	"SHARC SOS w random mix",		testRandSHARCInstrument, 	"SumOfSines based on SHARC instrumental timbres",
+//	"SHARC SOS w random mix",		testRandSHARCInstrument, 	"SumOfSines based on SHARC instrumental timbres",
 	"Snd file instrument (buggy)",	testSndFileInstrument,	"Test the sound file instrument",
 	"WaveShaping synthesis",		testWaveShaper,			"Play 2 wave-shaper notes with envelopes",
     "IFFT synthesis", 			test_ifft,  				"Make a sound with IFFT synthesis",

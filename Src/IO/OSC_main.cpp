@@ -87,7 +87,7 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 
 // -----------------------------------------------------------------------------------------------
 
-// MAIN with 10 plucked strings, 10 FM voices, 10 FM bells, 16 SHARC SOS voices, 4 snd file voices, 4 Vector SOS voices
+// MAIN with 10 plucked strings, 10 FM instrs, 10 FM bells, 4 snd file voices, 16 SHARC SOS voices,  5 SHARC SOS w vibrato, 4 Vector SOS voices
 
 #ifdef CSL_OSC_SERVER4
 
@@ -106,7 +106,7 @@ int main(int argc, const char * argv[]) {
 	printf("OSC server listening to port %s\n", CSL_mOSCPort);
 	initOSC(CSL_mOSCPort);				// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w att chiff, 5 Vector SOS, 5 fancy Vector SOS\n");
+	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w vibrato, 5 Vector SOS\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -157,7 +157,7 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	for ( ; i < 55; i++) {				//---- 5 SHARC SOS voices w attack chiff
+	for ( ; i < 55; i++) {				//---- 5 SHARC SOS voices w vibrato
 		int i1 = iRandM(0,16);			// pick random instruments to use
 		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i1]);
 		lib.push_back(in);
@@ -183,6 +183,7 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
+#if 0		// still not debugged
 	for ( ; i < 66; i++) {				//---- 5 Vector SOS voices with instruments (different spectra per-note)
 		int i1 = iRandM(0,16);			// pick random pairs of instruments to use
 		int i2 = iRandM(0,16);
@@ -191,7 +192,8 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-
+#endif // 0
+	
 #endif // CSL_WINDOWS - for SHARC instruments
 
 	Stereoverb rev(*gIMix);				// stereo reverb
