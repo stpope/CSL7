@@ -1,6 +1,0 @@
-gs -o sl1.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [ 000 -490]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
-gs -o sl2.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [-300 -490]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
-gs -o sl3.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [ 000 -245]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
-gs -o sl4.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [-300 -245]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
-gs -o sl5.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [ 000  000]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
-gs -o sl6.pdf  -sDEVICE=pdfwrite -g3100x2500 -c "<</PageOffset [-300  000]>> setpagedevice" -f ../CSL6_Siren9_Demo.pdf
