@@ -38,8 +38,8 @@ A Tour of CSL (22 min): https://vimeo.com/409028476
 
 CSL Internals (4:20 min): https://vimeo.com/409027546
 
-NEW DEMO (May, 2020) CSL + Siren Integrated (32 min): https://vimeo.com/421319630
-	    
+CSL + Siren Integrated (May, 2020) (32 min): https://vimeo.com/421319630
+
 ## About CSL
 
 CSL is a C++ class library for sound/music applications; to use it, you write and compile 
