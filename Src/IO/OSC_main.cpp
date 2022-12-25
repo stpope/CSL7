@@ -49,7 +49,7 @@
 
 //#define CSL_OSC_SERVER2			// 64 instruments: KS strings, snd-files, vector SOS & 2 FM variations
 //#define CSL_OSC_SERVER3			// 32 fm bells for booh
-#define CSL_OSC_SERVER4			// 65 instruments: KS strings, several SHARC SOS versions, 2 FM variations, 4 SndFiles
+#define CSL_OSC_SERVER4			// 61 instruments: KS strings, several SHARC SOS versions, 2 FM variations, 4 SndFiles
 
 // NB: the rest of these still need to be ported; see below
 
@@ -152,12 +152,12 @@ int main(int argc, const char * argv[]) {
 	sharcInstrs.push_back(sharcLib->instrument("violin_vibrato"));
 	sharcInstrs.push_back(sharcLib->instrument("contrabass_clarinet"));
 
-	for ( ; i < 50; i++) {				//---- 16 SHARC SOS voices w vibrato
+	for ( ; i < 50; i++) {				//---- 16 SHARC SOS instruments
 		SHARCAddInstrument * in = new SHARCAddInstrument(sharcInstrs[i - 34]);
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	for ( ; i < 55; i++) {				//---- 5 SHARC SOS voices w vibrato
+	for ( ; i < 55; i++) {				//---- 5 SHARC SOS instruments w vibrato
 		int i1 = iRandM(0,16);			// pick random instruments to use
 		SHARCAddInstrumentV * in = new SHARCAddInstrumentV(sharcInstrs[i1]);
 		lib.push_back(in);

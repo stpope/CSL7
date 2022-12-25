@@ -1,5 +1,5 @@
 ///
-///  CGestalt.h -- the CSL 6.0 CGestalt (system utility) class specification,
+///  CGestalt.h -- the CSL 7 CGestalt (system utility) class specification,
 ///		system constants, logging, and utility methods; SAFE_MALLOC/SAFE_FREE macros
 ///		The logging system has a number of print methods that use the printf var-args format 
 ///		and can be filtered on verbosity.
@@ -85,9 +85,9 @@ public:											// Accessor (getter/setter) methods
 	
 	static std::string sndFileName();				///< pick a new sound file name to use based on OUT_SFILE_NAME
 
-	static unsigned screenWidth();					///< current screen width
+	static unsigned screenWidth();				///< current screen width
 	static void setScreenWidth(unsigned numPixels);
-	static unsigned screenHeight();					///< current screen height
+	static unsigned screenHeight();				///< current screen height
 	static void setScreenHeight(unsigned numPixels);
 
 	static unsigned MIDIInDevice();

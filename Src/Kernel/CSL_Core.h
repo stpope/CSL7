@@ -12,7 +12,7 @@
 ///		BufferCMap --  a sample buffer with channel map and count (used for many-channel processing)
 ///
 ///		Port -- used to represent signal and control inputs and outputs in named maps; 
-///			holds a UnitGenerator and its buffer
+///			holds a UnitGenerator and its buffer; can be dyamic (UGen) ort static (float)
 ///
 ///		UnitGenerator -- an object that can fill a buffer with samples, the central abstraction of CSL DSP
 ///
@@ -92,14 +92,14 @@ typedef enum {
 ///
 /// Buffer -- the multi-channel sample buffer class (passed around between generators and IO guys).
 ///
-/// Buffers have an opaque pointer () to their data () and know their # channels and frames.
+/// Buffers have an opaque pointer to their data and know their # channels and frames.
 /// They have Boolean aspects about their buffer allocation, and can allocate, free, zero, and check their data.
 ///
 /// Note that this is a "record" class in that its members are all public and it has no accessor
 /// functions or complicated methods. It does handle sample buffer allocation and has
 /// Boolean members to determine what its pointer state is.
 ///
-/// Note also that Buffers are *not* thread-safe; they hand out pointers (sample*)
+/// Note also that Buffers are *not* thread-safe; they hand out pointers (Sample*)
 /// that are assumed to be volatile.
 ///
 
@@ -171,7 +171,7 @@ public:									/// Constructor: default is mono and default-size
 	float max(unsigned chan, unsigned from, unsigned to);	///< get the max of the absolute val of the samples
 	float min(unsigned chan, unsigned from, unsigned to);	///< get the min of the samples
 	
-#ifdef CSL_DSP_BUFFER
+#ifdef CSL_DSP_BUFFER                           // you could model all of DSP and MIR as methods on buffers...
 	unsigned int zeroX(unsigned chan);								///< count the zero-crossings in the samples
 	unsigned int indexOfPeak(unsigned chan);							///< answer the index of the peak value
 	unsigned int indexOfPeak(unsigned chan, unsigned low, unsigned hi);	///< answer the index of the peak value
@@ -232,7 +232,7 @@ class RingBuffer; 	///< forward declaration
 ///
 /// If more than 1 output is used, these can handle fan-out automatically, either synchronous
 /// (as in loops in a graph) or async (as in separate call-back threads).
-/// The mOutputCache RingBuffer may hold some large number of past samples, and can use nextBuffer()
+/// The mOutputCache RingBuffer may hold some number of past samples, and can use nextBuffer()
 /// to do n-way fan-out either synchronously or with differing buffer sizes or callback rates.
 ///
 /// UnitGenerator inherits from Model, meaning that it has to send this->changed((void *) dataBuffer) 
@@ -242,8 +242,7 @@ class RingBuffer; 	///< forward declaration
 
 class UnitGenerator : public Model {
 public:
-										/// Constructors (UGens are mono by default)
-										/// defaults to mono and maxBlockSize if not specified.
+										/// Constructors -- defaults to mono and maxBlockSize if not specified.
 	UnitGenerator(unsigned rate = CGestalt::frameRate(), unsigned chans = 1);	
 	virtual ~UnitGenerator();				///< Destructor
 
@@ -257,7 +256,7 @@ public:
 	BufferCopyPolicy copyPolicy() { return mCopyPolicy; };		///< get/set the receiver's buffer copy policy
 	void setCopyPolicy(BufferCopyPolicy ch) { mCopyPolicy = ch; }
 
-//	string name() { return mName; };							///< get/set the receiver's name string
+//	string name() { return mName; };							///< get/set the receiver's name string (no longer used)
 //	void setName(char * ch) { mName = string(ch); }
 //	void setName(string ch) { mName = ch; }
 
@@ -289,11 +288,11 @@ public:
 	virtual void dump();				///< pretty-print the receiver
 	virtual void trigger() { };		///< trigger ignored here
 
-protected:					// My data members
+protected:				        // My data members
 	unsigned mFrameRate;				///< the frame rate -- initialized to be the default by the constructor
 	unsigned mNumChannels;			///< my "expected" number of output channels
-	BufferCopyPolicy mCopyPolicy;		///< the policy I use if asked for more or fewer channels
-	UGenVector mOutputs;				///< the vector of my output UGens
+	BufferCopyPolicy mCopyPolicy;	///< the policy I use if asked for more or fewer channels
+	UGenVector mOutputs;			///< the vector of my output UGens
 	unsigned mNumOutputs;			///< the number of outputs
 	Buffer * mOutputCache;			///< my past output ring buffer (only used in case of fan-out)
 	unsigned mSequence;				///< the highest-seen buffer seq number
@@ -755,12 +754,12 @@ typedef enum {
 
 class IO : public Model  {											/// superclass = Model
 public:
-	IO(unsigned s_rate = 44100, unsigned b_size = CSL_mBlockSize,
+	IO(unsigned s_rate = CSL_mFrameRate, unsigned b_size = CSL_mBlockSize,
 		int in_device = -1, int out_device = -1,
-		unsigned in_chans = 0, unsigned out_chans = 2);				/// default is stereo output & no output
+		unsigned in_chans = 0, unsigned out_chans = 2);				/// default is stereo output & no input
 	virtual ~IO() { };
 									// Control methods
-	virtual void open() noexcept(false) { mStatus = kIOOpen; };	///< open/close start/stop methods
+	virtual void open() noexcept(false) { mStatus = kIOOpen; };	    ///< open/close start/stop methods
 	virtual void close() noexcept(false) { mStatus = kIOClosed; };
 	virtual void start() noexcept(false) { mStatus = kIORunning; };
 	virtual void stop() noexcept(false) { mStatus = kIOOpen; };
@@ -779,7 +778,7 @@ public:
 
 									// Data members
 	UnitGenerator * mGraph;					///< the root of my client DSP graph, often a mixer or panner
-	Buffer mInputBuffer;					///< the most recent input buffer (if it's turned on)
+	Buffer mInputBuffer;						///< the most recent input buffer (if it's turned on)
 	Buffer mOutputBuffer;					///< the output buffer I use (passed to nextBuffer calls)
 	Buffer mCaptureBuffer;					///< the output buffer I use for capturing output (for testing)
 	SampleBuffer mInputPointer;				///< the buffer for holding the sound card input (if open)

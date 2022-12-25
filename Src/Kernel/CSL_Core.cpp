@@ -248,19 +248,19 @@ void Buffer::copyHeaderFrom(Buffer & source) noexcept(false) {
 // Copy everything but samples from the argument to the receiver
 
 void Buffer::copyFrom(Buffer & source) noexcept(false) {
-	this->freeBuffers();						// free everything
+	this->freeBuffers();							// free everything
 	delete mBuffers;
 	mNumChannels = source.mNumChannels;			// copy members
 	mNumFrames = source.mNumFrames;
 	mNumAlloc = source.mNumAlloc;
 	mMonoBufferByteSize = mNumFrames * sizeof(Sample);
 	mSequence = source.mSequence;
-	mBuffers = new SampleBuffer[mNumChannels];	// reserve space for buffers
+	mBuffers = new SampleBuffer[mNumChannels];		// reserve space for buffers
 												// copy sample pointers
 	for (unsigned outBufNum = 0; outBufNum < mNumChannels; outBufNum++) {
 		mBuffers[outBufNum] = source.buffer(outBufNum);
 	}
-	mAreBuffersZero = false;					// set flags
+	mAreBuffersZero = false;						// set flags
 	mAreBuffersAllocated = true;
 	mDidIAllocateBuffers = false;
 }
@@ -429,8 +429,8 @@ void Buffer::removeDC() {
     }
 }
 
-///< Print a few samples for debugging; num samples every spacing
-///<
+///< Print a few samples for debugging; num samples spaced every spacing
+
 void Buffer::dumpSamples(int which, int num, int spacing) {
 	printf("\nBuffer data: ");
 	for (int i = 0; i < num; i++)
@@ -675,7 +675,7 @@ BufferCMap::~BufferCMap() { }
 
 #pragma mark UnitGenerator
 
-// mono by default
+// c'tor
 
 UnitGenerator::UnitGenerator(unsigned rate, unsigned chans) :  Model(),
 				mFrameRate(rate),
@@ -1421,7 +1421,7 @@ void Interleaver::deinterleave(Buffer & output, short * samples, unsigned numFra
 
 // Global array of all known IO devices
 
-vector < IODevice *> gIODevices;
+vector <IODevice *> gIODevices;
 
 // General IO Constructors in all modes
 
@@ -1469,7 +1469,6 @@ void IO::pullInput(Buffer & outBuffer, SampleBuffer out) noexcept(false) {
 #endif
 //	unsigned numFrames = outBuffer.mNumFrames;
 //	unsigned numChans = outBuffer.mNumChannels;
-	
 	if (mGraph) {
 		try {
 			outBuffer.mSequence = this->getAndIncrementSequence();

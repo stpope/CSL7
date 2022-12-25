@@ -1,5 +1,5 @@
 //
-// Stripped Juce top-level window code, based on the hello world example
+// Juce main() function for the CSL 7 GUI demo
 //
 
 #include "JuceHeader.h"

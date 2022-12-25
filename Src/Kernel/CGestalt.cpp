@@ -30,12 +30,12 @@ static unsigned mNumInChannels = 0;							///< no input by default
 static unsigned mNumOutChannels = 2;							///< stereo outputs
 
 static unsigned mFrameRate = CSL_mFrameRate;					///< default sample rate (tested up to 96000)
-static float mFrameRateF = (float) CSL_mFrameRate;			///< default sample rate (tested up to 96000)
+static float mFrameRateF = (float) CSL_mFrameRate;				///< default sample rate (tested up to 96000)
 static Sample mFramePeriod = 1.0f / mFrameRateF;				///< 1 / default sample rate
 static unsigned mBlockSize = CSL_mBlockSize;					///< typical block size (can be as small as 128 in real usage)
 static unsigned mMaxBufferFrames = CSL_mMaxBufferFrames;		///< max block size (set large for zooming scopes)
 static unsigned mSndFileFrames = CSL_mSndFileFrames;			///< max block size (set large for zooming scopes)
-static unsigned mMaxSndFileFrames = CSL_mMaxSndFileFrames;	///< max block size (set large for zooming scopes)
+static unsigned mMaxSndFileFrames = CSL_mMaxSndFileFrames;		///< max block size (set large for zooming scopes)
 
 static unsigned mMIDIInDevice = 0;							///< MIDI input device
 static unsigned mMIDIOutDevice = 0;							///< MIDI output device
@@ -43,7 +43,7 @@ static unsigned mMIDIOutDevice = 0;							///< MIDI output device
 static unsigned mVerbosity = CSL_mVerbosity;					///< very verbose
 static unsigned mLoggingPeriod = CSL_mLoggingPeriod;			///< log CPU every 15 sec
 static unsigned mOutPort = CSL_mOutPort;						///< RFS output port
-static string mDataFolder = CSL_DATA_DIR;					///< User's CSL data folder ()
+static string mDataFolder = CSL_DATA_DIR;						///< User's CSL data folder ()
 static bool mStopNow = false;									///< flag to stop threads and timers
 
 static unsigned sScreenWidth;									///< screen width is global (so you can reference it without including this file)
@@ -67,7 +67,7 @@ unsigned CGestalt::outPort()	{ return mOutPort; }
 bool CGestalt::stopNow()	{ return mStopNow; }
 
 unsigned CGestalt::screenWidth() { return sScreenWidth; }			///< current screen width
-unsigned CGestalt::screenHeight() { return sScreenHeight; }		///< current screen height
+unsigned CGestalt::screenHeight() { return sScreenHeight; }			///< current screen height
 
 unsigned CGestalt::MIDIInDevice() { return mMIDIInDevice; };
 void CGestalt::setMIDIInDevice(unsigned dev) { mMIDIInDevice = dev; };
@@ -193,8 +193,8 @@ void CGestalt::storeToInitFile(char key, string data) {
 // create a new temp file name
 
 string CGestalt::sndFileName() {
-	char fsnam[CSL_NAME_LEN];				// temp file name
-	FILE * dFile = NULL;					// temp file ptr
+	char fsnam[CSL_NAME_LEN];					// temp file name
+	FILE * dFile = NULL;						// temp file ptr
 											// create out file name
 	sprintf(fsnam, "%s%s", CGestalt::dataFolder().c_str(), OUT_SFILE_NAME);
 	char * xpos = strstr(fsnam, "XX");		// find XX in the template
@@ -203,7 +203,7 @@ string CGestalt::sndFileName() {
 		do {
 			cheapPrintf(cnt);				// pick next file name
 			dFile = fopen(fsnam, "r");		// try to read file
-			if (dFile != NULL) {			// if it's there
+			if (dFile != NULL) {				// if it's there
 				fclose(dFile);				// close it and increment counter
 				cnt++;
 			}

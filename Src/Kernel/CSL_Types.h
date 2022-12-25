@@ -13,13 +13,14 @@
 ///			Class names are capitalized, but members and methods are written lower-camel-case.
 ///			Data members (instance variables) are written with initial "m" then camelCase as in "mOffset."
 ///			Enumeration constants are written with initial "k" followed by embedded caps as in "kDone."
-///			Compiler flags and #defines are generally written all-upperr-case as in "USE_CASND."
+///			Compiler flags and #defines are generally written all-upper-case as in "USE_CASND."
 ///		Privacy
 ///			In general data members are protected and have accessor functions where appropriate. 
 ///			The one exception is Buffer which is considered a record class and has public members.
 ///
 /// Compile-time options
-/// (These are not set in this file so that different applications can share the source tree.)
+/// These are not set in this file so that different applications can share the source tree.
+/// See the Makefiles and build projects for the different platforms.
 ///
 ///		SoundFile type:
 ///			USE_JSND - use the JUCE-based sound file class (requires only JUCE)
@@ -42,8 +43,8 @@
 ///			USR_KOSC - use OSCKit for OSC (not implemented yet)
 ///
 ///	CORE CSL Types
-///		sample(float), Sample, SampleBuffer, SampleBufferVector, SampleComplex, SampleComplexVector
-///		PortMap, UGenVector, UGenMap, IODeviceVector, Timestamp, VoidFcnPtr
+///		sample(float), Sample(float), SampleBuffer(float*), SampleBufferVector(float**), SampleComplex, SampleComplexVector
+///		PortMap, UnitGenerator, UGenVector, UGenMap, IODeviceVector, Timestamp, VoidFcnPtr
 ///
 ///	Constants
 ///		CSL_PI, CSL_TWOPI, CSL_PIHALF, CSL_SQRT_TWO, CSL_SPEED_OF_SOUND, 
@@ -52,8 +53,9 @@
 ///		Many useful macros below
 ///
 
-#ifndef CSL_Types_H							// All CSL header files can be included only once.
-#define CSL_Types_H							// That's what these flags are for.
+#ifndef CSL_Types_H						// All CSL header files can be included only once.
+#define CSL_Types_H						// That's what these flags are for.
+                                        // is it more modern or portable to say #pragma once?
 
 //// Platform macros -- check for these (e.g., CSL_WINDOWS rather than WIN32) in your code
 
@@ -64,7 +66,7 @@
 #ifdef WIN32								// M$_Windows
 	#define CSL_WINDOWS
 	#define rindex(x, y)        strrchr(x, y)
-	#define strcasestr(x, y)    strstr(x, y)			// not really the same
+	#define strcasestr(x, y)    strstr(x, y)	// not really the same
 	#define bzero(ptr, len)		memset(ptr, 0, len)
 #endif
 
@@ -76,7 +78,7 @@
 	#define CSL_ANDROID
 #endif
 
-#ifdef JUCE_IOS								// iOS
+#ifdef JUCE_IOS							// iOS
 	#define CSL_IOS
 #endif
 
@@ -85,7 +87,7 @@
 #define CSL_ENUMS				// define this to use the various enumerations (which are problematic with SWIG)
 // #define CSL_DEBUG			// define this for very verbose debugging of constructors and call-backs
 // #define CSL_DSP_BUFFER		// define this for Buffer Sample Processing (feature extraction)
-// #define USE_JUCE				// use JUCE for all IO (now set as a compile-time flag)
+// #define USE_JUCE			// use JUCE for all IO (now set as a compile-time flag)
 
 ////
 //// Major System Defaults (used in CGestalt to set static constants)
@@ -193,6 +195,8 @@ typedef FloatArray * FloatArrayPtr;			///< float pointer pointer type
 
 											// short-hand for the base sample type
 //typedef float sample;						///< (could be changed to int, or double)
+                                            ///< the first version is no longer used for style reasons and
+                                            ///< because it conflicts with a type in JUCE 7
 typedef float Sample;							///< the same, written upper-case
 
 typedef Sample* SampleBuffer;					///< 1-channel buffer data type, vector of (sample)
@@ -206,7 +210,6 @@ typedef Sample SampleComplex[2];				///< array-of-2 complex # type (like FFTW)
 typedef SampleComplex * SampleComplexVector;	///< complex vector
 typedef SampleComplex * SampleComplexPtr;		///< complex pointer
 typedef SampleComplexPtr * SampleComplexMatrix;	///< complex 2D matrix
-typedef SampleComplexPtr * SampleComplexMatrix;	///< complex 2D matrix
 
 //typedef struct { Sample re; Sample im; } SampleComplex;	///< alternate Complex # struct
 //#define cx_r(val) val.re					/// complex # accesor macros
@@ -216,7 +219,7 @@ typedef SampleComplexPtr * SampleComplexMatrix;	///< complex 2D matrix
 typedef SampleComplex* SampleComplexVector;	///< complex vector
 typedef SampleComplex* SampleComplexPtr;		///< complex pointer
  
-class CPoint;								///< Forward declaration
+class CPoint;								///< Forward declaration to CPoint class
 typedef std::vector <CPoint *> PointVector;	///< A vector of points
 
 typedef std::vector<unsigned> UnsignedVector;	///< A vector of unsigneds
@@ -231,7 +234,7 @@ typedef unsigned uint;
 
 class Buffer;								///< Forward declaration to Buffer (in CSL_Core.h)
 class UnitGenerator;							///< Forward declaration to UnitGenerator (in CSL_Core.h)
-class Port;									///< Forward declaration to Port
+class Port;									///< Forward declaration to Port (in CSL_Core.h)
 class IODevice;								///< Forward declaration to IO Device model
 class Instrument;								///< Forward declaration to Instrument
 class Observer;								///< Forward declaration
@@ -340,7 +343,7 @@ typedef struct {
 #define CSL_TWOPI				6.2831853071795865f
 #define CSL_PIHALF			1.570796326795f
 #define CSL_SQRT_TWO			1.414213562f
-#define CSL_SPEED_OF_SOUND	330.0f					// m/sec
+#define CSL_SPEED_OF_SOUND	330.0f					// in m/sec
 #define CSL_EXP_PER_DB		0.11512925464970228f
 #define CSL_SAMPS_PER_METER	133.63636363636364f
 #define CSL_DEGS_PER_RAD		57.295779513082321f
