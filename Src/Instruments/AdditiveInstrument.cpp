@@ -337,7 +337,7 @@ void SHARCAddInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-//	if (gVerbose)
+	if (gVerbose)
 		printf("\tSHARC0: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mAEnv.scaleValues(*fargs[1]);			// amp
@@ -510,7 +510,7 @@ void SHARCAddInstrumentV::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-//	if (gVerbose)
+	if (gVerbose)
 		printf("\tSHARC1: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mVEnv.setDuration(*fargs[0]);
@@ -694,7 +694,7 @@ void SHARCAddInstrumentC::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected 4 or 9 args got \"%s\"\n", types);
 		return;
 	}
-//	if (gVerbose)
+	if (gVerbose)
 		printf("\tSHARC2: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);			// dur
 	mCEnv.setDuration(*fargs[0]);
@@ -880,7 +880,7 @@ void VAdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		return;
 	}
-//	if (gVerbose)
+	if (gVerbose)
 		printf("\tV_Add: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	float dur = *fargs[0];
 	mAEnv.setDuration(dur);

@@ -22,7 +22,7 @@ To get started with CSL, build the demo app (screen shot below)
 and use the combo boxes at the bottom-left to select among the tests, whose source code
 is in the Src/Tests folder. For the Mac, use the XCode project in the 
 Builds/MacOSX folder; for Linux, use the makefile in the Builds/LinuxMakefile folder.
-There are pre-compiled versions of the demo for MacOS, Linux and MS-Windows in the ZIP file https://github.com/stpope/CSL7/blob/main/Demo.zip
+There are pre-compiled versions of the demo for MacOS in the ZIP file https://github.com/stpope/CSL7/blob/main/Demo.zip
 
 ### Links for the impatient
 
@@ -337,13 +337,10 @@ Default CSL Synthesis Server Instruments (see CSL7/Src/IO/OSC_main.cpp)
 	35 - 50 ---- 16 SHARC SOS instruments (different spectra) w vibrato
 		dur, ampl, pitch, pos
 		dur, ampl, pitch, pos, att, dec, sus, rel
-	51 - 55 ---- 5 SHARC SOS additive instruments w att chiff
+	51 - 55 ---- 5 SHARC SOS additive instruments w vibrato
 		dur, ampl, pitch, pos
 		dur, ampl, pitch, pos, att, dec, sus, rel
 	56 - 61 ---- 5 SHARC additive cross-fade instruments
-		dur, ampl, pitch, pos
-		dur, ampl, pitch, pos, att, dec, sus, rel
-	62 - 66 ---- 5 SHARC additive random-walk cross-fade instruments
 		dur, ampl, pitch, pos
 		dur, ampl, pitch, pos, att, dec, sus, rel
 

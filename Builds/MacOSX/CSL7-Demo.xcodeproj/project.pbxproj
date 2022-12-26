@@ -245,6 +245,7 @@
 		4609E2F0F740AD8A60C98D99 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		47AE14F6C872B45927934713 /* Variable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Variable.cpp; path = ../../Src/Utilities/Variable.cpp; sourceTree = SOURCE_ROOT; };
 		4981280C6F5740B15DE3325B /* SpatialSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpatialSource.cpp; path = ../../Src/Spatializers/SpatialSource.cpp; sourceTree = SOURCE_ROOT; };
+		4C78144429592A390053564F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		4C9E0454294B70AE00934AB3 /* osc_synth_server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = osc_synth_server; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7877366D78D5E3E2CDC492 /* SHARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHARC.h; path = ../../Src/Sources/SHARC.h; sourceTree = SOURCE_ROOT; };
 		4E5D1FE291AF9E5A9E78BDEA /* Test_Support.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Test_Support.cpp; path = ../../Src/Tests/Test_Support.cpp; sourceTree = SOURCE_ROOT; };
@@ -701,8 +702,6 @@
 		DD825A5E12A7DAA429C38C19 /* CSL7-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				D115EE504CFA8FB5EE0BC452 /* CSL7_Logo_tiny.jpg */,
-				4F6367090E293120B9B674E8 /* CSL7_Logo.jpg */,
 				18A3B837B6DCEF540D95C6C3 /* Kernel */,
 				81F691927335F4F7699D20D9 /* Sources */,
 				52A73B4BE93FC1395C769DDC /* Processors */,
@@ -739,6 +738,9 @@
 		F2FE510C84F0D3E164DF32A8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4C78144429592A390053564F /* README.md */,
+				4F6367090E293120B9B674E8 /* CSL7_Logo.jpg */,
+				D115EE504CFA8FB5EE0BC452 /* CSL7_Logo_tiny.jpg */,
 				DD825A5E12A7DAA429C38C19 /* CSL7-Demo */,
 				1915B785B008D2DDFE03223A /* JUCE Modules */,
 				5AF8D33A85F72B10CD2BBBB9 /* JUCE Library Code */,
