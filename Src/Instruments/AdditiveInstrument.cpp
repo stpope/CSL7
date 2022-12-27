@@ -161,7 +161,8 @@ void AdditiveInstrument::playOSC(int argc, void **argv, const char *types) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		return;
 	}
-	printf("\tAdd: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+	if (gVerbose)
+		printf("\tAdd: d %5.2f   a %5.2f   f %7.1f   p %5.2f\n", *fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	mAEnv.setDuration(*fargs[0]);
 	mAEnv.scaleValues(*fargs[1]);
 	mSOS.setFrequency(*fargs[2]);

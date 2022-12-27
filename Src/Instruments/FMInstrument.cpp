@@ -136,17 +136,20 @@ void FMInstrument::parseArgs(int argc, void **argv, const char *types) {
 	unsigned nargs;
 	if (strcmp(types, "ffff") == 0) {
 		nargs = 4;
-//		printf("\tFM:  d %5.2f   a %5.2f   f %7.1f   p %5.2f\n",
-//			*fargs[0], *fargs[1], *fargs[2], *fargs[3]);
+		if (gVerbose)
+			printf("\tFM:  d %5.2f   a %5.2f   f %7.1f   p %5.2f\n",
+				*fargs[0], *fargs[1], *fargs[2], *fargs[3]);
 	} else if (strcmp(types, "ffffff") == 0) {
 		nargs = 6;
-//		printf("\tFM: d %g   a %g c %g m %g i %g   p %g\n",
-//			*fargs[0], *fargs[1], *fargs[2], *fargs[3], *fargs[4], *fargs[5]);
+		if (gVerbose)
+			printf("\tFM: d %g   a %g c %g m %g i %g   p %g\n",
+				*fargs[0], *fargs[1], *fargs[2], *fargs[3], *fargs[4], *fargs[5]);
 	} else if (strcmp(types, "ffffffffffffff") == 0) {
 		nargs = 14;
-//		printf("\tFM: d %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
-//			   *fargs[0], *fargs[2], *fargs[8], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
-//			   *fargs[10], *fargs[11], *fargs[12], *fargs[13]);
+		if (gVerbose)
+			printf("\tFM: d %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
+				   *fargs[0], *fargs[2], *fargs[8], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
+				   *fargs[10], *fargs[11], *fargs[12], *fargs[13]);
 	} else {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
 		mAEnv.scaleValues(0.0f);
@@ -185,6 +188,8 @@ void FMInstrument::parseArgs(int argc, void **argv, const char *types) {
 
 void FMInstrument::playOSC(int argc, void **argv, const char *types) {
 	this->parseArgs(argc, argv, types);
+	if (gVerbose)
+	
 	this->play();
 }
 
@@ -295,7 +300,7 @@ void FancyFMInstrument::setParameter(unsigned selector, int argc, void **argv, c
 void FancyFMInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
 	this->parseArgs(argc, argv, types);
-	mVibrato.setOffset(*fargs[2]);				// shift vibrato up
+	mVibrato.setOffset(*fargs[2]);			// shift vibrato up
 	mMod.setOffset(mVibrato);					// add in vibrato and base freq
 	mMod.setOffset(*fargs[2]);
 	mVibrato.setFrequency(4.0 + (4.0 * fRandZ()));
@@ -309,7 +314,7 @@ void FancyFMInstrument::playMIDI(float dur, int chan, int key, int vel) {
 	mAEnv.setDuration(dur);
 	mIEnv.setDuration(dur);
 	mAEnv.scaleValues(sqrtf((float) vel / 128.0f));
-	mVibrato.setOffset(keyToFreq(key));				// shift vibrato up
+	mVibrato.setOffset(keyToFreq(key));		// shift vibrato up
 	mMod.setOffset(mVibrato);					// add in vibrato and base freq
 	mMod.setOffset(keyToFreq(key));
 	mVibrato.setFrequency(4.0 + (4.0 * fRandZ()));
@@ -324,8 +329,8 @@ void FancyFMInstrument::playMIDI(float dur, int chan, int key, int vel) {
 
 ///< Constructor
 
-FMBell::FMBell() :							// initializers for the UGens
-		Instrument(),						// inherited constructor
+FMBell::FMBell() :						// initializers for the UGens
+		Instrument(),					// inherited constructor
 		mAEnv(4.0f, 0.5f, 0.00001f, kExpon),// set up 3 exp-segs
 		mIEnv(4.0f, 100.0f, 1.0f, kExpon),
 		mGliss(4.0f, BASE_FREQ, BASE_FREQ*0.9f, kExpon),
@@ -342,17 +347,17 @@ FMBell::FMBell() :							// initializers for the UGens
 	mCar.setScale(mAEnv);
 
 	mName = "FM_Bell";
-	mGraph = & mPanner;						// store the root of the graph as the inst var _graph
-	mUGens["Carrier"] = & mCar;				// add ugens that can be monitored to the map
+	mGraph = & mPanner;					// store the root of the graph as the inst var _graph
+	mUGens["Carrier"] = & mCar;			// add ugens that can be monitored to the map
 	mUGens["Modulator"] = & mMod;
 	mUGens["A env"] = & mAEnv;
 	mUGens["Panner"] = & mPanner;
 	mUGens["Gliss"] = & mPanner;
 
-	mEnvelopes.push_back(& mAEnv);			// list envelopes for retrigger
+	mEnvelopes.push_back(& mAEnv);		// list envelopes for retrigger
 	mEnvelopes.push_back(& mIEnv);
 	mEnvelopes.push_back(& mGliss);
-											// set up accessor vector
+										// set up accessor vector
 	mAccessors.push_back(new Accessor("du", set_duration_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("cf", set_c_freq_f, CSL_FLOAT_TYPE));
@@ -504,5 +509,3 @@ void FMBell::dump() {
 	printf("\tFM_Bell: d %.3f a %.3f f %.3f g %.3f r %.3f i %.3f\n",
 		   mAEnv.duration(), mAEnv.start(), mGliss.start(), glRatio, mInd);
 }
-
-
