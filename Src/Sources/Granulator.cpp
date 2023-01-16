@@ -19,6 +19,12 @@ GrainPlayer::~GrainPlayer() {
 	mCloud->isPlaying = false;
 }
 
+// assign to the cloud
+
+void GrainPlayer::setCloud(GrainCloud * cloud) {
+	mCloud = cloud;
+}
+
 // The nextBuffer method does all the work of the synthesis, looping through the playing grains
 
 void GrainPlayer::nextBuffer(Buffer & outputBuffer) noexcept(false) {
@@ -33,21 +39,21 @@ void GrainPlayer::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 	memset(out1, 0, numFrames * sizeof(Sample));
 	memset(out2, 0, numFrames * sizeof(Sample));
 		
-	while (mCloud->gState != kFree) {	// wait until done creating grains in other thread
+	while (mCloud->gState != kFree) {		// wait until done creating grains in other thread
 //		printf("!\n");
 		csl::sleepUsec(100);
 	}
 	mCloud->gState = kDSP;				// set flag to keep scheduler from running while I'm calculating samples
 										// grain loop
-	for (Grain * curGrain = mCloud->mPlayingGrains; curGrain != 0; 
-			curGrain = curGrain->nextGrain) {
+	for (Grain * curGrain = mCloud->mPlayingGrains; curGrain != 0; curGrain = curGrain->nextGrain) {
 //		printf(".");
-		out1 = outputBuffer.buffer(0);							// assume stereo output
+//		printf("%.3f\n", mCloud->mProgress);
+		out1 = outputBuffer.buffer(0);								// assume stereo output
 		out2 = outputBuffer.buffer(1);
 		length = curGrain->numSamples;
 		Sample * sPtr = curGrain->samples;
 		for (unsigned i = 0; i < numFrames; i++) {					// sample loop
-			if (curGrain->time >= curGrain->duration)				// if grain has ended already
+			if (curGrain->time >= curGrain->duration)					// if grain has ended already
 				break;
 			if (curGrain->delay) {									// if grain hasn't started yet
 				curGrain->delay--;
@@ -62,13 +68,13 @@ void GrainPlayer::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 			durHalf = curGrain->duration * curGrain->env;			// really cheap triangle envelope
 			if (curGrain->time < durHalf)							// if before middle
 				env = (float) curGrain->time / durHalf;	
-			else													// else after middle
+			else														// else after middle
 				env = (float)(curGrain->duration - curGrain->time) 
 						/ (curGrain->duration - durHalf);		
 			samp *= curGrain->amplitude * env;						// scale by envelope
 																	// Add to the current output samples
 			*out1++ += samp * (1.0f - curGrain->pan);				// write to Left channel 
-			*out2++ += samp * curGrain->pan;						// write to Right channel
+			*out2++ += samp * curGrain->pan;							// write to Right channel
 
 			curGrain->position += curGrain->rate;					// Update position
 			curGrain->time += 1.0f;									// Update time
@@ -77,6 +83,10 @@ void GrainPlayer::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 	mCloud->gNow = C_TIME;											// increment time
 	mCloud->gState = kFree;											// release lock
 //	printf("\n");
+	mCloud->mElapsed += (float) numFrames;							// count frames played
+	mCloud->mProgress = mCloud->mElapsed / mCloud->mOffsetRange / (float) CSL_mFrameRate;
+	if (mCloud->mProgress >= 1.0f)
+		mCloud->mElapsed = 0.0f;
 }
 
 // GrainCloud implementation -- grain mgmnt loops are forked as a separate threads
@@ -88,6 +98,8 @@ GrainCloud::GrainCloud() {
 	Grain * prevGrain;
 	SAFE_MALLOC(prevGrain, Grain, sizeof(Grain));
 	mSilentGrains = prevGrain;		// first in list
+	mElapsed = 0.0f;
+	mProgress = 0.0f;
 									// allocate a list of passive grains
 	for (unsigned i = 0; i < MAXGRAINS - 1; i++) {
 		SAFE_MALLOC(newGrain, Grain, sizeof(Grain));
@@ -135,15 +147,19 @@ void createGrains(void * theArg) {
 		cloud->gState = kSched;						// set flag to keep from calculating samples while I'm creating grains
 		
 		if (cloud->isPlaying) {
-			newGrain = cloud->mSilentGrains;		// take the first silent grain and put it into the temp variable
-			if (newGrain == 0) {					// if no free grains, wait a bit
+			newGrain = cloud->mSilentGrains;			// take the first silent grain and put it into the temp variable
+			if (newGrain == 0) {						// if no free grains, wait a bit
 				printf("\tNo free grains\n");
 //				cloud->reset();						// KLUDJ -- reset all if none free
 				goto next;
 			}
 			cloud->mSilentGrains = newGrain->nextGrain;	// set the temp variable's Next to the head of silentGrains
 													// fill it in from the GUI object's ranges
-			newGrain->position = fRandB(cloud->mOffsetBase, cloud->mOffsetRange) * cloud->numSamples;
+			if (cloud->mOffsetBase != -1.0f)
+				newGrain->position = fRandB(cloud->mOffsetBase, cloud->mOffsetRange) * cloud->numSamples;
+			else {
+				newGrain->position = cloud->mProgress * cloud->numSamples;
+			}
 			newGrain->duration = fRandB(cloud->mDurationBase, cloud->mDurationRange) * CGestalt::frameRate();
 			newGrain->rate = fRandB(cloud->mRateBase, cloud->mRateRange);
 			newGrain->amplitude = fRandB(cloud->mVolumeBase, cloud->mVolumeRange) / cloud->mDensityBase;
@@ -155,7 +171,7 @@ void createGrains(void * theArg) {
 			newGrain->samples = cloud->mSamples;
 			newGrain->numSamples = cloud->numSamples;
 			newGrain->nextGrain = cloud->mPlayingGrains;	// set the temp variable's Next to the current head of playingGrains
-			cloud->mPlayingGrains = newGrain;		// set the head of playingGrains to the temp variable
+			cloud->mPlayingGrains = newGrain;			// set the head of playingGrains to the temp variable
 //			printf("\tG: %x\t\t%5.1f  \t%7.2f  \t%4.2f  \t%4.2f\n", 
 //					newGrain, newGrain->duration, newGrain->position, newGrain->rate, newGrain->pan);
 		} else {
@@ -176,7 +192,7 @@ void reapGrains(void * theArg) {
 	Grain *prevGrain, *curGrain, *nextGrain;
 	
 	logMsg("Starting grain culling loop");
-	csl::sleepMsec(200);							// sleep a bit before starting
+	csl::sleepMsec(200);								// sleep a bit before starting
 	while (true) {
 		if ( ! cloud->isPlaying) {
 			logMsg("Grain culling loop exits");
@@ -194,7 +210,7 @@ void reapGrains(void * theArg) {
 //					printf("\tK: %x -> %x\n", curGrain, nextGrain);
 					if (prevGrain == 0)									// If it's the first one
 						cloud->mPlayingGrains = nextGrain;
-					else												// else there is a grain before this one
+					else													// else there is a grain before this one
 						prevGrain->nextGrain = nextGrain;
 					curGrain->nextGrain = cloud->mSilentGrains;			// put the free one on the silent list
 					cloud->mSilentGrains = curGrain;
@@ -211,7 +227,7 @@ void reapGrains(void * theArg) {
 			return;							        // exit thread
 		}
 next:	cloud->gState = kFree;
-		csl::sleepMsec(500);						// sleep for 1/2 sec
+		csl::sleepMsec(500);							// sleep for 1/2 sec
 	}
 	return;									        // never reached
 }
@@ -226,9 +242,9 @@ void GrainCloud::startThreads() {
 	gNow = C_TIME;									// get start time
 	sampsPerTick = (float) CGestalt::frameRate() / (float) C_TIME;
 	spawnerThread->createThread(createGrains, this);
-    csl::sleepMsec(20);                        // sleep for a bit
+    csl::sleepMsec(20);                    		    // sleep for a bit
 	reaperThread->createThread(reapGrains, this);
-	csl::sleepMsec(20);						// sleep for a bit
+	csl::sleepMsec(20);								// sleep for a bit
 	logMsg("Grain threads running");
 }
 
@@ -240,7 +256,7 @@ void GrainCloud::reset() {
 	Grain * nextGrain;
 	while (curGrain != 0) {
 		nextGrain = curGrain->nextGrain;
-		curGrain->nextGrain = mSilentGrains;	// put the grain on the silent list
+		curGrain->nextGrain = mSilentGrains;		// put the grain on the silent list
 		mSilentGrains = curGrain;
 		curGrain = nextGrain;
 		live++;

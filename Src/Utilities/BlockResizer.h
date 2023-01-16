@@ -21,7 +21,7 @@ namespace csl {
 /// Regularizes the amount of data called for.
 /// This is useful for time-frequency transformations that only work with certain buffer sizes.
 
-class BlockResizer : public UnitGenerator {		// it could be an Effect
+class BlockResizer : public UnitGenerator {	// it could be an Effect
 
 public:									/// ctor / dtor
 	BlockResizer(UnitGenerator & input, unsigned blockSize);
@@ -31,7 +31,7 @@ public:									/// ctor / dtor
 
 protected:
 	UnitGenerator * mInput;				///< my input unit generator (pointer)
-	Buffer mInputBuffer;				///< buffer used to pull input
+	Buffer mInputBuffer;					///< buffer used to pull input
 	unsigned mBufferSize;				///< fixed buffer size of the up-hill graph
 	int mFramePointer;					///< where am I in reading the input?
 };

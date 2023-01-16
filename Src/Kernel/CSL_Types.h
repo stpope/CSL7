@@ -200,6 +200,7 @@ typedef FloatArray * FloatArrayPtr;			///< float pointer pointer type
 typedef float Sample;							///< the same, written upper-case
 
 typedef Sample* SampleBuffer;					///< 1-channel buffer data type, vector of (sample)
+typedef Sample* SamplePtr;					///< 1-channel buffer data type, vector of (sample)
 typedef SampleBuffer* SampleBufferVector;		///< Multi-channel buffer data type, vector of (SampleBuffer)
 typedef SampleBuffer* SampleBufferArray;		///< Multi-channel buffer data type
 
@@ -210,6 +211,7 @@ typedef Sample SampleComplex[2];				///< array-of-2 complex # type (like FFTW)
 typedef SampleComplex * SampleComplexVector;	///< complex vector
 typedef SampleComplex * SampleComplexPtr;		///< complex pointer
 typedef SampleComplexPtr * SampleComplexMatrix;	///< complex 2D matrix
+typedef std::vector <SampleComplexVector> SampleComplexSpectra;
 
 //typedef struct { Sample re; Sample im; } SampleComplex;	///< alternate Complex # struct
 //#define cx_r(val) val.re					/// complex # accesor macros

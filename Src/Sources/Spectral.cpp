@@ -3,7 +3,7 @@
 //	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
 //
 
-#include "Spectral.h"
+#include "CSL_Includes.h"
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
@@ -33,7 +33,7 @@ FFT::~FFT() {
 // nextBuffer does the FFT -- note that we override the higher-level version of this method
 
 void FFT::nextBuffer(Buffer& outputBuffer) noexcept(false) {
-	unsigned numFrames = outputBuffer.mNumFrames;	// get buffer length
+	unsigned numFrames = outputBuffer.mNumFrames;		// get buffer length
 
 	pullInput(numFrames);							// get the input samples via Effect
 													// Copy the input data into the buffer 
@@ -51,6 +51,7 @@ void FFT::nextBuffer(Buffer& outputBuffer) noexcept(false) {
 	return;
 }
 
+// --------------------------------------------------------------------------------------------
 //
 //// InvFFT = synthesis
 //
@@ -139,7 +140,7 @@ void IFFT::setBinsMagPhase(float* mags, float* phases) {
 void IFFT::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 	if (outputBuffer.mNumFrames != mWrapper.mSize) {
 		logMsg(kLogError, 
-			"IFFT::nextBuffer # frames %d wrong for FFT size %d (use a block resizer).", 
+			"IFFT::nextBuffer # frames %d wrong for IFFT size %d (use a block resizer).",
 			outputBuffer.mNumFrames, mWrapper.mSize);
 		return;
 	}
@@ -152,5 +153,99 @@ void IFFT::nextBuffer(Buffer & outputBuffer) noexcept(false) {
         for (unsigned i = 1; i < outputBuffer.mNumChannels; i++)
         memcpy(outputBuffer.buffer(i), outputBuffer.buffer(0), outputBuffer.mMonoBufferByteSize);
     }
-	return;
 }
+
+#pragma mark Vocoder // ----------------------------------------------------------------------------------
+
+///
+/// Vocoder uses an FFT and an IFFT and allows several kinds of pitch-time warping.
+/// This is a simple version that supports fixed pitch/time warp factors.
+///
+
+
+Vocoder::Vocoder(CSL_FFTType type) : UnitGenerator() { }
+
+Vocoder::~Vocoder() {
+	mSpectra.clear();
+}
+
+// Load and analyze a file into the spectrum buffer
+
+void Vocoder::analyzeFile(string folder, string path, int blockSize, int hopSize) {
+	SoundFile sndFile(folder + path);
+	sndFile.dump();
+
+	SamplePtr inSamples = sndFile.mWavetable.buffer(0);	// load sound file
+	int numSamps = sndFile.duration();
+	int numWins = numSamps / hopSize;					// compute # of FFT windows
+	Buffer input(1, blockSize);							// buffer to hold windowed input
+	Buffer spectrum(1, blockSize * 2);					// buffer to hold spectral slice
+	input.allocateBuffers();
+	SamplePtr slice;
+	HammingWindow window(blockSize);  					// Window to scale input
+	FFT_Wrapper fft(blockSize, CSL_FFT_COMPLEX, CSL_FFT_FORWARD);
+	
+	printf("Vocoder FFT loop - %d windows, FFT len %d, hop %d\n", numWins, blockSize, hopSize);
+	for (int i = 0; i < numWins; i++) {					// window loop
+		SamplePtr inptr = input.buffer(0);				// copy input sample to windowing buffer
+		SampleBuffer winPtr = window.window();			// ptr to window buffer
+		memcpy(inSamples + (i * hopSize), inptr, blockSize * sizeof(Sample));
+		for (int i = 0; i < blockSize; i++)				// apply signal window to buffer
+			*inptr++ *= *winPtr++;
+		SAFE_MALLOC(slice, Sample, blockSize * 2);		// set up output spectrum ptrs
+		spectrum.setBuffer(0, slice);
+		
+		fft.nextBuffer(input, spectrum);					// execute the FFT
+		
+		mSpectra.push_back((SampleComplexVector) slice);	// store result in mSpectra
+	}
+	mFFTSize = mIFFTSize = blockSize;						// set-up vars for IFFT
+	mIFFTHop = hopSize;
+	mTimeScale = 1.0f;
+	mPitchScale = 1.0f;
+	mWinCnt = 0;
+}
+
+void Vocoder::setTimeScale(float val) {
+	mTimeScale = val;
+	mIFFTSize = mFFTSize * val;
+	if (mIFFT != NULL)
+		delete mIFFT;
+	mIFFT = new FFT_Wrapper(mIFFTSize, CSL_FFT_COMPLEX, CSL_FFT_INVERSE);
+}
+
+void Vocoder::setPitchScale(float val) {
+	mPitchScale = val;
+}
+	
+void Vocoder::nextBuffer(Buffer & outputBuffer) noexcept(false) {
+	if (outputBuffer.mNumFrames != mIFFTSize) {
+		logMsg(kLogError,
+			"Vocoder::nextBuffer # frames %d wrong for IFFT size %d (use a block resizer).",
+			outputBuffer.mNumFrames, mIFFT->mSize);
+		return;
+	}
+	mIFFTBuf.setSize(1, outputBuffer.mNumFrames);
+	mIFFTBuf.setBuffer(0, (SampleBuffer) mSpectra[mWinCnt]);
+	this->warpSpectrum();									// do optional spectrum warping
+
+	mIFFT->nextBuffer(mIFFTBuf, outputBuffer);			// execute the IFFT via the wrapper
+
+	mWinCnt++;
+}
+
+// General fcn to process the spectrum before re-synthesis (override in subclasses for fancier processing)
+
+void Vocoder::warpSpectrum() {
+
+	if (mPitchScale == 1.0f)
+		return;
+//	SampleComplexPtr sPtr = (SampleComplexPtr) mIFFTBuf.buffer(0);
+//	for (int i = 0; i < mFFTSize; i++) {
+//		
+//	}
+}
+
+
+
+

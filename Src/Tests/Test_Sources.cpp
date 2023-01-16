@@ -221,8 +221,6 @@ void testWaveShaper() {
 
 /// Test basic FM instrument
 
-#include "FMInstrument.h"
-
 void testFMInstrument() {
 	FMInstrument * vox = new FMInstrument;
 	logMsg("Playing simple fm instrument...");
@@ -441,8 +439,6 @@ done:
 
 /// Test SoundFile instrument
 
-#include <SndFileInstrument.h>
-
 void testSndFileInstrument() {
 	SndFileInstrument0 vox(CGestalt::dataFolder(), "round.aiff");
 	logMsg("Playing sound file instrument...");
@@ -512,15 +508,13 @@ done:
 	}
 }
 
-// Play a grain cloud
-
-//#ifndef CSL_WINDOWS
-
 #include <Granulator.h>
+
+// Play a grain cloud scrambling a voice sample
 
 void testGrainCloud() {
 	GrainCloud cloud;						// grain cloud
-	GrainPlayer player(& cloud);			// grain player
+	GrainPlayer player(& cloud);				// grain player
 											// open and read in a file for granulation
 	SoundFile sndFile(CGestalt::dataFolder() + "MKG1a1b.aiff");
 	sndFile.dump();
@@ -549,7 +543,39 @@ void testGrainCloud() {
 	sleepSec(0.5);
 }
 
-//#endif
+// Play a grain cloud stretching a voice sample
+
+void testGrainCloud2() {
+	GrainCloud cloud;						// grain cloud
+	GrainPlayer player(& cloud);				// grain player
+											// open and read in a file for granulation
+	SoundFile sndFile(CGestalt::dataFolder() + "round.aiff");
+	sndFile.dump();
+
+	cloud.mSamples = sndFile.mWavetable.buffer(0);
+	cloud.numSamples = sndFile.duration();
+	cloud.mRateBase = 0.33f;					// rate 1/3 means shift down
+	cloud.mRateRange = 0.0f;
+	cloud.mOffsetBase = -1.0f;				// -1 means read straight through the input file
+	cloud.mOffsetRange = 8.0f;				// this is the time-stretch
+	cloud.mDurationBase = 1.0f;
+	cloud.mDurationRange = 0.0f;
+	cloud.mDensityBase = 16.0f;
+	cloud.mDensityRange = 0.0f;
+	cloud.mWidthBase = 0.0f;
+	cloud.mWidthRange = 1.0f;
+	cloud.mVolumeBase = 4.0f;
+	cloud.mVolumeRange = 4.0f;
+	cloud.mEnvelopeBase = 0.5f;
+	cloud.mEnvelopeRange = 0.5f;
+	logMsg("playing stretched granular cloud.");
+	cloud.startThreads();					// start the grain create/reap threads
+	runTest(player, 25);
+	logMsg("done.");
+	cloud.isPlaying = false;
+	sleepSec(0.5);
+}
+
 
 ///////////////// IFFT tests ////////
 
@@ -563,7 +589,7 @@ void test_ifft() {
 	vox.setBinMagPhase(4, 0.04, 0);
 	vox.setBinMagPhase(6, 0.02, 0);
 	vox.setBinMagPhase(8, 0.01, 0);
-//	vox.setBinMagPhase(5, 0.1, 0);				    // 5th bin = 440 Hz?
+//	vox.setBinMagPhase(5, 0.1, 0);					    // 5th bin = 440 Hz?
     float mag, phs;
 //    for (int i = 0; i < 10; i++)
 //        prt_ifft(i, mag, phs)
@@ -598,6 +624,23 @@ void test_vector_ifft() {
 	logMsg("playing IFFT crossfade...");
 	runTest(summ, dur);
 	logMsg("IFFT crossfade done.");
+}
+
+/// Test the vocoder by time-stretching and pitch-shifting a vocal sample
+
+void test_vocoder() {
+	float dur = 8.0f;
+	float tScale = 6.0f;
+	Vocoder voc;								// create vocoder
+											// analyze src file with small hop size
+	voc.analyzeFile(CGestalt::dataFolder(), "round.aiff", CSL_mBlockSize, 128);
+	voc.setTimeScale(tScale);				// set time stretch
+//	voc.setPitchScale(0.5f);					// set freq shift
+	BlockResizer blocker(voc, CSL_mBlockSize * tScale);		// large buffer
+
+	logMsg("playing vocoder time-stretching...");
+	runTest(blocker, dur);
+	logMsg("vocoder done.");
 }
 
 //////// RUN_TESTS Function ////////
@@ -646,7 +689,9 @@ testStruct srcTestList[] = {
 	"WaveShaping synthesis",		testWaveShaper,			"Play 2 wave-shaper notes with envelopes",
     "IFFT synthesis", 			test_ifft,  				"Make a sound with IFFT synthesis",
     "Vector IFFT",   			test_vector_ifft,			"Vector synthesis with 2 IFFTs",
+	"Vocoder pitch/time warping",	test_vocoder,			"Time-stretch and pitch shift a voice sample",
 	"Soundfile granulation",		testGrainCloud,			"Random sound file granulation example",
+	"Granulation time stretch",	testGrainCloud2,			"Sound file time-stretch by granulation",
 	NULL,						NULL,					NULL
 };
 

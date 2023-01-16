@@ -411,7 +411,7 @@ void testBlockDownsizer() {
 	vox.setFrequency(f_env);					// set the carrier's frequency
 	vox.setScale(a_env);						// multiply index envelope by mod freq
 	a_env.trigger();	
-	BlockResizer blocker(vox, 1100);			// large buffer, not a multiple of CSL's block size
+	BlockResizer blocker(vox, 8100);			// large buffer, not a multiple of CSL's block size
 	logMsg("playing random gliss in a block down-sizer...");
 	runTest(blocker, dur);					// run test
 	logMsg("done.");

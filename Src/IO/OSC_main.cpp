@@ -92,19 +92,28 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 #ifdef CSL_OSC_SERVER4
 
 int main(int argc, const char * argv[]) {
-	for (int i = 1; i < argc; i++ ) 		// check the command line - so far only -v is handled
-		if (argv[i] && (argv[i][0] == '-') && (strlen(argv[i]) > 1))
-			if (argv[i][1] == 'v')		// verbose flag
+	const char * thePort = CSL_mOSCPort;
+	for (int i = 1; i < argc; i++ ) { 		// check the command line - so far only -v are -p handled
+		if (argv[i] && (argv[i][0] == '-') && (strlen(argv[i]) > 1)) {
+			if (argv[i][1] == 'v')		// -v = verbose flag
 				gVerbose = true;
-			else
+			if (argv[i][1] == 'p') {		// -p = OSC input port
+				if (i + 1 >= argc) {
+					printf("Missing cmd-line option for -p port\n");
+					exit(1);
+				}
+				i++;
+				thePort = argv[i];
+			} else
 				printf("Unknown cmd-line option: \"%s\" ignored\n", argv[i]);
-
+		}
+	}
 	printf("CSL OSC synth server running...\n");
 	gIMix = new Mixer(2);					// stereo instrument mixer (sent to reverb)
 	gOMix = new Mixer(2);					// stereo output mixer (reverb + dry signal)
 	InstrumentVector lib;					// instrument library
-	printf("OSC server listening to port %s\n", CSL_mOSCPort);
-	initOSC(CSL_mOSCPort);				// Set up OSC address space root
+	printf("OSC server listening to port %s\n", thePort);
+	initOSC(thePort);					// Set up OSC address space root
 
 	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w vibrato, 5 Vector SOS\n");
 

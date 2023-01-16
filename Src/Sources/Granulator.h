@@ -54,8 +54,8 @@ public:
 							// public data members (set from GUI)
 	float mRateBase;				///< grain rate base
 	float mRateRange;			///< rate random range
-	float mOffsetBase;			///< starting index offset base
-	float mOffsetRange;			///< offset range
+	float mOffsetBase;			///< starting index offset base (if = -1, simply read through input file)
+	float mOffsetRange;			///< offset range (or time scale if base == 01)
 	float mDensityBase;			///< grain density base
 	float mDensityRange;			///< grain density range
 	float mDurationBase;			///< grain duration base
@@ -76,9 +76,11 @@ public:
 	GrainulatorState gState;	///< granulator state flag
 	long gNow;					///< clock for accurate timing
 	float sampsPerTick;			///< resolution of hi-res clock(s-rate / 1 billion)
+	float mElapsed;				///< elapsed time since I started (in sample frames)
+	float mProgress;				///< progress through file 0 - 1
 
 protected:
-	CThread * spawnerThread;	///< thread to create grains
+	CThread * spawnerThread;		///< thread to create grains
 	CThread * reaperThread;		///< thread to kill finished grains
 	bool threadOn;				///< if the thread's running
 };
@@ -89,10 +91,12 @@ class GrainPlayer : public UnitGenerator {
 public:
 	GrainPlayer(GrainCloud * cloud);
 	~GrainPlayer();
-								/// this sums up the list of live grains -- very simple
+	
+	void setCloud(GrainCloud * cloud);	///< assign to the cloud
+										/// this sums up the list of live grains -- very simple
 	void nextBuffer(Buffer & outputBuffer) noexcept(false);
 	
-	GrainCloud * mCloud;		///< the cloud I play
+	GrainCloud * mCloud;					///< the cloud I play
 };
 
 }		// end of namespace

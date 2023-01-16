@@ -55,6 +55,21 @@
 #define wet_dry_f			170			// wet/dry reverb mix
 #define set_chiff_f		171
 
+#define rate_base_f		200			// grain cloud parameters
+#define rate_range_f		201
+#define offs_base_f		202
+#define offs_range_f		203
+#define dur_base_f		204
+#define dur_range_f		205
+#define dens_base_f		206
+#define dens_range_f		207
+#define width_base_f		208
+#define width_range_f		209
+#define vol_base_f		210
+#define vol_range_f		211
+#define env_base_f		212
+#define env_range_f		213
+
 namespace csl  {
 
 ///

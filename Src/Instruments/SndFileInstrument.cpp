@@ -315,5 +315,172 @@ void SndFileInstrument1::playNote(float ampl, float rate, float pos, int start, 
 	mPlayer.trigger();
 }
 
-#endif
+#endif // SndFileInstrument1
 
+#pragma mark Granulator // ------------------------------------------------------------------------------------------
+
+// The constructor initializes the DSP graph's UGens
+
+//GrainCloud mCloud;					///< grain cloud
+//GrainPlayer mPlayer		;			///< grain player
+//Panner mPanner;						///< stereo panner
+
+
+GranulatorInstrument::GranulatorInstrument(string folder, string path) :
+		Instrument(),
+		mCloud(),
+		mPlayer( & mCloud),
+		mFile(0) {
+	this->initialize(folder + path);
+}
+
+void GranulatorInstrument::initialize(string path) {
+	if (path.size() > 0) {				// load the file
+		try {
+			mFile = new SoundFile(path);
+			mFile->openForRead(true);
+		} catch (CException & e) {
+			logMsg(kLogError, "File open exception caught: %s", e.mMessage.c_str());
+			return;
+		}
+	}
+	mName = path;
+	mNumChannels = 2;						// I'm stereo.
+	mGraph = & mPanner;						// Store the root of the graph as the inst var mGraph
+	
+	mCloud.mSamples = mFile->mWavetable.buffer(0);
+	mCloud.numSamples = mFile->duration();
+	
+	mUGens["Panner"] = & mPanner;				// add ugens that can be monitored to the map
+	mUGens["Player"] = & mPlayer;
+	mEnvelopes.push_back(& mPlayer);			// list envelopes for retrigger
+	
+	mCloud.mRateBase = 1.0f;					// set the grain cloud parameters
+	mCloud.mRateRange = 0.8f;
+	mCloud.mOffsetBase = 0.5f;
+	mCloud.mOffsetRange = 0.5f;
+	mCloud.mDurationBase = 0.15f;
+	mCloud.mDurationRange = 0.12f;
+	mCloud.mDensityBase = 16.0f;
+	mCloud.mDensityRange = 10.0f;
+	mCloud.mWidthBase = 0.0f;
+	mCloud.mWidthRange = 1.0f;
+	mCloud.mVolumeBase = 4.0f;
+	mCloud.mVolumeRange = 10.5f;
+	mCloud.mEnvelopeBase = 0.5f;
+	mCloud.mEnvelopeRange = 0.49f;
+
+											// set up accessor vector
+	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
+	mAccessors.push_back(new Accessor("po", set_position_f, CSL_FLOAT_TYPE));
+	mAccessors.push_back(new Accessor("fi", set_file_f, CSL_STRING_TYPE));
+	
+	mAccessors.push_back(new Accessor("fi", set_file_f, CSL_STRING_TYPE));
+
+}
+
+// The destructor frees all the UGen pointers
+
+GranulatorInstrument::~GranulatorInstrument() { }
+
+// Plug function for use by OSC setter methods
+
+//	#define rate_base_f		200			// grain cloud parameters
+//	#define rate_range_f		201
+//	#define offs_base_f		202
+//	#define offs_range_f		203
+//	#define dur_base_f		204
+//	#define dur_range_f		205
+//	#define dens_base_f		206
+//	#define dens_range_f		207
+//	#define width_base_f		208
+//	#define width_range_f		209
+//	#define vol_base_f		210
+//	#define vol_range_f		211
+//	#define env_base_f		212
+//	#define env_range_f		213
+
+void GranulatorInstrument::setParameter(unsigned selector, int argc, void **argv, const char *types) {
+	float d = * (float *) argv[0];
+	if (types[0] == 'i')
+		d = (float) (* (int *) argv[0]);
+	switch (selector) {
+		case set_amplitude_f:
+			mPanner.setScale(d); break;
+		case set_position_f:
+			mPanner.setPosition(d); break;
+		case set_file_f:
+			if (mFile) delete mFile;
+			mFile = new SoundFile((char *) argv[0]);
+			mFile->openForRead(true);
+			logMsg("Loaded sound file %s", (char *) argv[0]);
+			mCloud.mSamples = mFile->mWavetable.buffer(0);
+			mCloud.numSamples = mFile->duration();
+			break;
+		default:
+			logMsg(kLogError, "Unknown selector in SndFileInstrument set_parameter selector: %d", selector);
+	}
+}
+
+// Play a note with a given arg list
+// Formats:
+// 	ampl
+// 	ampl, pos, rate_base, rate_range, offs_base, offs_range, dur_base, dur_range, dens_base, dens_range
+//		width_base, width_range, vol_base, vol_range, env_base, env_range
+//
+
+void GranulatorInstrument::playOSC(int argc, void **argv, const char *types) {
+	float ** fargs = (float **) argv;
+	int ** iargs = (int **) argv;
+	switch(argc) {
+		case 2:					// ampl, pos
+			if (strcmp(types, "f") != 0) {
+				logMsg(kLogError, "Invalid type string in OSC message, expected \"ff\" got \"%s\"", types);
+				return;
+			}
+			mPanner.setScale(*fargs[0]);
+			printf("\tGrn: a %5.3f  p %5.3f\n", *fargs[0]);
+			break;
+		default:
+			logMsg(kLogError, "Invalid type string in OSC message: \"%s\"", types);
+			return;
+	}
+	mPlayer.trigger();
+}
+
+void GranulatorInstrument::play() {
+	mPlayer.trigger();
+};
+
+
+
+//void testGrainCloud() {
+//	GrainCloud cloud;						// grain cloud
+//	GrainPlayer player(& cloud);				// grain player
+//											// open and read in a file for granulation
+//	SoundFile sndFile(CGestalt::dataFolder() + "MKG1a1b.aiff");
+//	sndFile.dump();
+//
+//	cloud.mSamples = sndFile.mWavetable.buffer(0);
+//	cloud.numSamples = sndFile.duration();
+//	cloud.mRateBase = 1.0f;					// set the grain cloud parameters
+//	cloud.mRateRange = 0.8f;
+//	cloud.mOffsetBase = 0.5f;
+//	cloud.mOffsetRange = 0.5f;
+//	cloud.mDurationBase = 0.15f;
+//	cloud.mDurationRange = 0.12f;
+//	cloud.mDensityBase = 16.0f;
+//	cloud.mDensityRange = 10.0f;
+//	cloud.mWidthBase = 0.0f;
+//	cloud.mWidthRange = 1.0f;
+//	cloud.mVolumeBase = 4.0f;
+//	cloud.mVolumeRange = 10.5f;
+//	cloud.mEnvelopeBase = 0.5f;
+//	cloud.mEnvelopeRange = 0.49f;
+//	logMsg("playing Granular cloud.");
+//	cloud.startThreads();					// start the grain create/reap threads
+//	runTest(player, 15);
+//	logMsg("done.");
+//	cloud.isPlaying = false;
+//	sleepSec(0.5);
+//}

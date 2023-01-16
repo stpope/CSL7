@@ -29,6 +29,7 @@
 
 #include "Instrument.h"
 #include "SoundFile.h"
+#include "Granulator.h"
 
 namespace csl  {
 
@@ -60,7 +61,35 @@ protected:
 	SoundFile * mFile;					///< the sound file I read from
 };
 
+///
+/// GranulatorInstrument is a flexible snd-file granulator; it has lots of parameters and a long OSC message.
+///
+
+class GranulatorInstrument : public Instrument {
+public:
+	GranulatorInstrument(string folder, string path);
+	~GranulatorInstrument();
+	
+						/// Plug functions
+	void setParameter(unsigned selector, int argc, void **argv, const char *types);
+						/// play note
+	void play();
+	void playOSC(int argc, void **argv, const char *types);
+	void playNote(float ampl = 1, float pos = 0);
+	void playMIDI(int chan, int key, int vel);
+
+						/// These are the UGens of the DSP graph
+	GrainCloud mCloud;					///< grain cloud
+	GrainPlayer mPlayer		;			///< grain player
+	Panner mPanner;						///< stereo panner
+protected:
+	void initialize(string path);
+	SoundFile * mFile;					///< the sound file I read from
+};
+
 #ifdef STILL_TO_DO
+
+/// SndFileInstrument1 is the fancier version with an envelope
 
 class SndFileInstrument1 : public SndFileInstrument0 {
 public:

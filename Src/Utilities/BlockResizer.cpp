@@ -1,5 +1,5 @@
 //
-//  BlockResizer.cpp -- Regularizes the amount of data called for,
+//  BlockResizer.cpp -- Regularizes the amount of data called for, i.e., the buffer size within a graph
 //
 //	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
 //

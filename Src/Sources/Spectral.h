@@ -39,7 +39,7 @@ protected:
 	FFT_Wrapper mWrapper;				///< actual FFT wrapper object
 	Buffer mInBuf;						///< input buffer
 	SampleBuffer mWindowBuffer;			///< Buffer to store window
-    csl::HammingWindow * mWindow;       ///< the window itself
+    csl::HammingWindow * mWindow; 		///< the window itself
 };
 
 ///
@@ -76,6 +76,42 @@ protected:
 	SampleComplexPtr mSpectrum;			///< spectral data I accumulate (vector of complex)
 };
 
-}
+///
+/// Vocoder uses an FFT and an IFFT and allows several kinds of pitch-time warping.
+/// This is a simple version that supports fixed pitch/time warp factors (which should be UGens).
+/// This version reads a snd file for input, i.e., is non-intetractive, but it'd be simple to process live input
+///
+
+class Vocoder : public UnitGenerator {
+
+public:
+										/// Default size to the buffer size and flags to measure
+	Vocoder(CSL_FFTType type = CSL_FFT_COMPLEX);
+	~Vocoder();
+										/// Load and analyze a file into the spectrum buffer
+	void analyzeFile(string folder, string path, int blockSize, int hopSize);
+										/// Play back the transformed spectrum
+	void nextBuffer(Buffer & outputBuffer) noexcept(false);
+
+	void setTimeScale(float val);
+	void setPitchScale(float val);
+//	void setTimeScale(UnitGenerator & val);// ToDo
+//	void setPitchScale(UnitGenerator & val);
+
+protected:
+	virtual void warpSpectrum();			///< General fcn to process the spectrum before re-synthesis
+
+	SampleComplexSpectra mSpectra;		///< Spectral data I accumulate (vector of complex arrays)
+	float mTimeScale;					///< ToDo: these should be UGens
+	float mPitchScale;
+
+	int mFFTSize, mIFFTSize, mIFFTHop;	///< These should be unsigned, but is signed for compatability with FFTW
+	FFT_Wrapper * mIFFT;					///< IFFT wrapper object
+	Buffer mIFFTBuf;						///< IFFT buffer
+	unsigned mWinCnt;					///< Re-synthesis frame counter
+};
+
+} // namespace csl
+
 
 #endif
