@@ -34,10 +34,10 @@ typedef enum {
 	kExpon,		///< linear interpolation between start and end values.
 } LineMode;
 #else
-	#define kLine   1
-	#define kSquare 2
-	#define kExpon  3
-	typedef int LineMode;
+#define kLine   1
+#define kSquare 2
+#define kExpon  3
+typedef int LineMode;
 #endif
 
 ///
@@ -48,28 +48,28 @@ class LineSegment : public UnitGenerator {
 public:
 	LineSegment();			///< empty constructor
 	LineSegment(float d, float s, float e, LineMode mode = kLine); ///< Declare dur in sec, start, stop values
-
-							/// Accessors
+	
+	/// Accessors
 	float start() { return mStart; }		///< Returns the initial value of the line segment.
 	float end() { return mEnd; }			///< Returns the target value of the line segment.
 	float duration() { return mDuration; }	///< Returns the total time it will take to get from start to end value.
 	unsigned currentFrame() { return mCurrentFrame; };
-
+	
 	void setEnd(float tend) { mEnd = tend; }
 	void setStart(float tstart) { mStart = tstart; mCurrentValue = mStart; }
 	void setDuration(unsigned tduration) { mDuration = (float) tduration; }	///< Overloaded to accept either float or unsigned.
 	void setDuration(float tduration) { mDuration = tduration; }
 	void setMode(LineMode tmode) { mMode = tmode; }		///< Sets the interpolation kind (linear or exponential)
 	
-								/// next buffer interpolator
+	/// next buffer interpolator
 	void nextBuffer(Buffer &outputBuffer, unsigned outBufNum) noexcept(false);
-								/// handy version given Scalable port pointers
+	/// handy version given Scalable port pointers
 	virtual void nextBuffer(Buffer &outputBuffer, unsigned outBufNum, Port * scalePort, Port * offsetPort) noexcept(false);
-
+	
 	void reset();				///< reset counters
 	void trigger() { this->reset(); };		///< reset internal time to restart envelope
 	void dump();					///< Prints to screen the start and end values and the duration of the line.
-
+	
 protected:
 	float mStart;				///< Start value
 	float mEnd;					///< Ending value
@@ -92,32 +92,33 @@ class Envelope : public UnitGenerator, public Scalable {
 public:
 	Envelope() : UnitGenerator(), Scalable(1, 0), mDuration(0), mSegments(0), mValues(0) { };
 	Envelope(LineMode mode, float t, float x1, float y1, float x2 = 0, float y2 = 1.0, float x3 = 0, float y3 = 1.0,
-				float x4 = 0, float y4 = 1.0, float x5 = 0, float y5 = 1.0, float x6 = 0, float y6 = 1.0);
+			 float x4 = 0, float y4 = 1.0, float x5 = 0, float y5 = 1.0, float x6 = 0, float y6 = 1.0);
 	Envelope(LineMode mode, float t, unsigned int size, float x[], float y[]);
 	Envelope(float t, float x1, float y1, float x2 = 0, float y2 = 1.0, float x3 = 0, float y3 = 1.0,
-				float x4 = 0, float y4 = 1.0, float x5 = 0, float y5 = 1.0, float x6 = 0, float y6 = 1.0);
+			 float x4 = 0, float y4 = 1.0, float x5 = 0, float y5 = 1.0, float x6 = 0, float y6 = 1.0);
 	Envelope(float t, unsigned int size, float x[], float y[]);
-
+	
 	virtual ~Envelope();
-										/// This answers whether I'm active (ptr < end)
+	/// This answers whether I'm active (ptr < end)
 	virtual bool isActive();
-
+	
 	void addBreakpoint(float startTime, float value);
 	
 	void setMode(LineMode mode);
-//	void setInterpolationAtSegment(LineMode mode, unsigned idx); ///< allows to specify interpolation other than linear for a segment.
-	virtual void setDuration(float d);	///< set/scale durations
-	virtual void scaleTimes(float s);	///< scale durations
-	virtual void scaleValues(float s);	///< scale values so the max is s
+	//	void setInterpolationAtSegment(LineMode mode, unsigned idx); ///< allows to specify interpolation other than linear for a segment.
+	virtual void setDuration(float d);		///< set/scale durations
+	virtual void scaleTimes(float s);		///< scale durations
+	virtual void scaleValues(float s);		///< scale values so the max is s
 	
-	virtual void reset();				///< reset internal time to restart envelope
+	virtual void reset();					///< reset internal time to restart envelope
 	virtual void trigger();				///< reset internal time to restart envelope
 	virtual void dump();
+	float duration() { return mDuration; };
 										/// The main FrameStream work method
 	virtual void nextBuffer(Buffer &outputBuffer, unsigned outBufNum) noexcept(false);
 
 protected:
-	float mDuration;					///< Total duration, typically in seconds
+	float mDuration;						///< Total duration, typically in seconds
 	float mCurrentMark;					///< How far we have read	
 	Breakpoints mSegmentMap;			///< list of envelope breakpoints
 	LineSegment **mSegments;			///< array of line segments that for the envelope
@@ -126,7 +127,7 @@ protected:
 										/// Internal helper method for computing the next buffer
 	unsigned int privateNextBuffer(CPoint *breakpoint, LineSegment *segment, float *buffer, unsigned int numFrames);
 	void createSegments();				///< Allocate memory for the segments.
-	void calculateSegments();			///< Calculate the internal data
+	void calculateSegments();				///< Calculate the internal data
 };
 
 /// ADSR = 4-segment attack/decay/sustain/release envelope class.

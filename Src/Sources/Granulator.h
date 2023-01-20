@@ -78,11 +78,11 @@ public:
 	float sampsPerTick;			///< resolution of hi-res clock(s-rate / 1 billion)
 	float mElapsed;				///< elapsed time since I started (in sample frames)
 	float mProgress;				///< progress through file 0 - 1
+	bool threadOn;				///< if the thread's running
 
 protected:
 	CThread * spawnerThread;		///< thread to create grains
 	CThread * reaperThread;		///< thread to kill finished grains
-	bool threadOn;				///< if the thread's running
 };
 
 /// GrainPlayer -- low-level granular synthesis generator, uses a list of current grains.
@@ -95,7 +95,9 @@ public:
 	void setCloud(GrainCloud * cloud);	///< assign to the cloud
 										/// this sums up the list of live grains -- very simple
 	void nextBuffer(Buffer & outputBuffer) noexcept(false);
-	
+	void trigger();						///< start playing
+	void stop();							///< stop playing
+
 	GrainCloud * mCloud;					///< the cloud I play
 };
 

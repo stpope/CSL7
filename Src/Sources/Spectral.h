@@ -11,7 +11,6 @@
 #include "CSL_Core.h"
 #include "Window.h"
 
-//#define USE_FFTW              // you might want to hard-wire this to overrule the cmd-line option
 #include "FFT_Wrapper.h"
 
 namespace csl {
@@ -43,7 +42,7 @@ protected:
 };
 
 ///
-/// Inverse FFT is a generator
+/// Inverse FFT is a generator that uses the IFFT for synthesis
 ///
 
 class IFFT : public UnitGenerator {
@@ -79,7 +78,7 @@ protected:
 ///
 /// Vocoder uses an FFT and an IFFT and allows several kinds of pitch-time warping.
 /// This is a simple version that supports fixed pitch/time warp factors (which should be UGens).
-/// This version reads a snd file for input, i.e., is non-intetractive, but it'd be simple to process live input
+/// This version reads a snd file for input, i.e., is non-interactive, but it'd be simple to process live input
 ///
 
 class Vocoder : public UnitGenerator {
@@ -104,11 +103,12 @@ protected:
 	SampleComplexSpectra mSpectra;		///< Spectral data I accumulate (vector of complex arrays)
 	float mTimeScale;					///< ToDo: these should be UGens
 	float mPitchScale;
-
 	int mFFTSize, mIFFTSize, mIFFTHop;	///< These should be unsigned, but is signed for compatability with FFTW
 	FFT_Wrapper * mIFFT;					///< IFFT wrapper object
 	Buffer mIFFTBuf;						///< IFFT buffer
+	Buffer mCache;						///< cache to hold overlapping window output
 	unsigned mWinCnt;					///< Re-synthesis frame counter
+	CSL_FFTType mType;					///< do I use real or complex FFT?
 };
 
 } // namespace csl

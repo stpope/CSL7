@@ -163,7 +163,21 @@ void IFFT::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 ///
 
 
-Vocoder::Vocoder(CSL_FFTType type) : UnitGenerator() { }
+Vocoder::Vocoder(CSL_FFTType type)
+		: UnitGenerator(),
+			mType(type),
+			mTimeScale(1.0),
+			mPitchScale(1.0),
+			mFFTSize(1024),
+			mIFFTSize(1024),
+			mIFFTHop(128),
+			mIFFT(0),
+			mIFFTBuf(),
+			mCache(),
+			mWinCnt() {
+	mIFFTBuf.mAreBuffersAllocated = true;
+	mIFFTBuf.mIsPopulated = true;
+}
 
 Vocoder::~Vocoder() {
 	mSpectra.clear();
@@ -179,13 +193,13 @@ void Vocoder::analyzeFile(string folder, string path, int blockSize, int hopSize
 	int numSamps = sndFile.duration();
 	int numWins = numSamps / hopSize;					// compute # of FFT windows
 	Buffer input(1, blockSize);							// buffer to hold windowed input
-	Buffer spectrum(1, blockSize * 2);					// buffer to hold spectral slice
 	input.allocateBuffers();
+	Buffer spectrum(1, blockSize * 2);					// buffer to hold spectral slice
 	SamplePtr slice;
 	HammingWindow window(blockSize);  					// Window to scale input
 	FFT_Wrapper fft(blockSize, CSL_FFT_COMPLEX, CSL_FFT_FORWARD);
 	
-	printf("Vocoder FFT loop - %d windows, FFT len %d, hop %d\n", numWins, blockSize, hopSize);
+	printf("Vocoder analysis loop - %d windows, FFT len %d, hop %d\n", numWins, blockSize, hopSize);
 	for (int i = 0; i < numWins; i++) {					// window loop
 		SamplePtr inptr = input.buffer(0);				// copy input sample to windowing buffer
 		SampleBuffer winPtr = window.window();			// ptr to window buffer
@@ -194,9 +208,9 @@ void Vocoder::analyzeFile(string folder, string path, int blockSize, int hopSize
 			*inptr++ *= *winPtr++;
 		SAFE_MALLOC(slice, Sample, blockSize * 2);		// set up output spectrum ptrs
 		spectrum.setBuffer(0, slice);
-		
+
 		fft.nextBuffer(input, spectrum);					// execute the FFT
-		
+
 		mSpectra.push_back((SampleComplexVector) slice);	// store result in mSpectra
 	}
 	mFFTSize = mIFFTSize = blockSize;						// set-up vars for IFFT
@@ -217,7 +231,7 @@ void Vocoder::setTimeScale(float val) {
 void Vocoder::setPitchScale(float val) {
 	mPitchScale = val;
 }
-	
+
 void Vocoder::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 	if (outputBuffer.mNumFrames != mIFFTSize) {
 		logMsg(kLogError,

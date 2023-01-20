@@ -69,6 +69,7 @@
 #define vol_range_f		211
 #define env_base_f		212
 #define env_range_f		213
+#define gran_mode_f		214
 
 namespace csl  {
 

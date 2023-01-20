@@ -87,7 +87,8 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 
 // -----------------------------------------------------------------------------------------------
 
-// MAIN with 10 plucked strings, 10 FM instrs, 10 FM bells, 4 snd file voices, 16 SHARC SOS voices,  5 SHARC SOS w vibrato, 4 Vector SOS voices
+// MAIN with 10 plucked strings, 10 FM instrs, 10 FM bells, 4 snd file voices, 16 SHARC SOS voices,
+// 5 SHARC SOS w vibrato, 4 Vector SOS voices, 5 Granulator Instruments
 
 #ifdef CSL_OSC_SERVER4
 
@@ -192,7 +193,25 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-#if 0		// still not debugged
+	for ( ; i < 63; i++) {				//---- 2 scrambled Granulator Instruments
+		GranulatorInstrument * in = new GranulatorInstrument(CGestalt::dataFolder(), "sns.aiff");
+		in->mCloud.mDensityBase = 4.0;				// some holes
+		in->mCloud.mDensityRange = 4.0;
+		in->mCloud.mRateBase = 0.5f;					// rate 1/3 means shift down
+		in->mCloud.mRateRange = 0.4f;
+
+		lib.push_back(in);
+		gIMix->addInput(*in);
+	}
+	for ( ; i < 67; i++) {				//---- 4 shifted Granulator Instruments
+		GranulatorInstrument * in = new GranulatorInstrument(CGestalt::dataFolder(), "round.aiff");
+		in->settings2();
+		lib.push_back(in);
+		gIMix->addInput(*in);
+	}
+	
+#if 0 // still not debugged ------------------
+	
 	for ( ; i < 66; i++) {				//---- 5 Vector SOS voices with instruments (different spectra per-note)
 		int i1 = iRandM(0,16);			// pick random pairs of instruments to use
 		int i2 = iRandM(0,16);

@@ -89,6 +89,18 @@ void GrainPlayer::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 		mCloud->mElapsed = 0.0f;
 }
 
+// start me running
+
+void GrainPlayer::trigger() {
+	mCloud->reset();
+	mCloud->startThreads();					// start the grain create/reap threads
+}
+
+void GrainPlayer::stop() {
+	mCloud->isPlaying = false;				// stop the grain create/reap threads
+	mCloud->threadOn = false;
+}
+
 // GrainCloud implementation -- grain mgmnt loops are forked as a separate threads
 
 // Constructor allocates global pool of MAXGRAINS available grains
@@ -262,6 +274,7 @@ void GrainCloud::reset() {
 		live++;
 	}
 	mPlayingGrains = 0;							// empty list
+	
 //	unsigned dead = 0;							// testing: count silent grains
 //	for (curGrain = silentGrains; curGrain != 0; curGrain = curGrain->nextGrain)
 //		dead++;

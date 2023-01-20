@@ -70,24 +70,25 @@ public:
 	GranulatorInstrument(string folder, string path);
 	~GranulatorInstrument();
 	
-						/// Plug functions
+							/// Plug functions
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
-						/// play note
-	void play();
+							/// play note
 	void playOSC(int argc, void **argv, const char *types);
-	void playNote(float ampl = 1, float pos = 0);
-	void playMIDI(int chan, int key, int vel);
-
-						/// These are the UGens of the DSP graph
+	void settings1();		///< settings for scrambler
+	void settings2();		///< settings for shifter
+								/// These are the UGens of the DSP graph
 	GrainCloud mCloud;					///< grain cloud
-	GrainPlayer mPlayer		;			///< grain player
-	Panner mPanner;						///< stereo panner
+	GrainPlayer mPlayer;					///< grain player
+	ADSR mEnv;							///< envelope for entire cloud
+
 protected:
 	void initialize(string path);
 	SoundFile * mFile;					///< the sound file I read from
+	CThread * stopperThread = 0;			///< thread I fork to stop me
 };
 
-#ifdef STILL_TO_DO
+
+#ifdef STILL_TO_DO // -----------------------------------------------------------------------------
 
 /// SndFileInstrument1 is the fancier version with an envelope
 
@@ -144,7 +145,7 @@ public:
 				float attack = 0.0, float decay = 0.0);
 
 protected:
-//	SampleBank mBank;					///< sample bank map
+	SampleBank mBank;					///< sample bank map
 
 };
 	

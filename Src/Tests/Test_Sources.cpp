@@ -508,19 +508,18 @@ done:
 	}
 }
 
-#include <Granulator.h>
-
 // Play a grain cloud scrambling a voice sample
 
 void testGrainCloud() {
 	GrainCloud cloud;						// grain cloud
 	GrainPlayer player(& cloud);				// grain player
 											// open and read in a file for granulation
-	SoundFile sndFile(CGestalt::dataFolder() + "MKG1a1b.aiff");
+//	SoundFile sndFile(CGestalt::dataFolder() + "MKG1a1b.aiff");
+	SoundFile sndFile(CGestalt::dataFolder() + "sns.aiff");
 	sndFile.dump();
-
 	cloud.mSamples = sndFile.mWavetable.buffer(0);
 	cloud.numSamples = sndFile.duration();
+	
 	cloud.mRateBase = 1.0f;					// set the grain cloud parameters
 	cloud.mRateRange = 0.8f;
 	cloud.mOffsetBase = 0.5f;
@@ -535,7 +534,8 @@ void testGrainCloud() {
 	cloud.mVolumeRange = 10.5f;
 	cloud.mEnvelopeBase = 0.5f;
 	cloud.mEnvelopeRange = 0.49f;
-	logMsg("playing Granular cloud.");
+	
+	logMsg("playing scrambled granular cloud.");
 	cloud.startThreads();					// start the grain create/reap threads
 	runTest(player, 15);
 	logMsg("done.");
@@ -551,9 +551,9 @@ void testGrainCloud2() {
 											// open and read in a file for granulation
 	SoundFile sndFile(CGestalt::dataFolder() + "round.aiff");
 	sndFile.dump();
-
 	cloud.mSamples = sndFile.mWavetable.buffer(0);
 	cloud.numSamples = sndFile.duration();
+	
 	cloud.mRateBase = 0.33f;					// rate 1/3 means shift down
 	cloud.mRateRange = 0.0f;
 	cloud.mOffsetBase = -1.0f;				// -1 means read straight through the input file
@@ -568,6 +568,7 @@ void testGrainCloud2() {
 	cloud.mVolumeRange = 4.0f;
 	cloud.mEnvelopeBase = 0.5f;
 	cloud.mEnvelopeRange = 0.5f;
+	
 	logMsg("playing stretched granular cloud.");
 	cloud.startThreads();					// start the grain create/reap threads
 	runTest(player, 25);
@@ -629,17 +630,18 @@ void test_vector_ifft() {
 /// Test the vocoder by time-stretching and pitch-shifting a vocal sample
 
 void test_vocoder() {
-	float dur = 8.0f;
-	float tScale = 6.0f;
+	float dur = 1.0f;
+	float tScale = 1.0f;
+	float pScale = 1.0f;
 	Vocoder voc;								// create vocoder
 											// analyze src file with small hop size
-	voc.analyzeFile(CGestalt::dataFolder(), "round.aiff", CSL_mBlockSize, 128);
+	voc.analyzeFile(CGestalt::dataFolder(), "round.aiff", 1024, 128);
 	voc.setTimeScale(tScale);				// set time stretch
-//	voc.setPitchScale(0.5f);					// set freq shift
-	BlockResizer blocker(voc, CSL_mBlockSize * tScale);		// large buffer
+	voc.setPitchScale(pScale);				// set freq shift
+//	BlockResizer blocker(voc, CSL_mBlockSize * tScale);		// large buffer
 
 	logMsg("playing vocoder time-stretching...");
-	runTest(blocker, dur);
+	runTest(voc, dur);
 	logMsg("vocoder done.");
 }
 
