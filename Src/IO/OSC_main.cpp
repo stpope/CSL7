@@ -96,9 +96,9 @@ int main(int argc, const char * argv[]) {
 	const char * thePort = CSL_mOSCPort;
 	for (int i = 1; i < argc; i++ ) { 		// check the command line - so far only -v are -p handled
 		if (argv[i] && (argv[i][0] == '-') && (strlen(argv[i]) > 1)) {
-			if (argv[i][1] == 'v')		// -v = verbose flag
+			if (argv[i][1] == 'v')			// -v = verbose flag
 				gVerbose = true;
-			if (argv[i][1] == 'p') {		// -p = OSC input port
+			else if (argv[i][1] == 'p') {	// -p = OSC input port
 				if (i + 1 >= argc) {
 					printf("Missing cmd-line option for -p port\n");
 					exit(1);

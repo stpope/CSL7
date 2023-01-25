@@ -630,15 +630,15 @@ void test_vector_ifft() {
 /// Test the vocoder by time-stretching and pitch-shifting a vocal sample
 
 void test_vocoder() {
-	float dur = 1.0f;
-	float tScale = 1.0f;
+	float dur = 10.0f;
+	float tScale = 1.0f;						// pitch/time scale factors
 	float pScale = 1.0f;
 	Vocoder voc;								// create vocoder
 											// analyze src file with small hop size
-	voc.analyzeFile(CGestalt::dataFolder(), "round.aiff", 1024, 128);
+	voc.analyzeFile(CGestalt::dataFolder(), "round.aiff", 1024, 512);
 	voc.setTimeScale(tScale);				// set time stretch
 	voc.setPitchScale(pScale);				// set freq shift
-//	BlockResizer blocker(voc, CSL_mBlockSize * tScale);		// large buffer
+	voc.setupIFFT(1024);
 
 	logMsg("playing vocoder time-stretching...");
 	runTest(voc, dur);

@@ -479,7 +479,7 @@ void GranulatorInstrument::playOSC(int argc, void **argv, const char *types) {
 				logMsg(kLogError, "Invalid type string in OSC message, expected \"ff\" got \"%s\"", types);
 				return;
 			}
-//			printf("\tGrn: d %5.3f  a %5.3f\n", *fargs[0], *fargs[1]);
+			printf("\tGrn: d %5.3f  a %5.3f\n", *fargs[0], *fargs[1]);
 			mEnv.setDuration(*fargs[0]);
 			mCloud.mVolumeBase = *fargs[1];
 			break;

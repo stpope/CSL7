@@ -78,7 +78,7 @@ protected:
 ///
 /// Vocoder uses an FFT and an IFFT and allows several kinds of pitch-time warping.
 /// This is a simple version that supports fixed pitch/time warp factors (which should be UGens).
-/// This version reads a snd file for input, i.e., is non-interactive, but it'd be simple to process live input
+/// This version reads a snd file for input, i.e., is non-interactive, but a subclass could be taught to process live input
 ///
 
 class Vocoder : public UnitGenerator {
@@ -96,19 +96,23 @@ public:
 	void setPitchScale(float val);
 //	void setTimeScale(UnitGenerator & val);// ToDo
 //	void setPitchScale(UnitGenerator & val);
+	void setupIFFT(int ifftSize);			///< prep for the output after setting pitch/time warping
 
 protected:
 	virtual void warpSpectrum();			///< General fcn to process the spectrum before re-synthesis
 
 	SampleComplexSpectra mSpectra;		///< Spectral data I accumulate (vector of complex arrays)
-	float mTimeScale;					///< ToDo: these should be UGens
-	float mPitchScale;
-	int mFFTSize, mIFFTSize, mIFFTHop;	///< These should be unsigned, but is signed for compatability with FFTW
+	float mTimeScale, mPitchScale;		///< ToDo: these should be UGens
 	FFT_Wrapper * mIFFT;					///< IFFT wrapper object
 	Buffer mIFFTBuf;						///< IFFT buffer
-	Buffer mCache;						///< cache to hold overlapping window output
 	unsigned mWinCnt;					///< Re-synthesis frame counter
 	CSL_FFTType mType;					///< do I use real or complex FFT?
+	std::vector <Buffer*>  mIFFTBuffers;	///< the array of windowed output buffers
+	TriangularWindow * mTriWin;  			///< triangle window to scale output
+
+	int mFFTSize, mInHop, mNInWins;		///< input block and hop sizes and # of FFT wunidows
+	int mIFFTSize, mIFFTHop;				///< output block and hop sizes
+	int mNBufs;							///< num out bufs (for time-stretching)
 };
 
 } // namespace csl

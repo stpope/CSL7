@@ -373,12 +373,8 @@ bool Abst_SoundFile::readTags() noexcept(false) {
 
 void Abst_SoundFile::dump() {
 	const char * nam = path().c_str();
-	if (strlen(nam) > 50)
-		logMsg("SndFile \"%s\"\n\t\t%d Hz, %d ch, %5.3f sec", 
-				nam, frameRate(), channels(), durationInSecs());
-	else
-		logMsg("SndFile \"%s\" - %d Hz, %d ch, %5.3f sec", 
-				path().c_str(), frameRate(), channels(), durationInSecs());
+	logMsg("SndFile \"%s\"\n\t%d Hz, %d ch, %5.3f sec, %d samples",
+			nam, frameRate(), channels(), durationInSecs(), duration());
 }
 
 ////////////// next_buffer -- the work is done here //////////

@@ -177,7 +177,7 @@ CSLComponent::CSLComponent ()
 
     quitButton.reset (new juce::TextButton ("quitAction"));
     addAndMakeVisible (quitButton.get());
-    quitButton->setButtonText (TRANS("Quit App"));
+    quitButton->setButtonText (TRANS("Quit"));
     quitButton->addListener (this);
 
     testCombo.reset (new juce::ComboBox ("test to run"));
@@ -868,7 +868,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="698 42R 152 38" bgColOff="ff6495ed"
               buttonText="Play/Stop" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="quitAction" id="dbaf2871fd41de83" memberName="quitButton"
-              virtualName="" explicitFocusOrder="0" pos="8Rr 8 176 32" buttonText="Quit App"
+              virtualName="" explicitFocusOrder="0" pos="8Rr 8 176 32" buttonText="Quit"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <COMBOBOX name="test to run" id="bd1a5c541fbc8bc7" memberName="testCombo"
             virtualName="" explicitFocusOrder="0" pos="300 36R 220 24" editable="0"
