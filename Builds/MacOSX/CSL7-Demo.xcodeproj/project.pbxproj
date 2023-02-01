@@ -36,6 +36,33 @@
 		4762A6408CA68D3E93629516 /* FIR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40F9E69A16CF2017AFED9BEB /* FIR.cpp */; };
 		49831F3BB615A63A707F996C /* Ambisonic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A7A0D537D4FBB1501F14389 /* Ambisonic.cpp */; };
 		4C1FA9558465114346F87D0D /* JUCEIO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69193CE6937D38E33EC12C69 /* JUCEIO.cpp */; };
+		4C23696E2988A893002494E7 /* SF2Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369542988A892002494E7 /* SF2Generator.cpp */; };
+		4C23696F2988A893002494E7 /* SF2Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369542988A892002494E7 /* SF2Generator.cpp */; };
+		4C2369702988A893002494E7 /* sf2-chunks in Resources */ = {isa = PBXBuildFile; fileRef = 4C2369552988A892002494E7 /* sf2-chunks */; };
+		4C2369712988A893002494E7 /* SFZSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695D2988A892002494E7 /* SFZSound.cpp */; };
+		4C2369722988A893002494E7 /* SFZSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695D2988A892002494E7 /* SFZSound.cpp */; };
+		4C2369752988A893002494E7 /* RIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695F2988A892002494E7 /* RIFF.cpp */; };
+		4C2369762988A893002494E7 /* RIFF.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695F2988A892002494E7 /* RIFF.cpp */; };
+		4C2369772988A893002494E7 /* SF2Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369612988A892002494E7 /* SF2Reader.cpp */; };
+		4C2369782988A893002494E7 /* SF2Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369612988A892002494E7 /* SF2Reader.cpp */; };
+		4C2369792988A893002494E7 /* SF2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369622988A892002494E7 /* SF2.cpp */; };
+		4C23697A2988A893002494E7 /* SF2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369622988A892002494E7 /* SF2.cpp */; };
+		4C23697B2988A893002494E7 /* SFZDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369652988A892002494E7 /* SFZDebug.cpp */; };
+		4C23697C2988A893002494E7 /* SFZDebug.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369652988A892002494E7 /* SFZDebug.cpp */; };
+		4C23697D2988A893002494E7 /* SF2Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369662988A892002494E7 /* SF2Sound.cpp */; };
+		4C23697E2988A893002494E7 /* SF2Sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369662988A892002494E7 /* SF2Sound.cpp */; };
+		4C23697F2988A893002494E7 /* SFZEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369672988A893002494E7 /* SFZEG.cpp */; };
+		4C2369802988A893002494E7 /* SFZEG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369672988A893002494E7 /* SFZEG.cpp */; };
+		4C2369812988A893002494E7 /* SFZVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369682988A893002494E7 /* SFZVoice.cpp */; };
+		4C2369822988A893002494E7 /* SFZVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2369682988A893002494E7 /* SFZVoice.cpp */; };
+		4C2369832988A893002494E7 /* SFZRegion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696A2988A893002494E7 /* SFZRegion.cpp */; };
+		4C2369842988A893002494E7 /* SFZRegion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696A2988A893002494E7 /* SFZRegion.cpp */; };
+		4C2369852988A893002494E7 /* SFZSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696C2988A893002494E7 /* SFZSample.cpp */; };
+		4C2369862988A893002494E7 /* SFZSample.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696C2988A893002494E7 /* SFZSample.cpp */; };
+		4C2369872988A893002494E7 /* SFZReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696D2988A893002494E7 /* SFZReader.cpp */; };
+		4C2369882988A893002494E7 /* SFZReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23696D2988A893002494E7 /* SFZReader.cpp */; };
+		4C23698F2988B3B2002494E7 /* SoundFontInstrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23698E2988B3B2002494E7 /* SoundFontInstrument.cpp */; };
+		4C2369902988B3B2002494E7 /* SoundFontInstrument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23698E2988B3B2002494E7 /* SoundFontInstrument.cpp */; };
 		4C9E0448294AF79700934AB3 /* Test_Support.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E5D1FE291AF9E5A9E78BDEA /* Test_Support.cpp */; };
 		4C9E0449294AF79E00934AB3 /* Test_Sources.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3815941CF438CFD4F95B33C3 /* Test_Sources.cpp */; };
 		4C9E044A294AF79E00934AB3 /* Test_Envelopes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF49256E7088CD6F73EFF0BD /* Test_Envelopes.cpp */; };
@@ -245,6 +272,37 @@
 		4609E2F0F740AD8A60C98D99 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		47AE14F6C872B45927934713 /* Variable.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Variable.cpp; path = ../../Src/Utilities/Variable.cpp; sourceTree = SOURCE_ROOT; };
 		4981280C6F5740B15DE3325B /* SpatialSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpatialSource.cpp; path = ../../Src/Spatializers/SpatialSource.cpp; sourceTree = SOURCE_ROOT; };
+		4C2369512988A892002494E7 /* SFZSynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZSynth.h; path = ../../Src/SoundFonts/SFZSynth.h; sourceTree = "<group>"; };
+		4C2369522988A892002494E7 /* StringSlice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringSlice.h; path = ../../Src/SoundFonts/StringSlice.h; sourceTree = "<group>"; };
+		4C2369532988A892002494E7 /* SFZDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZDebug.h; path = ../../Src/SoundFonts/SFZDebug.h; sourceTree = "<group>"; };
+		4C2369542988A892002494E7 /* SF2Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SF2Generator.cpp; path = ../../Src/SoundFonts/SF2Generator.cpp; sourceTree = "<group>"; };
+		4C2369552988A892002494E7 /* sf2-chunks */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "sf2-chunks"; path = "../../Src/SoundFonts/sf2-chunks"; sourceTree = "<group>"; };
+		4C2369562988A892002494E7 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WinTypes.h; path = ../../Src/SoundFonts/WinTypes.h; sourceTree = "<group>"; };
+		4C2369572988A892002494E7 /* SF2Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SF2Generator.h; path = ../../Src/SoundFonts/SF2Generator.h; sourceTree = "<group>"; };
+		4C2369582988A892002494E7 /* RIFF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RIFF.h; path = ../../Src/SoundFonts/RIFF.h; sourceTree = "<group>"; };
+		4C2369592988A892002494E7 /* SFZEG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZEG.h; path = ../../Src/SoundFonts/SFZEG.h; sourceTree = "<group>"; };
+		4C23695A2988A892002494E7 /* SF2Sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SF2Sound.h; path = ../../Src/SoundFonts/SF2Sound.h; sourceTree = "<group>"; };
+		4C23695B2988A892002494E7 /* SFZSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZSound.h; path = ../../Src/SoundFonts/SFZSound.h; sourceTree = "<group>"; };
+		4C23695C2988A892002494E7 /* SF2Reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SF2Reader.h; path = ../../Src/SoundFonts/SF2Reader.h; sourceTree = "<group>"; };
+		4C23695D2988A892002494E7 /* SFZSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZSound.cpp; path = ../../Src/SoundFonts/SFZSound.cpp; sourceTree = "<group>"; };
+		4C23695E2988A892002494E7 /* SFZSynth.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZSynth.cpp; path = ../../Src/SoundFonts/SFZSynth.cpp; sourceTree = "<group>"; };
+		4C23695F2988A892002494E7 /* RIFF.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RIFF.cpp; path = ../../Src/SoundFonts/RIFF.cpp; sourceTree = "<group>"; };
+		4C2369602988A892002494E7 /* SFZVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZVoice.h; path = ../../Src/SoundFonts/SFZVoice.h; sourceTree = "<group>"; };
+		4C2369612988A892002494E7 /* SF2Reader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SF2Reader.cpp; path = ../../Src/SoundFonts/SF2Reader.cpp; sourceTree = "<group>"; };
+		4C2369622988A892002494E7 /* SF2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SF2.cpp; path = ../../Src/SoundFonts/SF2.cpp; sourceTree = "<group>"; };
+		4C2369632988A892002494E7 /* SFZRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZRegion.h; path = ../../Src/SoundFonts/SFZRegion.h; sourceTree = "<group>"; };
+		4C2369642988A892002494E7 /* SFZSample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZSample.h; path = ../../Src/SoundFonts/SFZSample.h; sourceTree = "<group>"; };
+		4C2369652988A892002494E7 /* SFZDebug.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZDebug.cpp; path = ../../Src/SoundFonts/SFZDebug.cpp; sourceTree = "<group>"; };
+		4C2369662988A892002494E7 /* SF2Sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SF2Sound.cpp; path = ../../Src/SoundFonts/SF2Sound.cpp; sourceTree = "<group>"; };
+		4C2369672988A893002494E7 /* SFZEG.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZEG.cpp; path = ../../Src/SoundFonts/SFZEG.cpp; sourceTree = "<group>"; };
+		4C2369682988A893002494E7 /* SFZVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZVoice.cpp; path = ../../Src/SoundFonts/SFZVoice.cpp; sourceTree = "<group>"; };
+		4C2369692988A893002494E7 /* SFZReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFZReader.h; path = ../../Src/SoundFonts/SFZReader.h; sourceTree = "<group>"; };
+		4C23696A2988A893002494E7 /* SFZRegion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZRegion.cpp; path = ../../Src/SoundFonts/SFZRegion.cpp; sourceTree = "<group>"; };
+		4C23696B2988A893002494E7 /* SF2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SF2.h; path = ../../Src/SoundFonts/SF2.h; sourceTree = "<group>"; };
+		4C23696C2988A893002494E7 /* SFZSample.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZSample.cpp; path = ../../Src/SoundFonts/SFZSample.cpp; sourceTree = "<group>"; };
+		4C23696D2988A893002494E7 /* SFZReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SFZReader.cpp; path = ../../Src/SoundFonts/SFZReader.cpp; sourceTree = "<group>"; };
+		4C23698D2988B3B2002494E7 /* SoundFontInstrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundFontInstrument.h; path = ../../Src/Instruments/SoundFontInstrument.h; sourceTree = "<group>"; };
+		4C23698E2988B3B2002494E7 /* SoundFontInstrument.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SoundFontInstrument.cpp; path = ../../Src/Instruments/SoundFontInstrument.cpp; sourceTree = "<group>"; };
 		4C78144429592A390053564F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		4C9E0454294B70AE00934AB3 /* osc_synth_server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = osc_synth_server; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7877366D78D5E3E2CDC492 /* SHARC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SHARC.h; path = ../../Src/Sources/SHARC.h; sourceTree = SOURCE_ROOT; };
@@ -490,6 +548,42 @@
 			name = IO;
 			sourceTree = "<group>";
 		};
+		4C2369132988A4AB002494E7 /* SoundFonts */ = {
+			isa = PBXGroup;
+			children = (
+				4C2369552988A892002494E7 /* sf2-chunks */,
+				4C2369582988A892002494E7 /* RIFF.h */,
+				4C23695F2988A892002494E7 /* RIFF.cpp */,
+				4C23696B2988A893002494E7 /* SF2.h */,
+				4C2369622988A892002494E7 /* SF2.cpp */,
+				4C2369642988A892002494E7 /* SFZSample.h */,
+				4C23696C2988A893002494E7 /* SFZSample.cpp */,
+				4C2369602988A892002494E7 /* SFZVoice.h */,
+				4C2369682988A893002494E7 /* SFZVoice.cpp */,
+				4C23695B2988A892002494E7 /* SFZSound.h */,
+				4C23695D2988A892002494E7 /* SFZSound.cpp */,
+				4C23695A2988A892002494E7 /* SF2Sound.h */,
+				4C2369662988A892002494E7 /* SF2Sound.cpp */,
+				4C2369692988A893002494E7 /* SFZReader.h */,
+				4C23696D2988A893002494E7 /* SFZReader.cpp */,
+				4C23695C2988A892002494E7 /* SF2Reader.h */,
+				4C2369612988A892002494E7 /* SF2Reader.cpp */,
+				4C2369532988A892002494E7 /* SFZDebug.h */,
+				4C2369652988A892002494E7 /* SFZDebug.cpp */,
+				4C2369592988A892002494E7 /* SFZEG.h */,
+				4C2369672988A893002494E7 /* SFZEG.cpp */,
+				4C2369632988A892002494E7 /* SFZRegion.h */,
+				4C23696A2988A893002494E7 /* SFZRegion.cpp */,
+				4C2369512988A892002494E7 /* SFZSynth.h */,
+				4C23695E2988A892002494E7 /* SFZSynth.cpp */,
+				4C2369572988A892002494E7 /* SF2Generator.h */,
+				4C2369542988A892002494E7 /* SF2Generator.cpp */,
+				4C2369522988A892002494E7 /* StringSlice.h */,
+				4C2369562988A892002494E7 /* WinTypes.h */,
+			);
+			name = SoundFonts;
+			sourceTree = "<group>";
+		};
 		4C77728C294E109E0057B63B /* OSC Server */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,6 +780,8 @@
 				CCF10CC39FFCF2998ACE5ED5 /* StringInstrument.cpp */,
 				5EB46A1D0ED7F46A7C66EA57 /* SndFileInstrument.h */,
 				98CBC4C32E842367D35F76B3 /* SndFileInstrument.cpp */,
+				4C23698D2988B3B2002494E7 /* SoundFontInstrument.h */,
+				4C23698E2988B3B2002494E7 /* SoundFontInstrument.cpp */,
 			);
 			name = Instruments;
 			sourceTree = "<group>";
@@ -709,6 +805,7 @@
 				7DFA07B66AD1373F401D7804 /* Spatializers */,
 				BA046314B194C2F4C9E7558D /* Instruments */,
 				A61F3CDDA96146B30F07478A /* Utilities */,
+				4C2369132988A4AB002494E7 /* SoundFonts */,
 				8493CB0E0D942C9E52C26E2D /* Tests */,
 				4C77728C294E109E0057B63B /* OSC Server */,
 				2DDC19BC2582E0339BA8688D /* Demo_GUI */,
@@ -848,6 +945,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C2369702988A893002494E7 /* sf2-chunks in Resources */,
 				4E060392BE09F61EF52F22B8 /* RecentFilesMenuTemplate.nib in Resources */,
 				5A01611FAF4A555E011006C6 /* Icon.icns in Resources */,
 			);
@@ -865,6 +963,10 @@
 				4C9E049F294B742300934AB3 /* include_juce_audio_processors_ara.cpp in Sources */,
 				4C9E04AD294B97D100934AB3 /* include_juce_graphics.mm in Sources */,
 				4C9E0497294B742300934AB3 /* include_juce_audio_devices.mm in Sources */,
+				4C23696F2988A893002494E7 /* SF2Generator.cpp in Sources */,
+				4C2369862988A893002494E7 /* SFZSample.cpp in Sources */,
+				4C2369782988A893002494E7 /* SF2Reader.cpp in Sources */,
+				4C2369882988A893002494E7 /* SFZReader.cpp in Sources */,
 				4C9E047B294B712000934AB3 /* Granulator.cpp in Sources */,
 				4C9E0469294B70E700934AB3 /* FFTReal.cpp in Sources */,
 				4C9E04AC294B97D100934AB3 /* include_juce_gui_extra.mm in Sources */,
@@ -878,6 +980,7 @@
 				4C9E0495294B742300934AB3 /* include_juce_events.mm in Sources */,
 				4C9E0464294B70E700934AB3 /* FFT_Wrapper.cpp in Sources */,
 				4C9E0462294B70E700934AB3 /* CPoint.cpp in Sources */,
+				4C2369842988A893002494E7 /* SFZRegion.cpp in Sources */,
 				4C9E0499294B742300934AB3 /* include_juce_core.mm in Sources */,
 				4C9E049E294B742300934AB3 /* BinaryData.cpp in Sources */,
 				4C9E0481294B712000934AB3 /* Noise.cpp in Sources */,
@@ -900,20 +1003,25 @@
 				4C9E0478294B712000934AB3 /* SimpleSines.cpp in Sources */,
 				4C9E0470294B712000934AB3 /* JUCEIO.cpp in Sources */,
 				4C9E0479294B712000934AB3 /* DistanceSimulator.cpp in Sources */,
+				4C23697C2988A893002494E7 /* SFZDebug.cpp in Sources */,
 				4C9E0461294B70CD00934AB3 /* CGestalt.cpp in Sources */,
 				4C9E0477294B712000934AB3 /* SpeakerLayout.cpp in Sources */,
 				4C9E047E294B712000934AB3 /* MIDIIOJ.cpp in Sources */,
 				4C9E0484294B712000934AB3 /* SoundFileJ.cpp in Sources */,
 				4C9E046A294B70E700934AB3 /* RingBuffer.cpp in Sources */,
+				4C23697A2988A893002494E7 /* SF2.cpp in Sources */,
 				4C9E0476294B712000934AB3 /* SHARC.cpp in Sources */,
 				4C9E049D294B742300934AB3 /* include_juce_audio_formats.mm in Sources */,
+				4C23697E2988A893002494E7 /* SF2Sound.cpp in Sources */,
 				4C9E046F294B712000934AB3 /* SpatialSource.cpp in Sources */,
 				4C9E047F294B712000934AB3 /* SpatialAudio.cpp in Sources */,
 				4C9E0480294B712000934AB3 /* Convolver.cpp in Sources */,
 				4C9E045E294B70CD00934AB3 /* AdditiveInstrument.cpp in Sources */,
 				4C9E0467294B70E700934AB3 /* fft_N.c in Sources */,
+				4C2369822988A893002494E7 /* SFZVoice.cpp in Sources */,
 				4C9E048A294B712000934AB3 /* Convolver2.cpp in Sources */,
 				4C9E0472294B712000934AB3 /* Envelope.cpp in Sources */,
+				4C2369902988B3B2002494E7 /* SoundFontInstrument.cpp in Sources */,
 				4C9E047A294B712000934AB3 /* Oscillator.cpp in Sources */,
 				4C9E046C294B712000934AB3 /* WaveShaper.cpp in Sources */,
 				4C9E0465294B70E700934AB3 /* OSC_main.cpp in Sources */,
@@ -923,10 +1031,13 @@
 				4C9E048C294B713600934AB3 /* Binaural.cpp in Sources */,
 				4C9E0466294B70E700934AB3 /* ThreadUtilities.cpp in Sources */,
 				4C9E0489294B712000934AB3 /* OscillatorBL.cpp in Sources */,
+				4C2369762988A893002494E7 /* RIFF.cpp in Sources */,
 				4C9E046E294B712000934AB3 /* Freeverb.cpp in Sources */,
+				4C2369722988A893002494E7 /* SFZSound.cpp in Sources */,
 				4C9E0485294B712000934AB3 /* OSC_support.cpp in Sources */,
 				4C9E048B294B713600934AB3 /* Ambisonic.cpp in Sources */,
 				4C9E045F294B70CD00934AB3 /* FMInstrument.cpp in Sources */,
+				4C2369802988A893002494E7 /* SFZEG.cpp in Sources */,
 				4C9E0494294B742300934AB3 /* include_juce_audio_basics.mm in Sources */,
 				4C9E0483294B712000934AB3 /* Spectral.cpp in Sources */,
 			);
@@ -945,8 +1056,11 @@
 				987798CF79ECE728A9A0B100 /* Noise.cpp in Sources */,
 				B3E9FEFC7735CDDC70D27B8B /* Spectral.cpp in Sources */,
 				9F419C9FC73C9F5151B4DCDC /* Granulator.cpp in Sources */,
+				4C2369752988A893002494E7 /* RIFF.cpp in Sources */,
 				4C9E044D294AF79E00934AB3 /* Test_Control.cpp in Sources */,
+				4C2369812988A893002494E7 /* SFZVoice.cpp in Sources */,
 				BF03B4DB2B38C61FF6A2FC10 /* KarplusString.cpp in Sources */,
+				4C23697D2988A893002494E7 /* SF2Sound.cpp in Sources */,
 				4388E13A046F95FB8BB8F633 /* OscillatorBL.cpp in Sources */,
 				3A7F95B7AD856658E8771EB7 /* SHARC.cpp in Sources */,
 				D1B513A171725E7C89AF04BB /* SimpleSines.cpp in Sources */,
@@ -954,11 +1068,13 @@
 				9766627A4ADFC0D132C7FCC2 /* BinaryOp.cpp in Sources */,
 				89265845DE0B2CB0029E171F /* InOut.cpp in Sources */,
 				95553CD5C8126926289A0782 /* Mixer.cpp in Sources */,
+				4C23698F2988B3B2002494E7 /* SoundFontInstrument.cpp in Sources */,
 				CAC5D8A89E2E3FAFADE80AE4 /* Filters.cpp in Sources */,
 				4762A6408CA68D3E93629516 /* FIR.cpp in Sources */,
 				A0C9C8249D4866B8FFA32E3A /* Clipper.cpp in Sources */,
 				859AAC1135D787BE50B882CD /* Convolver.cpp in Sources */,
 				88945D7B6B2E72294D6ABA7F /* Convolver2.cpp in Sources */,
+				4C2369772988A893002494E7 /* SF2Reader.cpp in Sources */,
 				1E6EB37FC002D1CAE4EBC136 /* Freeverb.cpp in Sources */,
 				4C1FA9558465114346F87D0D /* JUCEIO.cpp in Sources */,
 				0B2E16DF7DD8F8B8216FF1C2 /* SoundFile.cpp in Sources */,
@@ -971,8 +1087,10 @@
 				139688CAAB6BD67F5BA648E1 /* SpatialPanner.cpp in Sources */,
 				C61E1F3F96271DCA057B922D /* SpatialSource.cpp in Sources */,
 				149A7C7F7E7B7FCC32647741 /* DistanceSimulator.cpp in Sources */,
+				4C23696E2988A893002494E7 /* SF2Generator.cpp in Sources */,
 				DC08AB547691EB4A2C693F78 /* SpeakerLayout.cpp in Sources */,
 				E757D7376B639282572C1216 /* VBAP.cpp in Sources */,
+				4C23697F2988A893002494E7 /* SFZEG.cpp in Sources */,
 				2CC1F2B127EBC30CE15A4B22 /* Binaural.cpp in Sources */,
 				FAC8AD6520C9C69E00802847 /* BinauralDB.cpp in Sources */,
 				49831F3BB615A63A707F996C /* Ambisonic.cpp in Sources */,
@@ -981,17 +1099,22 @@
 				B923BFCBC4FD7FC9789E5DDF /* AmbisonicUtilities.cpp in Sources */,
 				AF62395D7ACFBF91419487F9 /* Instrument.cpp in Sources */,
 				BE4DEE9FB7D8B419CD2A8A45 /* FMInstrument.cpp in Sources */,
+				4C2369832988A893002494E7 /* SFZRegion.cpp in Sources */,
 				4C9E044A294AF79E00934AB3 /* Test_Envelopes.cpp in Sources */,
 				1D38ACB1ECE9199E43F68A6F /* StringInstrument.cpp in Sources */,
 				D3A57C3A1BD9983678C8B19F /* AdditiveInstrument.cpp in Sources */,
 				B364CA50801F2AE94F1E3E8B /* SndFileInstrument.cpp in Sources */,
 				4FC6144587A4E3301DD80AA5 /* Variable.cpp in Sources */,
+				4C2369792988A893002494E7 /* SF2.cpp in Sources */,
 				3A4FF55690FE7C4FB2C4AFAB /* CPoint.cpp in Sources */,
 				9C4FFF1C92B78FFB0D6B3B7E /* BlockResizer.cpp in Sources */,
 				090FBDF518FF9C6C1E7C34C7 /* RingBuffer.cpp in Sources */,
+				4C2369712988A893002494E7 /* SFZSound.cpp in Sources */,
 				EC674CA849D5602D7AD2F68E /* ThreadUtilities.cpp in Sources */,
 				169C3455F7B512384EC8364B /* FFT_Wrapper.cpp in Sources */,
+				4C2369872988A893002494E7 /* SFZReader.cpp in Sources */,
 				1EAE8B70D6C4D7C2E05D73B1 /* FFTReal.cpp in Sources */,
+				4C23697B2988A893002494E7 /* SFZDebug.cpp in Sources */,
 				295CD70F8B2251EAB16AFE10 /* fft_N.c in Sources */,
 				4C9E044E294AF79E00934AB3 /* Test_Panners.cpp in Sources */,
 				111BB045CA1ACF15C0CB9E85 /* Main.cpp in Sources */,
@@ -1000,6 +1123,7 @@
 				3D0118AD441A60E647944DC0 /* BinaryData.cpp in Sources */,
 				4C9E044F294AF79E00934AB3 /* Test_Oscillators.cpp in Sources */,
 				B240DE22D92188EED64E12B1 /* include_juce_audio_basics.mm in Sources */,
+				4C2369852988A893002494E7 /* SFZSample.cpp in Sources */,
 				A8EBFA9DAAD47FF2A4C9E9BC /* include_juce_audio_devices.mm in Sources */,
 				392B73F68BEB04967E60A7EE /* include_juce_audio_formats.mm in Sources */,
 				38E4190054F1F818F567AA30 /* include_juce_audio_processors.mm in Sources */,
@@ -1054,14 +1178,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-I../../Src/Includes",
-					"-I/usr/local/include",
-					"-w",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
 					/usr/local/lib/liblo.dylib,
 					"-weak_framework",
@@ -1109,14 +1230,11 @@
 				MTL_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../JuceLibraryCode $(SRCROOT)/../../../JUCE703/modules /Users/stp/Code/JUCE703/modules";
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);
-				OTHER_CPLUSPLUSFLAGS = (
-					"-I../../Src/Includes",
-					"-I/usr/local/include",
-					"-w",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = (
 					/usr/local/lib/liblo.dylib,
 					"-weak_framework",
@@ -1217,6 +1335,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);
@@ -1268,6 +1387,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);
@@ -1321,6 +1441,7 @@
 				MTL_FAST_MATH = NO;
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);
@@ -1421,6 +1542,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = (
 					"-I../../Src/Includes",
+					"-I../../Src/SoundFonts",
 					"-I/usr/local/include",
 					"-w",
 				);

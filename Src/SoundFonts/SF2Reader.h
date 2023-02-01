@@ -22,7 +22,8 @@ class SF2Reader {
 
 	protected:
 		SF2Sound*	sound;
-		FileInputStream*	file;
+	FileInputStream*	file;
+//	File*	file;				// STP change
 
 		void	addGeneratorToRegion(
 			word genOper, SF2::genAmountType* amount, SFZRegion* region);

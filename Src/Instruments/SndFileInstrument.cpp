@@ -321,7 +321,7 @@ void SndFileInstrument1::playNote(float ampl, float rate, float pos, int start, 
 
 // forked fcn to stop playng
 
-void stopMe(void * theArg) {
+static void stopMe(void * theArg) {
 	GranulatorInstrument * instr = (GranulatorInstrument * ) theArg;
 	sleepSec(instr->mEnv.duration());
 	instr->mCloud.isPlaying = false;

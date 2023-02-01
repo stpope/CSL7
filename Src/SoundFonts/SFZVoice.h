@@ -3,13 +3,15 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SFZEG.h"
+#include "CSL_Core.h"				// STP adds - include CSL core
 
 namespace SFZero {
 
 class SFZRegion;
 
+// STP change -- add inherited csl::UnitGenerator for nextBuffer() call
 
-class JUCE_API SFZVoice : public juce::SynthesiserVoice {
+class JUCE_API SFZVoice : public juce::SynthesiserVoice, csl::UnitGenerator {
 	public:
 		SFZVoice();
 		~SFZVoice();
@@ -39,6 +41,10 @@ class JUCE_API SFZVoice : public juce::SynthesiserVoice {
 		void	setRegion(SFZRegion* nextRegion);
 
 		juce::String	infoString();
+
+					/// get a buffer of Frames -- this is the core CSL "pull" function;
+					/// the given buffer can be written into, and a changed() message is sent.
+	void nextBuffer(csl::Buffer & outputBuffer) noexcept(false);
 
 	protected:
 		int       	trigger;

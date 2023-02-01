@@ -141,7 +141,7 @@ void JSoundFile::openForRead(bool load) noexcept(false) {
 		return;
 	}
 	juce::AudioFormatManager formatManager;			// get a format manager
-	formatManager.registerBasicFormats();		// set it up with the basic types (wav and aiff).
+	formatManager.registerBasicFormats();				// set it up with the basic types (wav and aiff).
 	mAFReader = formatManager.createReaderFor(*mIOFile);
 
 	this->initFromSndfile();

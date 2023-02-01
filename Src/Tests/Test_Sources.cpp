@@ -645,6 +645,27 @@ void test_vocoder() {
 	logMsg("vocoder done.");
 }
 
+/// Test the SoundFontInstrument by playing an instrumental vocal sample
+
+void test_SndFont() {
+	float dur = 2.0f;
+	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
+	String sfName = "organ.sf2";
+
+	SoundFontInstrument sfIn(dir + sfName); 	// create SoundFontInstrument
+
+	logMsg("playing SoundFont synthesizer...");
+	runTest(sfIn, dur);
+		// (float dur, int chan, int key, int vel)
+	sfIn.playMIDI(1.75, 1, 60, 90);
+
+	logMsg("playing SoundFont synthesizer 2...");
+	runTest(sfIn, dur);
+	sfIn.playMIDI(1.75, 1, 72, 90);
+
+	logMsg("SoundFont synthesizer done.");
+}
+
 //////// RUN_TESTS Function ////////
 
 #ifndef USE_JUCE
@@ -694,6 +715,7 @@ testStruct srcTestList[] = {
 	"Vocoder pitch/time warping",	test_vocoder,			"Time-stretch and pitch shift a voice sample",
 	"Soundfile granulation",		testGrainCloud,			"Random sound file granulation example",
 	"Granulation time stretch",	testGrainCloud2,			"Sound file time-stretch by granulation",
+	"SoundFont player",			test_SndFont,			"Play a note on the SoundFont instrument",
 	NULL,						NULL,					NULL
 };
 

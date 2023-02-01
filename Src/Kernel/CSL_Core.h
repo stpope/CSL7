@@ -121,7 +121,7 @@ public:									/// Constructor: default is mono and default-size
 	bool mDidIAllocateBuffers;			///< who allocated my data buffers?
 	bool mIsPopulated;					///< does the buffer have data?
 	bool mAreBuffersZero;				///< have the buffers been zeroed out?
-	BufferContentType mType;			///< Data type flag
+	BufferContentType mType;				///< Data type flag
 										/// set the internal size variables (no buffer allocation takes place)
 	void setSize(unsigned numChannels, unsigned numFrames);
 										/// this version doesn't even allocate the pointers

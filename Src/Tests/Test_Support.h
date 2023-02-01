@@ -11,6 +11,7 @@
 #include <FMInstrument.h>
 #include <StringInstrument.h>
 #include <SndFileInstrument.h>
+#include <SoundFontInstrument.h>
 
 //#include "JackIO.h"			// JACK IO (no longer used, I think)
 
@@ -32,7 +33,7 @@
 #endif
 
 #ifdef USE_PAIO
-	#include "PAIO.h"			// PortAu dio IO
+	#include "PAIO.h"			// PortAudio IO
 	#define IO_CLASS PAIO
 #endif
 

@@ -12,7 +12,8 @@ using namespace SFZero;
 SF2Reader::SF2Reader(SF2Sound* soundIn, const File& fileIn)
 	: sound(soundIn)
 {
-	file = (juce::FileInputStream *) & *fileIn.createInputStream();
+//	file = (juce::FileInputStream *) & *fileIn.createInputStream();
+	file = new FileInputStream(fileIn);
 }
 
 
@@ -27,10 +28,9 @@ void SF2Reader::read()
 	if (file == NULL) {
 		sound->addError("Couldn't open file.");
 		return;
-		}
+	}
 
-	// Read the hydra.
-	SF2::Hydra hydra;
+	SF2::Hydra hydra;							// Read the hydra.
 	file->setPosition(0);
 	RIFFChunk riffChunk;
 	riffChunk.ReadFrom(file);
