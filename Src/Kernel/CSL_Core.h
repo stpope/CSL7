@@ -260,7 +260,7 @@ public:
 //	void setName(char * ch) { mName = string(ch); }
 //	void setName(string ch) { mName = ch; }
 
-									/// get a buffer of Frames -- this is the core CSL "pull" function;
+									/// Fill a buffer of Frames -- this is the core CSL "pull" function;
 									/// the given buffer can be written into, and a changed() message is sent.
 	virtual void nextBuffer(Buffer & outputBuffer) noexcept(false);
 	

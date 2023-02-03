@@ -648,20 +648,24 @@ void test_vocoder() {
 /// Test the SoundFontInstrument by playing an instrumental vocal sample
 
 void test_SndFont() {
-	float dur = 2.0f;
+	float dur = 2.5f;
 	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
 	String sfName = "organ.sf2";
 
 	SoundFontInstrument sfIn(dir + sfName); 	// create SoundFontInstrument
-
-	logMsg("playing SoundFont synthesizer...");
+	sfIn.dump();
+	
+	logMsg("playing SoundFont synthesizer 0...");
+	sfIn.trigger();
 	runTest(sfIn, dur);
-		// (float dur, int chan, int key, int vel)
-	sfIn.playMIDI(1.75, 1, 60, 90);
+
+	logMsg("playing SoundFont synthesizer 1...");
+	sfIn.playMIDI(2.0f, 1, 44, 100);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
 
 	logMsg("playing SoundFont synthesizer 2...");
+	sfIn.playMIDI(2.0f, 1, 66, 100);
 	runTest(sfIn, dur);
-	sfIn.playMIDI(1.75, 1, 72, 90);
 
 	logMsg("SoundFont synthesizer done.");
 }

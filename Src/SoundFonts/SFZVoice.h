@@ -42,7 +42,7 @@ class JUCE_API SFZVoice : public juce::SynthesiserVoice, csl::UnitGenerator {
 
 		juce::String	infoString();
 
-					/// get a buffer of Frames -- this is the core CSL "pull" function;
+					/// Fill a buffer of Frames -- this is the core CSL "pull" function;
 					/// the given buffer can be written into, and a changed() message is sent.
 	void nextBuffer(csl::Buffer & outputBuffer) noexcept(false);
 

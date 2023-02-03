@@ -14,7 +14,8 @@ public:
 		setResizable (true, false);
 		setVisible (true);
 		setUsingNativeTitleBar(true);
-		centreWithSize (1000, 700);					// top window size 8 @ 24 larger than the component
+//		centreWithSize(1000, 700);					// top window size 8 @ 24 larger than the component
+		setBounds (200, 200, 1000, 700);
     }
 
     ~CSLWindow() { }

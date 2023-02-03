@@ -15,7 +15,7 @@ class SF2Sound : public SFZSound {
 		void	loadSamples(
 			AudioFormatManager* formatManager,
 			double* progressVar = NULL, Thread* thread = NULL);
-
+	
 		struct Preset {
 			String	name;
 			int    	bank;
@@ -29,7 +29,8 @@ class SF2Sound : public SFZSound {
 			void	addRegion(SFZRegion* region) {
 				regions.add(region);
 				}
-			};
+		};
+
 		void	addPreset(Preset* preset);
 
 		int	numSubsounds();
@@ -40,8 +41,10 @@ class SF2Sound : public SFZSound {
 		SFZSample*	sampleFor(unsigned long sampleRate);
 		void	setSamplesBuffer(AudioSampleBuffer* buffer);
 
+		OwnedArray<Preset>	presets;			// STP change - make this public
+
 	protected:
-		OwnedArray<Preset>	presets;
+//		OwnedArray<Preset>	presets;
 		HashMap<int64, SFZSample*>	samplesByRate;
 		int               	selectedPreset;
 	};

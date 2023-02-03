@@ -123,6 +123,3 @@ void SF2Sound::setSamplesBuffer(AudioSampleBuffer* buffer)
 	for (HashMap<int64, SFZSample*>::Iterator i(samplesByRate); i.next();)
 		i.getValue()->setBuffer(buffer);
 }
-
-
-

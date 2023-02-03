@@ -152,6 +152,8 @@
 		4C9E04B0294B99D300934AB3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47719FDF6920AA15B8F995E /* OpenGL.framework */; };
 		4C9E04B1294B99D300934AB3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F885EB41ED6A7C57BC7B554 /* WebKit.framework */; };
 		4C9E04B2294B99D300934AB3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD6642C50315556A5BB77F2 /* QuartzCore.framework */; };
+		4CB0D3F7298C7EA6008AAF47 /* SFZSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695E2988A892002494E7 /* SFZSynth.cpp */; };
+		4CB0D3F8298C7EA6008AAF47 /* SFZSynth.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C23695E2988A892002494E7 /* SFZSynth.cpp */; };
 		4E060392BE09F61EF52F22B8 /* RecentFilesMenuTemplate.nib in Resources */ = {isa = PBXBuildFile; fileRef = 08D33A2F073C00F36A852394 /* RecentFilesMenuTemplate.nib */; };
 		4FC6144587A4E3301DD80AA5 /* Variable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 47AE14F6C872B45927934713 /* Variable.cpp */; };
 		548DFDEFB122E34227381C2F /* WaveShaper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 28D562426F43595DB17FDB27 /* WaveShaper.cpp */; };
@@ -1012,6 +1014,7 @@
 				4C23697A2988A893002494E7 /* SF2.cpp in Sources */,
 				4C9E0476294B712000934AB3 /* SHARC.cpp in Sources */,
 				4C9E049D294B742300934AB3 /* include_juce_audio_formats.mm in Sources */,
+				4CB0D3F7298C7EA6008AAF47 /* SFZSynth.cpp in Sources */,
 				4C23697E2988A893002494E7 /* SF2Sound.cpp in Sources */,
 				4C9E046F294B712000934AB3 /* SpatialSource.cpp in Sources */,
 				4C9E047F294B712000934AB3 /* SpatialAudio.cpp in Sources */,
@@ -1074,6 +1077,7 @@
 				A0C9C8249D4866B8FFA32E3A /* Clipper.cpp in Sources */,
 				859AAC1135D787BE50B882CD /* Convolver.cpp in Sources */,
 				88945D7B6B2E72294D6ABA7F /* Convolver2.cpp in Sources */,
+				4CB0D3F8298C7EA6008AAF47 /* SFZSynth.cpp in Sources */,
 				4C2369772988A893002494E7 /* SF2Reader.cpp in Sources */,
 				1E6EB37FC002D1CAE4EBC136 /* Freeverb.cpp in Sources */,
 				4C1FA9558465114346F87D0D /* JUCEIO.cpp in Sources */,

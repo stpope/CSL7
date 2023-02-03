@@ -4,11 +4,11 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "SFZRegion.h"
 
-
 namespace SFZero {
 
 class SFZSample;
 
+typedef juce::HashMap<juce::String, SFZSample*> SFZSampleMap;
 
 class SFZSound : public juce::SynthesiserSound {
 	public:
@@ -41,11 +41,12 @@ class SFZSound : public juce::SynthesiserSound {
 		virtual int 	selectedSubsound();
 
 		void	dump();
+	
+		SFZSampleMap	samples;			// STP change - make this public
 
 	protected:
 		juce::File 	file;
 		juce::Array<SFZRegion*>	regions;
-		juce::HashMap<juce::String, SFZSample*>	samples;
 		juce::StringArray      	errors;
 		juce::HashMap<juce::String, juce::String>	unsupportedOpcodes;
 	};
