@@ -1,7 +1,7 @@
 //
-//  SoundFontInstrument.cpp -- SoundFont instrument
+///  SoundFontInstrument.cpp -- SoundFont instrument
+///	This uses Steve Folta's SFZero open-source code from https://github.com/stevefolta/SFZero
 //	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
-//	This uses Steve Folta's SFZero open-source code from https://github.com/stevefolta/SFZero
 
 #include "SoundFontInstrument.h"
 #include <math.h>
@@ -9,7 +9,7 @@
 using namespace csl;
 using namespace SFZero;
 
-// forked fcn to stop playng
+// stopMe = forked fcn to stop playng
 
 static void stopMe(void * theArg) {
 	SoundFontInstrument * instr = (SoundFontInstrument * ) theArg;
@@ -25,19 +25,17 @@ static void stopMe(void * theArg) {
 SoundFontInstrument::SoundFontInstrument(String fName) :
 			Instrument(),
 			SFZSynth(),
-			mSFFile(fName),
-//			mSFSound(0),
-//			mSFVoices(),
+			mSFFile(0),
 			mNumVoices(16) {
 	this->init();
-	this->load();
+	if (fName.length() > 0)
+		this->load(fName);
+	this->setCurrentPlaybackSampleRate(CGestalt::frameRateF());
 }
 
 // SoundFontInstrument d'tor
 
 SoundFontInstrument::~SoundFontInstrument() {
-//	mSFVoices.clear();
-//	delete mSFSound;
 	if (stopperThread != 0) {
 		stopperThread->stopThread(0);
 		delete stopperThread;
@@ -55,32 +53,35 @@ void SoundFontInstrument::init() {
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("fr", set_frequency_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("po", set_position_f, CSL_FLOAT_TYPE));
-												// add 16 voices
-	for (int i = 0; i < mNumVoices; i++) {
-		SFZVoice * newVoice = new SFZVoice;
-		newVoice->setCurrentPlaybackSampleRate (CGestalt::frameRateF());
-//		mSFVoices.add(newVoice);
-		this->addVoice(newVoice);
-	}
 }
 
 // Load/parse SoundFont file
 
-void SoundFontInstrument::load() {
-	if (!mSFFile.existsAsFile()) {
-		logMsg(kLogError, "Missing SoundFont file: %s\n", mSFFile.getFullPathName().toUTF8());
+void SoundFontInstrument::load(String fName) {
+	if (mSFFile)
+		delete mSFFile;
+	mSFFile = new File(fName);
+	if (!mSFFile->existsAsFile()) {
+		logMsg(kLogError, "Missing SoundFont file: %s\n", mSFFile->getFullPathName().toUTF8());
 		return;
 	}
-	logMsg("Opening SoundFont file: %s\n", mSFFile.getFullPathName().toUTF8());
-	String extension = mSFFile.getFileExtension();
+	logMsg("Opening SoundFont file: %s\n", mSFFile->getFullPathName().toUTF8());
+	String extension = mSFFile->getFileExtension();
 	SFZero::SFZSound * tSnd;
 	if (extension == ".sf2" || extension == ".SF2") {
-		tSnd = new SFZero::SF2Sound(mSFFile);
+		tSnd = new SFZero::SF2Sound(*mSFFile);
 		mMode = kSF2;
 	} else {
-		tSnd = new SFZero::SFZSound(mSFFile);
+		tSnd = new SFZero::SFZSound(*mSFFile);
 		mMode = kSFZ;
 	}
+	clearVoices();						// clear, then add mNumVoices voices
+	for (int i = 0; i < mNumVoices; i++) {
+		SFZVoice * newVoice = new SFZVoice;
+		newVoice->setCurrentPlaybackSampleRate (CGestalt::frameRateF());
+		this->addVoice(newVoice);
+	}
+	clearSounds();
 	tSnd->loadRegions();
 	juce::AudioFormatManager fManager;
 	tSnd->loadSamples(&fManager);
@@ -117,7 +118,6 @@ void SoundFontInstrument::dump() {
 	int nRegs = tSnd->getNumRegions();
 	int nSnds = tSnd->numSubsounds();
 
-//	printf("SoundFontInstrument with voice %s\n", mSFVox.infoString().toUTF8());
 	printf("SoundFontInstrument with %d regions and %d subsounds\n", nRegs, nSnds);
 	for (int i = 0; i < nRegs; i++) {
 		SFZRegion* reg = tSnd->regionAt(i);
@@ -141,76 +141,54 @@ void SoundFontInstrument::dump() {
 	printf("\n");
 }
 
-//SFZVoice * SoundFontInstrument::find_voice() {
-//	for (int i = 0; i < mNumVoices; i++) {
-//		SFZVoice * vox = mSFVoices[i];
-//		if (! vox->isVoiceActive()) {
-//			printf("\tUse voice %d\n", i);
-//			return vox;
-//		}
-//	}
-//	printf("\tNo free voice available\n");
-//	return NULL;
-//}
+String SoundFontInstrument::getSubSndName (int which) {
+	SFZero::SFZSound * tSnd = (SFZero::SFZSound *)getSound(0).get();
+	return tSnd->subsoundName(which);
+}
 
 // trigger a new note with params
 
-void SoundFontInstrument::trigger(float dur, int chan, int key, int vel) {
-//	if ( ! mSFSound) return;
+void SoundFontInstrument::trigger(float dur, int chan, int key, int vel, float pos) {
 	float mappedVel = VelToRatio(vel);
-	this->noteOn(chan, key, mappedVel);
-	
-//	int numRegions = mSFSound->getNumRegions();
-//	for (int i = 0; i < numRegions; ++i) {
-//		SFZRegion* region = mSFSound->regionAt(i);
-//		if (region->matches(key, vel, SFZRegion::first)) {
-//			SFZVoice * vox = find_voice();
-//			if ( ! vox) return;
-//			vox->setRegion(region);
-//			if (vox->getCurrentlyPlayingSound() != nullptr)
-//				vox->stopNote (0.0f, false);
-//
-//			startVoice(vox, mSFSound, chan, key, vel);
-//
-//			mLastVoiceUsed = vox;
-	mDur = dur;
+	this->noteOn(chan, key, mappedVel, pos);					// play!
+	mDur = dur;												// store params for stopping
 	mLastChannel = chan;
 	mLastNoteNumber = key;
 	mLastVelocity = mappedVel;
-
 	if (stopperThread == NULL)
-		stopperThread = CThread::MakeThread();					// fork a thread to stop playing
-	stopperThread->createThread(stopMe, this);
-//		}
-//	}
+		stopperThread = CThread::MakeThread();
+	stopperThread->createThread(stopMe, this);					// fork a thread to stop playing
 }
 
 // Plug functions
 
 void SoundFontInstrument::setParameter(unsigned selector, int argc, void **argv, const char *types) {
-
+	if ((selector == set_file_f) && (argc == 1)) {			// set file
+		char * fn = (char *) argv[0];
+		this->load(String(fn));
+	}
 }
 
 // Play functions
 // Play a note with a given arg list
 // Formats:
-// 	pitch, ampl, dur, pos
+// 	dur, chan, key, ampl, pos
 
 void SoundFontInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
 	int ** iargs = (int **) argv;
-	float pitch, ampl, dur, pos;
 							// pitch, ampl, dur, pos
-	if (strcmp(types, "ffff") != 0) {
+	if (strcmp(types, "fffff") != 0) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ffff\" got \"%s\"", types);
 		return;
 	}
-	pitch = *fargs[0];
-	ampl = *fargs[1];
-	dur = *fargs[2];
-	pos = *fargs[3];
+	float dur = *fargs[0];
+	int instr = *iargs[1];				// instr is MIDFI channel
+	int pitch = *iargs[2];				// pitch in MIDI keys
+	float ampl = *fargs[3] * 127.0;		// scale amp to 0-127
+	float pos = *fargs[4] * 100.0f;		// scale pos to +-100
 	
-	this->trigger(dur, 1, (int)pitch, ampl);			// start playing
+	this->trigger(dur, instr, pitch, ampl, pos);		// start playing
 }
 
 void SoundFontInstrument::playNote(float ampl, float c_fr, float pos) {
@@ -221,14 +199,12 @@ void SoundFontInstrument::playMIDI(float dur, int chan, int key, int vel) {
 	this->trigger(dur, chan, key, vel);				// start playing
 }
 
-// nextBuffer = Sample creation, delegate to the SFVoices
+// nextBuffer = Sample creation, create an AudioSampleBuffer with the output ptrs and call renderNextBlock()
 
 void SoundFontInstrument::nextBuffer(Buffer & outputBuffer) noexcept(false) {
-//	for (SFZVoice* voice : mSFVoices)
-//	for (SFZVoice* voice : voices)   SynthesiserVoice* getVoice
-	for (SynthesiserVoice* voice : voices)
-		if (voice->isVoiceActive())
-			((SFZVoice *)voice)->nextBuffer(outputBuffer);
+	AudioSampleBuffer asBuf(outputBuffer.buffers(), outputBuffer.mNumChannels, outputBuffer.mNumFrames);
+	MidiBuffer midiMessages;
+	this->renderNextBlock(asBuf, midiMessages, 0, outputBuffer.mNumFrames);
 }
 
 void SoundFontInstrument::noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff) {

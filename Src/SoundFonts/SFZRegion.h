@@ -36,7 +36,7 @@ class SFZRegion {
 		void	sf2ToSFZ();
 		void	dump();
 
-		bool	matches(unsigned char note, unsigned char velocity, Trigger trigger) {
+		bool matches(unsigned char note, unsigned char velocity, Trigger trigger) {
 			return
 				note >= lokey && note <= hikey &&
 				velocity >= lovel && velocity <= hivel &&

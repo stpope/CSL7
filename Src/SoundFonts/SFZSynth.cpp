@@ -1,6 +1,7 @@
 #include "SFZSynth.h"
 #include "SFZVoice.h"
 #include "SFZSound.h"
+#include "SF2Sound.h"
 #include "SFZDebug.h"
 
 using namespace SFZero;
@@ -12,18 +13,18 @@ SFZSynth::SFZSynth()
 }
 
 
-void SFZSynth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
+void SFZSynth::noteOn(int midiChannel, int midiNoteNumber, float velocity, float position)
 {
 	int i;
-
 	const ScopedLock locker(lock);
-
 	int midiVelocity = (int) (velocity * 127);
 
 	// First, stop any currently-playing sounds in the group.
 	//*** Currently, this only pays attention to the first matching region.
 	int group = 0;
-	SFZSound* sound = (SFZSound*) getSound(0).get();
+	SF2Sound* sound = (SF2Sound*) getSound(0).get();
+	sound->useSubsound(midiChannel - 1);
+
 	if (sound) {
 		SFZRegion* region = sound->getRegionFor(midiNoteNumber, midiVelocity);
 		if (region)
@@ -71,13 +72,13 @@ void SFZSynth::noteOn(int midiChannel, int midiNoteNumber, float velocity)
 						findFreeVoice(
 							sound, midiNoteNumber, midiChannel, isNoteStealingEnabled()));
 				if (voice) {
+					region->pan = position;
 					voice->setRegion(region);
 					startVoice(voice, sound, midiChannel, midiNoteNumber, velocity);
 					}
 				}
 			}
 		}
-
 	noteVelocities[midiNoteNumber] = midiVelocity;
 }
 

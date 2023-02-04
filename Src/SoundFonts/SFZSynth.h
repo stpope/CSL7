@@ -9,7 +9,7 @@ class SFZSynth : public juce::Synthesiser {
 	public:
 		SFZSynth();
 
-		void noteOn(int midiChannel, int midiNoteNumber, float velocity);
+		void noteOn(int midiChannel, int midiNoteNumber, float velocity, float position);
 		virtual void noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff);
 
 		int numVoicesUsed();

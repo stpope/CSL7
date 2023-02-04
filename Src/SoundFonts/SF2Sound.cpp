@@ -97,7 +97,9 @@ void SF2Sound::useSubsound(int whichSubsound)
 {
 	selectedPreset = whichSubsound;
 	regions.clear();
-	regions.addArray(presets[whichSubsound]->regions);
+	if (selectedPreset >= presets.size())
+		selectedPreset = 0;
+	regions.addArray(presets[selectedPreset]->regions);
 }
 
 

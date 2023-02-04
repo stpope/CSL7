@@ -645,28 +645,134 @@ void test_vocoder() {
 	logMsg("vocoder done.");
 }
 
-/// Test the SoundFontInstrument by playing an instrumental vocal sample
+/// Test the SoundFontInstrument by playing a male choir sample.
 
-void test_SndFont() {
+void test_SndFont0() {
+	float dur = 2.5f;
+	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
+	String sfName = "male.sf2";
+
+	SoundFontInstrument sfIn(""); 			// create SoundFontInstrument
+	sfIn.load(dir + sfName);					// load a SoundFont file
+	sfIn.dump();								// dump the file structure
+
+	logMsg("playing SoundFont synthesizer...");
+	sfIn.playMIDI(2.0f, 3, 48, 100);			// play (dur, chan, key, vel)
+	runTest(sfIn, dur);
+
+	logMsg("SoundFont synthesizer done.");
+}
+
+/// Test the SoundFontInstrument by playing an instrumental organ sample.
+/// Play the same sample across its range
+
+void test_SndFont1() {
 	float dur = 2.5f;
 	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
 	String sfName = "organ.sf2";
 
 	SoundFontInstrument sfIn(dir + sfName); 	// create SoundFontInstrument
 	sfIn.dump();
-	
-	logMsg("playing SoundFont synthesizer 0...");
-	sfIn.trigger();
-	runTest(sfIn, dur);
 
 	logMsg("playing SoundFont synthesizer 1...");
-	sfIn.playMIDI(2.0f, 1, 44, 100);			// (float dur, int chan, int key, int vel)
+	sfIn.playMIDI(2.0f, 1, 38, 120);			// (float dur, int chan, int key, int vel)
 	runTest(sfIn, dur);
 
 	logMsg("playing SoundFont synthesizer 2...");
-	sfIn.playMIDI(2.0f, 1, 66, 100);
+	sfIn.playMIDI(2.0f, 1, 54, 120);			// (float dur, int chan, int key, int vel)
 	runTest(sfIn, dur);
 
+	logMsg("playing SoundFont synthesizer 3...");
+	sfIn.playMIDI(2.0f, 1, 70, 120);
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 4...");
+	sfIn.playMIDI(2.0f, 1, 88, 120);
+	runTest(sfIn, dur);
+
+	logMsg("SoundFont synthesizer done.");
+}
+
+/// Test the SoundFontInstrument by playing an instrumental organ sample.
+/// Play the same note on several presets
+
+void test_SndFont2() {
+	float dur = 2.5f;
+	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
+	String sfName = "organ.sf2";
+
+	SoundFontInstrument sfIn(dir + sfName); 	// create SoundFontInstrument
+	sfIn.dump();
+
+	logMsg("playing SoundFont synthesizer 1...");
+	sfIn.playMIDI(2.0f, 1, 54, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 2...");
+	sfIn.playMIDI(2.0f, 3, 54, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 3...");
+	sfIn.playMIDI(2.0f, 6, 54, 110);
+	runTest(sfIn, dur);
+
+	logMsg("SoundFont synthesizer done.");
+}
+
+/// Test the SoundFontInstrument by playing an instrumental Timpani sample.
+/// Play the same notes on several presets
+
+void test_SndFont3() {
+	float dur = 2.5f;
+	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
+	String sfName = "Timpani v2.0.sf2";
+
+	SoundFontInstrument sfIn(dir + sfName); 	// create SoundFontInstrument
+	sfIn.dump();
+
+	logMsg("playing SoundFont synthesizer 1...");
+	sfIn.playMIDI(2.0f, 1, 53, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 2...");
+	sfIn.playMIDI(2.0f, 2, 53, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 3...");
+	sfIn.playMIDI(2.0f, 1, 65, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("playing SoundFont synthesizer 4...");
+	sfIn.playMIDI(2.0f, 2, 65, 120);			// (float dur, int chan, int key, int vel)
+	runTest(sfIn, dur);
+
+	logMsg("SoundFont synthesizer done.");
+}
+
+/// Test the SoundFontInstrument by playing all the samples in a GM collection.
+
+void test_SndFont4() {
+	float dur = 1.0f;
+	String dir = "/Users/stp/Code/Audio/Synths/SoundFonts/";
+	String sfName1 = "HQ Orchestral Soundfont Collection v2.1.2.sf2";
+	String sfName2 = "Arachno SoundFont - Version 1.0.sf2";
+	String sfName3 = "Timbres of Heaven (XGM) 4.00(G).sf2";
+
+	SoundFontInstrument sfIn1(dir + sfName1); 	// create SoundFontInstrument
+	SoundFontInstrument sfIn2(dir + sfName2);
+	SoundFontInstrument sfIn3(dir + sfName3);
+
+	for (int i = 1; i < 128; i++) {
+		logMsg("playing SoundFont1 %s...", sfIn1.getSubSndName(i-1).toUTF8());
+		sfIn1.playMIDI(1.0f, i, 60, 100);			// (float dur, int chan, int key, int vel)
+		runTest(sfIn1, dur);
+		logMsg("playing SoundFont2 %s...", sfIn2.getSubSndName(i-1).toUTF8());
+		sfIn2.playMIDI(1.0f, i, 60, 100);			// (float dur, int chan, int key, int vel)
+		runTest(sfIn2, dur);
+		logMsg("playing SoundFont3 %s...", sfIn3.getSubSndName(i-1).toUTF8());
+		sfIn3.playMIDI(1.0f, i, 60, 100);			// (float dur, int chan, int key, int vel)
+		runTest(sfIn3, dur);
+	}
 	logMsg("SoundFont synthesizer done.");
 }
 
@@ -719,7 +825,11 @@ testStruct srcTestList[] = {
 	"Vocoder pitch/time warping",	test_vocoder,			"Time-stretch and pitch shift a voice sample",
 	"Soundfile granulation",		testGrainCloud,			"Random sound file granulation example",
 	"Granulation time stretch",	testGrainCloud2,			"Sound file time-stretch by granulation",
-	"SoundFont player",			test_SndFont,			"Play a note on the SoundFont instrument",
+	"SoundFont player0",			test_SndFont0,			"Play a choir sample on the SoundFont instrument",
+	"SoundFont player1",			test_SndFont1,			"Play a sample across its range on the SoundFont instrument",
+	"SoundFont player2",			test_SndFont2,			"Play the presets of a sample on the SoundFont instrument",
+	"SoundFont player3",			test_SndFont3,			"Play tympani on the SoundFont instrument",
+	"SoundFont player4",			test_SndFont4,			"Play all the GM orch instruments on the SoundFont instrument",
 	NULL,						NULL,					NULL
 };
 

@@ -238,18 +238,6 @@ void SFZVoice::renderNextBlock(
 	ampeg.samplesUntilNextSegment = samplesUntilNextAmpSegment;
 }
 
-// STP change -- CSL compatibility
-/// get a buffer of Frames -- this is the core CSL "pull" function;
-/// the given buffer can be written into, and a changed() message is sent.
-
-void SFZVoice::nextBuffer(csl::Buffer & outputBuffer) noexcept(false) {
-	juce::AudioSampleBuffer tempBuf(outputBuffer.buffers(),
-								outputBuffer.mNumChannels,
-								outputBuffer.mNumFrames);
-
-	this->renderNextBlock(tempBuf, 0, outputBuffer.mNumFrames);
-}
-
 bool SFZVoice::isPlayingNoteDown()
 {
 	return (region && region->trigger != SFZRegion::release);
@@ -298,7 +286,6 @@ juce::String SFZVoice::infoString()
 		curMidiNote, curVelocity, region->pan, egSegmentName, numLoops);
 	return juce::String(str);
 }
-
 
 
 void SFZVoice::calcPitchRatio()

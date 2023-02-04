@@ -18,7 +18,7 @@
 #include "SFZDebug.h"
 
 #define VELSCALE 64.0f		 /* Mike Mcnabb says this is right. */
-#define VelToRatio(vel0)	((powf(10.0f, (vel0 - VELSCALE) / VELSCALE)) / 7.0f)
+#define VelToRatio(vel0)	(csl_min(((powf(10.0f, (vel0 - VELSCALE) / VELSCALE)) / 7.0f), 1.0f))
 
 namespace csl {
 
@@ -38,32 +38,32 @@ public:
 	SoundFontInstrument(String fName);
 	~SoundFontInstrument();
 
-	void trigger(float dur = 1.0f, int chan = 1, int key = 60, int vel = 120);
+	void load(String fName);				///< load a SoundFont into an instrument
+	///<									/// play a note
+	void trigger(float dur = 1.0f, int chan = 1, int key = 60, int vel = 120, float pos = 0.0f);
 	void dump();							///< Describe the loaded sound font
-					/// Plug function
+	String getSubSndName (int which);
+	
+					/// Plug function - used to load files
 	void setParameter(unsigned selector, int argc, void **argv, const char *types);
 					/// Play functions
 	void playOSC(int argc, void **argv, const char *types);
 	void playNote(float ampl = 0.25f, float c_fr = 220.0f, float pos = 0.0f);
+	void noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff);
 	void playMIDI(float dur, int chan, int key, int vel);
 	
 	void nextBuffer(Buffer & outputBuffer) noexcept(false) override;	///< Sample creation
-	void noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff);
 
-//	OwnedArray<SFZero::SFZVoice> mSFVoices;
-//	SFZero::SFZSound * mSFSound = 0;
 	float mDur, mVel;
 	int mLastChannel, mLastNoteNumber;
 	float mLastVelocity;
 
 protected:
-	void init();
-	void load();
-//	SFZero::SFZVoice * find_voice();
+	void init();							///< init fcn
 
-	File mSFFile;
+	File * mSFFile;						///< my SoundFont file
 	CThread * stopperThread = 0;			///< thread I fork to stop notes
-	sfMode mMode;
+	sfMode mMode;						///< SFZ or SF2 file type
 	int mNumVoices;
 };
 

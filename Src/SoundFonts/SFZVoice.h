@@ -11,7 +11,7 @@ class SFZRegion;
 
 // STP change -- add inherited csl::UnitGenerator for nextBuffer() call
 
-class JUCE_API SFZVoice : public juce::SynthesiserVoice, csl::UnitGenerator {
+class JUCE_API SFZVoice : public juce::SynthesiserVoice {
 	public:
 		SFZVoice();
 		~SFZVoice();
@@ -44,7 +44,7 @@ class JUCE_API SFZVoice : public juce::SynthesiserVoice, csl::UnitGenerator {
 
 					/// Fill a buffer of Frames -- this is the core CSL "pull" function;
 					/// the given buffer can be written into, and a changed() message is sent.
-	void nextBuffer(csl::Buffer & outputBuffer) noexcept(false);
+//	void nextBuffer(csl::Buffer & outputBuffer) noexcept(false);
 
 	protected:
 		int       	trigger;
