@@ -17,7 +17,7 @@
 
 namespace csl {
 
-#ifdef USE_JTHREADS
+#ifdef USE_JTHREADS			// this is the standard now
 
 /// The JUCE CSL Thread class
 
@@ -27,11 +27,9 @@ public:
 	virtual ~CThread() { };
 	static CThread * MakeThread();	///< factory method
 
-//  int (VoidFcnPtr * func, void * args);         // OLD WAY
     typedef void (* VoidFcnPtr)(void *);
     
     int createThread(VoidFcnPtr func, void * args);
-//	int createRealtimeThread(VOIDFCNPTR * func, void * args);
 	void run();
 
 protected:

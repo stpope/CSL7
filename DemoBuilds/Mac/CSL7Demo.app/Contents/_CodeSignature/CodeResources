@@ -12,6 +12,50 @@
 		<data>
 		4cEN55flubpq9bxeGSBG3zMPYQw=
 		</data>
+		<key>Resources/sf2-chunks/generators.h</key>
+		<data>
+		rSjwIe2L5TF5bTsqccNlmdM2EJo=
+		</data>
+		<key>Resources/sf2-chunks/ibag.h</key>
+		<data>
+		BWTfW/t4yNAsDM4ZfVQo5DyVz3M=
+		</data>
+		<key>Resources/sf2-chunks/igen.h</key>
+		<data>
+		XWYqssulIBdFDQyPqABa/TjevW4=
+		</data>
+		<key>Resources/sf2-chunks/imod.h</key>
+		<data>
+		j6pgFO6GSNeJaetEMB7C1K6ZcNc=
+		</data>
+		<key>Resources/sf2-chunks/inst.h</key>
+		<data>
+		4kpInQ5W9uJCWgBHZgmvM6mg5Lc=
+		</data>
+		<key>Resources/sf2-chunks/iver.h</key>
+		<data>
+		RD51t6TxumQHPHheAtEOaCALL+c=
+		</data>
+		<key>Resources/sf2-chunks/pbag.h</key>
+		<data>
+		5/vXG+yFS8TFm6yd34w3Ri4bmDU=
+		</data>
+		<key>Resources/sf2-chunks/pgen.h</key>
+		<data>
+		XWYqssulIBdFDQyPqABa/TjevW4=
+		</data>
+		<key>Resources/sf2-chunks/phdr.h</key>
+		<data>
+		1hwc4PtIrs0/doUJYLLYN3ESysM=
+		</data>
+		<key>Resources/sf2-chunks/pmod.h</key>
+		<data>
+		j6pgFO6GSNeJaetEMB7C1K6ZcNc=
+		</data>
+		<key>Resources/sf2-chunks/shdr.h</key>
+		<data>
+		YQ2inXCOepqf50ER3zgzC6LMG+k=
+		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -27,6 +71,83 @@
 			<key>hash2</key>
 			<data>
 			cY60xaOlVk3YMq6aNs9knz7yV86JbdkhaT7rYQG9AIo=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/generators.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			wXzoPdXdtB6rX7Z4+objza5ZFHr5ifKIj2ZTZmOnW1g=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/ibag.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Q4+21unSJ78sBS7rOp67WH+SNJJvkSQJPr4vdtsW09E=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/igen.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8zH4xEoaODv7AT7Ik2oONgSYinTxDJ1IfIy47QoWGJs=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/imod.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9FBg8j8fa85yC/LJKBk21FyKJgtqWxTOO/tU+pOBDsY=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/inst.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			3jMhEEkhoG1UyKSNoTVU/euA9gueP/gL8FHTL+iP1y4=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/iver.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Rs7xqXYXXG3e20GHtZ5bcfesFKtPhtLaRMufcfdIYZU=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/pbag.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HB8mRscf/ZfzAXR8wtRaOCPsHwZEVj7xwVqi+4aeGTs=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/pgen.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8zH4xEoaODv7AT7Ik2oONgSYinTxDJ1IfIy47QoWGJs=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/phdr.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sKwD7WuztsBQ5SgXVd7zxdSzYxEdF/49Kqo4ziXBAFU=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/pmod.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			9FBg8j8fa85yC/LJKBk21FyKJgtqWxTOO/tU+pOBDsY=
+			</data>
+		</dict>
+		<key>Resources/sf2-chunks/shdr.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			h9XJEVuBTVMbnqtWtZJdB3XCT8R8qFi0X95kgjdDShk=
 			</data>
 		</dict>
 	</dict>

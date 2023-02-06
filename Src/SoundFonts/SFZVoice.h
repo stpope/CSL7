@@ -9,28 +9,27 @@ namespace SFZero {
 
 class SFZRegion;
 
-// STP change -- add inherited csl::UnitGenerator for nextBuffer() call
-
 class JUCE_API SFZVoice : public juce::SynthesiserVoice {
 	public:
 		SFZVoice();
 		~SFZVoice();
 
-    bool	canPlaySound(juce::SynthesiserSound* sound);
-    void	startNote(
-			const int midiNoteNumber,
-			const float velocity,
-			juce::SynthesiserSound* sound,
-			const int currentPitchWheelPosition);
-    void	stopNote(float velocity, const bool allowTailOff);
+		bool	canPlaySound(juce::SynthesiserSound* sound);
+		void	startNote(
+				const int midiNoteNumber,
+				const float velocity,
+				juce::SynthesiserSound* sound,
+				const int currentPitchWheelPosition);
+		void	stopNote(float velocity, const bool allowTailOff);
 		void	stopNoteForGroup();
 		void	stopNoteQuick();
-    void	pitchWheelMoved(const int newValue);
-    void	controllerMoved(
-			const int controllerNumber,
-			const int newValue);
-    void	renderNextBlock(
-			juce::AudioSampleBuffer& outputBuffer, int startSample, int numSamples);
+		void	pitchWheelMoved(const int newValue);
+		void	controllerMoved(
+				const int controllerNumber,
+				const int newValue);
+		void	renderNextBlock(
+				juce::AudioSampleBuffer& outputBuffer,
+				int startSample, int numSamples);
 		bool	isPlayingNoteDown();
 		bool	isPlayingOneShot();
 
@@ -69,4 +68,3 @@ class JUCE_API SFZVoice : public juce::SynthesiserVoice {
 }
 
 #endif 	// SFZVoice_h
-

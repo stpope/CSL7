@@ -128,8 +128,8 @@
 #define CSL_STR_LEN 1024					///< default long string length
 
 #define SAMPS_TO_WRITE (44100 * 30)		///< record 30 seconds by default
-#define OUT_SFILE_NAME "XX_csl.aiff"		///< csl output file name temlpate
-//#define OUT_SFILE_NAME "CSLXX.aiff"		///< csl output file name temlpate
+//#define OUT_SFILE_NAME "XX_csl.aiff"		///< csl output file name temlpate
+#define OUT_SFILE_NAME "CSLXX.aiff"		///< csl output file name temlpate
 
 // Data folder and init file locations
 
@@ -187,7 +187,7 @@
 
 namespace csl {							///< All of CSL takes place within the "csl" namespace
 
-//// CSL base audio and geometrical data type declarations - PAY ATTENTION ///////
+////////// CSL base audio and geometrical data type declarations - PAY ATTENTION ///////////
 
 											// float array typedefs
 typedef float * FloatArray;					///< float pointer type
@@ -340,8 +340,8 @@ typedef struct {
 
 //// Numerical constants (for convenience, all floats)
 
-#define CSL_PI				3.1415926535897933f
-// #define CSL_PI 3.141592653589793238462643383279502884197169399375108209749445923ld
+#define CSL_PI				3.1415926535897932f
+// #define CSL_PI 			3.141592653589793238462643383279502884197169399375108209749445923ld
 #define CSL_TWOPI				6.2831853071795865f
 #define CSL_PIHALF			1.570796326795f
 #define CSL_SQRT_TWO			1.414213562f
@@ -363,7 +363,7 @@ typedef struct {
 							// Hypotenuse = complex-to-real-magnitude
 	#define hypotf(av, bv)	sqrtf((av * av) + (bv * bv))
 
-#ifdef MSVS6				// ignore pragmas not understood by Microsoft Visual C++
+#ifdef MSVS6					// ignore pragmas not understood by Microsoft Visual C++
 	#pragma warning(once:4068 4244 4305 4355)
 	#pragma warning(once:4290)
 #endif

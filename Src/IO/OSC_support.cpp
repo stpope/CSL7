@@ -4,7 +4,7 @@
 //	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
 //
 // This file has a bunch of the "glue" code necessary to use OSC simply from within CSL.
-// For an example, see OSC_main.cpp (which uses CSL instruymkents) GestureSensorTests.cpp, 
+// For an example, see OSC_main.cpp (which uses CSL instruments) GestureSensorTests.cpp, 
 // which interfaces to the CREATE gesture sensors using OSC, or Server_Tests.cpp, which
 // adds a few simple OSC commands for controlling the random bell textures.
 //

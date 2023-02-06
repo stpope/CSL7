@@ -11,8 +11,8 @@
 /// Type flags
 
 #define CSL_INT_TYPE		1
-#define CSL_FLOAT_TYPE		2
-#define CSL_STRING_TYPE		3
+#define CSL_FLOAT_TYPE	2
+#define CSL_STRING_TYPE	3
 
 namespace csl  {
 
@@ -24,7 +24,7 @@ public:
 						/// Convenient constructor
 	Accessor(string na, unsigned sel, unsigned typ) 
 		: mName(na), mSelector(sel), mType(typ) { };
-	
+
 						// public members
 	string mName;			///< name
 	unsigned mSelector;		///< operand selector (see macros in the instruments, e.g., set_attack_f)
@@ -38,6 +38,6 @@ public:
 
 typedef vector<Accessor *> AccessorVector;
 
-}
+} // csl
 
-#endif
+#endif // INCLUDE_Accessor_H

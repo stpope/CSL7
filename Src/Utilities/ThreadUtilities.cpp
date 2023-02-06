@@ -20,16 +20,10 @@ int CThread::createThread(VoidFcnPtr func, void * args) {
 //	(*func)(args);				// call my function
     mFunc = * func;
     mArgs = args;
-    startThread();
+	RealtimeOptions rtOpts;
+	startRealtimeThread(rtOpts);
 	return 0;
 }
-
-//int CThread::createRealtimeThread(VOIDFCNPTR * func, void * args) {
-//	mFunc = * func;
-//	mArgs = args;
-//	run();
-//	return 0;
-//}
 
 void CThread::run() {
 //	logMsg("Start thread");

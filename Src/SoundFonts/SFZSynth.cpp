@@ -23,9 +23,9 @@ void SFZSynth::noteOn(int midiChannel, int midiNoteNumber, float velocity, float
 	//*** Currently, this only pays attention to the first matching region.
 	int group = 0;
 	SF2Sound* sound = (SF2Sound*) getSound(0).get();
-	sound->useSubsound(midiChannel - 1);
 
 	if (sound) {
+		sound->useSubsound(midiChannel - 1);
 		SFZRegion* region = sound->getRegionFor(midiNoteNumber, midiVelocity);
 		if (region)
 			group = region->group;

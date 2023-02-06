@@ -1,6 +1,8 @@
 //
 ///  SoundFontInstrument.cpp -- SoundFont instrument
+///
 ///	This uses Steve Folta's SFZero open-source code from https://github.com/stevefolta/SFZero
+///	
 //	See the copyright notice and acknowledgment of authors in the file COPYRIGHT
 
 #include "SoundFontInstrument.h"
@@ -8,17 +10,6 @@
 
 using namespace csl;
 using namespace SFZero;
-
-// stopMe = forked fcn to stop playng
-
-static void stopMe(void * theArg) {
-	SoundFontInstrument * instr = (SoundFontInstrument * ) theArg;
-	int chan = instr->mLastChannel;
-	int key = instr->mLastNoteNumber;
-	float vel = instr->mLastVelocity;
-	sleepSec(instr->mDur);
-	instr->noteOff(chan, key, vel, true);
-}
 
 // SoundFontInstrument c'tor
 
@@ -36,10 +27,8 @@ SoundFontInstrument::SoundFontInstrument(String fName) :
 // SoundFontInstrument d'tor
 
 SoundFontInstrument::~SoundFontInstrument() {
-	if (stopperThread != 0) {
-		stopperThread->stopThread(0);
-		delete stopperThread;
-	}
+	for (int i = 0; i < mNumVoices; i++)
+		delete mPlayingNotes[i];
 }
 
 // setup instance
@@ -49,7 +38,11 @@ void SoundFontInstrument::init() {
 	mName = "SoundFont Player";					// set graph's name
 	mGraph = this;								// store the root of the graph as the inst var _graph
 	mEnvelopes.push_back(this);					// list envelopes for retrigger
+	mNextToStop = 0;
+	mNextToStopInd = -1;
 												// set up accessor vector
+	mAccessors.push_back(new Accessor("fi", set_file_f, CSL_STRING_TYPE));
+	mAccessors.push_back(new Accessor("ano", ano_cmd_f, CSL_INT_TYPE));
 	mAccessors.push_back(new Accessor("am", set_amplitude_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("fr", set_frequency_f, CSL_FLOAT_TYPE));
 	mAccessors.push_back(new Accessor("po", set_position_f, CSL_FLOAT_TYPE));
@@ -65,7 +58,7 @@ void SoundFontInstrument::load(String fName) {
 		logMsg(kLogError, "Missing SoundFont file: %s\n", mSFFile->getFullPathName().toUTF8());
 		return;
 	}
-	logMsg("Opening SoundFont file: %s\n", mSFFile->getFullPathName().toUTF8());
+	logMsg("Opening SoundFont file: %s", mSFFile->getFullPathName().toUTF8());
 	String extension = mSFFile->getFileExtension();
 	SFZero::SFZSound * tSnd;
 	if (extension == ".sf2" || extension == ".SF2") {
@@ -80,12 +73,15 @@ void SoundFontInstrument::load(String fName) {
 		SFZVoice * newVoice = new SFZVoice;
 		newVoice->setCurrentPlaybackSampleRate (CGestalt::frameRateF());
 		this->addVoice(newVoice);
+		mPlayingNotes.push_back(new ThreadData());
 	}
 	clearSounds();
 	tSnd->loadRegions();
 	juce::AudioFormatManager fManager;
+	fManager.registerBasicFormats();
 	tSnd->loadSamples(&fManager);
 	this->addSound(tSnd);
+//	this->dump();
 }
 
 // Describe the loaded sound font
@@ -146,39 +142,73 @@ String SoundFontInstrument::getSubSndName (int which) {
 	return tSnd->subsoundName(which);
 }
 
+// I'm active if any of my voices are
+
+bool SoundFontInstrument::isActive()  {
+	int nVox = this->getNumVoices();
+	for (int i = 0; i < nVox; i++) {
+		if (this->getVoice(i)->isVoiceActive())
+			return true;
+	}
+	return false;
+}
+
 // trigger a new note with params
 
 void SoundFontInstrument::trigger(float dur, int chan, int key, int vel, float pos) {
 	float mappedVel = VelToRatio(vel);
+//	logMsg("SFI::trigger d %5.3f c %d k %d a %5.3f", dur, chan, key, mappedVel);
 	this->noteOn(chan, key, mappedVel, pos);					// play!
-	mDur = dur;												// store params for stopping
-	mLastChannel = chan;
-	mLastNoteNumber = key;
-	mLastVelocity = mappedVel;
-	if (stopperThread == NULL)
-		stopperThread = CThread::MakeThread();
-	stopperThread->createThread(stopMe, this);					// fork a thread to stop playing
+	for (int i = 0; i < mNumVoices; i++) {					// set up note-off in the future
+		if (mPlayingNotes[i]->mStop == 0) {
+			mPlayingNotes[i]->mStop = Time::currentTimeMillis() + (int64)(dur * 1000.0f);
+			mPlayingNotes[i]->mChan = chan;
+			mPlayingNotes[i]->mNote = key;
+			mPlayingNotes[i]->mVel = mappedVel;
+			break;
+		}
+	}
+	this->setNextStopTime();
+}
+
+// find the next note stop time
+
+int64 SoundFontInstrument::setNextStopTime() {
+	int64 nextT = 0;
+	mNextToStopInd = -1;
+	for (int i = 0; i < mNumVoices; i++) {
+		int64 tim = mPlayingNotes[i]->mStop;
+		if ((tim > 0) && ((nextT == 0) || (tim < nextT))) {
+			mNextToStop = tim;
+			mNextToStopInd = i;
+		}
+	}
+//	logMsg("SFI::setNextStopTime %d @ %d", mNextToStopInd, mNextToStop);
 }
 
 // Plug functions
 
 void SoundFontInstrument::setParameter(unsigned selector, int argc, void **argv, const char *types) {
+//	logMsg("SFI::setParameter %d - %s - %s", selector, types, argv[0]);
 	if ((selector == set_file_f) && (argc == 1)) {			// set file
 		char * fn = (char *) argv[0];
 		this->load(String(fn));
 	}
+	if (selector == ano_cmd_f) 			// all notes off
+		for (int i = 0; i < 16; i++)
+			this->allNotesOff(i, true);
 }
 
 // Play functions
 // Play a note with a given arg list
 // Formats:
-// 	dur, chan, key, ampl, pos
+// 	dur, chan, key, ampl, pos - types "fiiff"
 
 void SoundFontInstrument::playOSC(int argc, void **argv, const char *types) {
 	float ** fargs = (float **) argv;
 	int ** iargs = (int **) argv;
 							// pitch, ampl, dur, pos
-	if (strcmp(types, "fffff") != 0) {
+	if (strcmp(types, "fiiff") != 0) {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ffff\" got \"%s\"", types);
 		return;
 	}
@@ -205,8 +235,25 @@ void SoundFontInstrument::nextBuffer(Buffer & outputBuffer) noexcept(false) {
 	AudioSampleBuffer asBuf(outputBuffer.buffers(), outputBuffer.mNumChannels, outputBuffer.mNumFrames);
 	MidiBuffer midiMessages;
 	this->renderNextBlock(asBuf, midiMessages, 0, outputBuffer.mNumFrames);
+													// if it's time to stop a note...
+	if ((mNextToStopInd >= 0) && (Time::currentTimeMillis() >= mNextToStop)) {
+		this->stopNote(mNextToStopInd);
+		this->setNextStopTime();
+	}
 }
 
 void SoundFontInstrument::noteOff(int midiChannel, int midiNoteNumber, float velocity, bool allowTailOff) {
 	SFZSynth::noteOff(midiChannel, midiNoteNumber, velocity, allowTailOff);
+}
+
+// stopMe = fcn to stop playing; called from nextBuffer
+
+void SoundFontInstrument::stopNote(int ind) {
+	ThreadData * td = mPlayingNotes[ind];
+	int chan = td->mChan;					// get the note params from the thread data struct
+	int key = td->mNote;
+	float vel = td->mVel;
+	this->noteOff(chan, key, vel, true);		// stop the note
+//	logMsg("\tSFI::stopNote c %d k %d a %5.3f", chan, key, vel);
+	td->mStop = 0;							// free up this ThreadData
 }

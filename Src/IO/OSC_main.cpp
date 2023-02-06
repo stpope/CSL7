@@ -62,13 +62,14 @@
 #include "JUCEIO.h"				// JUCE Audio IO
 
 #include "CSL_Includes.h"			// include all of CSL core
-#include "lo/lo.h"				// liblo header has to be in your path (/usr/local/include)
+#include "lo/lo.h"				// liblo header has to be in your path (e.g., /usr/local/include)
 #include "OSC_support.h"
 #include "Instrument.h"
 #include "FMInstrument.h"
 #include "SndFileInstrument.h"
 #include "AdditiveInstrument.h"
 #include "StringInstrument.h"
+#include "SoundFontInstrument.h"
 
 #ifndef CSL_WINDOWS
 	#include <SHARC.h>
@@ -88,7 +89,7 @@ Mixer * gOMix;									// stereo output mixer (reverb + dry signal)
 // -----------------------------------------------------------------------------------------------
 
 // MAIN with 10 plucked strings, 10 FM instrs, 10 FM bells, 4 snd file voices, 16 SHARC SOS voices,
-// 5 SHARC SOS w vibrato, 4 Vector SOS voices, 5 Granulator Instruments
+// 5 SHARC SOS w vibrato, 4 Vector SOS voices, 5 Granulator Instruments, 8 SoundFont sample players
 
 #ifdef CSL_OSC_SERVER4
 
@@ -116,7 +117,7 @@ int main(int argc, const char * argv[]) {
 	printf("OSC server listening to port %s\n", thePort);
 	initOSC(thePort);					// Set up OSC address space root
 
-	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w vibrato, 5 Vector SOS\n");
+	printf("Setting up library with 10 strings, 10 FMs, 10 FM bells, 4 snd files,\n\t16 SHARC SOS, 5 SHARC SOS w vibrato, 5 Vector SOS, 6 granulators,\n\t8 SoundFont players\n");
 
 	unsigned i = 0;
 	for ( ; i < 10; i++) {				//---- 10 plucked strings
@@ -141,7 +142,9 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
+
 #ifndef CSL_WINDOWS						// load spectra from the SHARC library
+
 	SHARCLibrary::loadDefault();
 	SHARCLibrary * sharcLib = SHARCLibrary::library();
 	std::vector<SHARCInstrument *> sharcInstrs;
@@ -193,6 +196,9 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
+
+#endif // CSL_WINDOWS - for SHARC instruments
+
 	for ( ; i < 63; i++) {				//---- 2 scrambled Granulator Instruments
 		GranulatorInstrument * in = new GranulatorInstrument(CGestalt::dataFolder(), "sns.aiff");
 		in->mCloud.mDensityBase = 4.0;				// some holes
@@ -209,9 +215,14 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-	
+	for ( ; i < 75; i++) {				//---- 8 SoundFont Instruments
+		SoundFontInstrument * in = new SoundFontInstrument();
+		lib.push_back(in);
+		gIMix->addInput(*in);
+	}
+
 #if 0 // still not debugged ------------------
-	
+
 	for ( ; i < 66; i++) {				//---- 5 Vector SOS voices with instruments (different spectra per-note)
 		int i1 = iRandM(0,16);			// pick random pairs of instruments to use
 		int i2 = iRandM(0,16);
@@ -220,10 +231,9 @@ int main(int argc, const char * argv[]) {
 		lib.push_back(in);
 		gIMix->addInput(*in);
 	}
-#endif // 0
-	
-#endif // CSL_WINDOWS - for SHARC instruments
 
+#endif // 0
+							// ======================== Final set-up ===================================
 	Stereoverb rev(*gIMix);				// stereo reverb
 	rev.setRoomSize(0.98);				// medium-long reverb
 	gOMix->addInput(rev);				// add reverb to output mixer
@@ -236,9 +246,9 @@ int main(int argc, const char * argv[]) {
 						 0, 2);    		// stereo out by default
 	theIO->setRoot(*gOMix);				// plug the mixer in as the IO client
 	theIO->open();						// open the IO
-	theIO->start();						// start the IO
+	theIO->start();						// start the IO call-bacl thread
 	printf("Starting OSC loop\n");
-	mainOSCLoop(NULL);					// Run the main loop function (returns on quit)
+	mainOSCLoop(NULL);					// start the main OSC reader loop (returns on quit)
 	theIO->stop();
 	theIO->close();
 }

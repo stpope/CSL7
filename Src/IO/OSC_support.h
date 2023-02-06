@@ -15,7 +15,7 @@
 //
 
 #define READ_CSL_OPTS									\
-unsigned val;											\
+unsigned val;										\
 if (find_option(argc, argv, 'r', &val) > 0) {			\
 	CGestalt::setFrameRate(atoi(argv[val]));			\
 	printf("Setting frame rate to: %d\n",				\
@@ -39,16 +39,16 @@ if (find_option(argc, argv, 'l', &val) > 0) {			\
 if (find_option(argc, argv, 'p', &val) > 0) {			\
 	CGestalt::setOutPort(atoi(argv[val]));				\
 	printf("Setting outPort to: %d\n",					\
-	CGestalt::outPort()); }								\
+	CGestalt::outPort()); }							\
 if ((find_option(argc, argv, 'u', &val) >= 0) ||		\
 	(find_option(argc, argv, 'h', &val) >= 0)) {		\
-		usage(argv[0]);									\
+		usage(argv[0]);								\
 		exit(0); }
 
 //if (find_option(argc, argv, 'v', &val) > 0)			\
 //	printf("Setting CSL verbosity\n");					\
 //	if (argv[val][0] == '-')							\
-//		CGestalt::setVerbosity(2);						\
+//		CGestalt::setVerbosity(2);					\
 //	else												\
 //		CGestalt::setVerbosity(atoi(argv[val]))
 

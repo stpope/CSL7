@@ -71,37 +71,41 @@
 #define env_range_f		213
 #define gran_mode_f		214
 
+#define ano_cmd_f			220
+
 namespace csl  {
 
 ///
-/// Instrument class (abstract)
+/// Instrument class (abstract) is-a UnitGenerator;
+/// holds a UnitGenerator graph for its "root" and a list or envelopes to trigger;
+/// adds methods for responding to MIDI and OSC to trigger notes.
 ///
 class Instrument : public UnitGenerator {
 public:
-					/// Constructors
+							/// Constructors
 	Instrument();
-	Instrument(Instrument&);							///< copy constructor
+	Instrument(Instrument&);								///< copy constructor
 	~Instrument();
-					/// Accessors
+							/// Accessors
 	UnitGenerator * graph() { return mGraph; };			///< my UGen graph
-	UGenMap * genMap() { return & mUGens; };			///< the map of ugens in the graph by name
+	UGenMap * genMap() { return & mUGens; };				///< the map of ugens in the graph by name
 	UGenVector * envelopes() { return & mEnvelopes; };	///< the vector of envelopes to query or trigger
 
 	const string name() { return mName; };				///< answer my name
 														/// answer the number of channels
 	UnitGenerator * genNamed(string name);				///< get a UGen from the graph
 
-					/// Accessor management
+							/// Accessor management
 	AccessorVector getAccessors() { return mAccessors; };				///< answer the accessor vector
-	unsigned numAccessors() { return mAccessors.size(); };				///< answer the number of accessors
+	unsigned numAccessors() { return mAccessors.size(); };			///< answer the number of accessors
 	virtual void setParameter(unsigned selector, int argc, void **argv, const char *types) { };	///< set a named parameter
 //	virtual float getParameter(unsigned selector);
-	
+
 	virtual void nextBuffer(Buffer & outputBuffer) noexcept(false);	///< Sample creation
-	
+
 	virtual bool isActive();											///< Envelope query and re-trigger
 	virtual void play();		
-	virtual void playOSC(int argc, void **argv, const char *types) { };	///< Play a note (subclasses refine)
+	virtual void playOSC(int argc, void **argv, const char *types) { };///< Play a note (subclasses refine these)
 	virtual void playNote(int argc, void **argv, const char *types) { };	
 	virtual void playMIDI(float dur, int chan, int key, int vel) { };	
 	virtual void release();	
