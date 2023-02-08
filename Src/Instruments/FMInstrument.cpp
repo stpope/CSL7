@@ -147,8 +147,8 @@ void FMInstrument::parseArgs(int argc, void **argv, const char *types) {
 	} else if (strcmp(types, "ffffffffffffff") == 0) {
 		nargs = 14;
 		if (gVerbose)
-			printf("\tFM: d %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
-				   *fargs[0], *fargs[2], *fargs[8], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
+			printf("\tFM: d %.3f a %.3f p %.3f i %.3f - a %.3f d %.3f s %.3f r %.3f - a %.3f d %.3f s %.3f r %.3f\n",
+				   *fargs[0], *fargs[1], *fargs[2], *fargs[4], *fargs[6], *fargs[7], *fargs[8], *fargs[9],
 				   *fargs[10], *fargs[11], *fargs[12], *fargs[13]);
 	} else {
 		logMsg(kLogError, "Invalid type string in OSC message, expected \"ff...ff\" got \"%s\"\n", types);
@@ -188,8 +188,6 @@ void FMInstrument::parseArgs(int argc, void **argv, const char *types) {
 
 void FMInstrument::playOSC(int argc, void **argv, const char *types) {
 	this->parseArgs(argc, argv, types);
-	if (gVerbose)
-	
 	this->play();
 }
 
