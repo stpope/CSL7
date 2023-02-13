@@ -199,118 +199,111 @@ to run. There's a demo GUI cheat sheet in the Doc folder.
 Here's the current demo GUI's Menu List
 
 Oscillator Tests  -  Test_Oscillators.cpp
-
-              Sweep/swell test - Test a sine with swept freq and volume swell
-                  Simple sines - Test some simple sine oscilators
-            Standard waveforms - Demonstrate the standard wave forms
-          Scaled sine (3 ways) - Play a scaled-quiet sine wave
-       Wavetable interpolation - Show truncated/interpolated wave tables
-                   AM/FM sines - Play an AM and FM sine wave
-              Dump AM/FM sines - Dump the graph of the AM/FM sine
-             SumOfSines cached - Play a sum-of-sines additive oscillator
-         SumOfSines non-cached - Play an uncached inharmonic sum-of-sines
-              SumOfSines build - Build up a harmonic series on a sum-of-sines
-                SumOfSines 1/f - Play a 1/f spectrum sum-of-sines
-           Wavetable from file - Play a wave table from a sound file
-        SHARC SOS (loads slow) - Load/print the SHARC timbre database, play example
-            Vector-synth SHARC - Show vector cross-fade of SHARC spectra
+                    Sweep/swell test - Test a sine with swept freq and volume swell
+                        Simple sines - Test some simple sine oscilators
+                  Standard waveforms - Demonstrate the standard wave forms
+                Scaled sine (3 ways) - Play a scaled-quiet sine wave
+             Wavetable interpolation - Show truncated/interpolated wave tables
+                         AM/FM sines - Play an AM and FM sine wave
+                    Dump AM/FM sines - Dump the graph of the AM/FM sine
+                   SumOfSines cached - Play a sum-of-sines additive oscillator
+               SumOfSines non-cached - Play an uncached inharmonic sum-of-sines
+                    SumOfSines build - Build up a harmonic series on a sum-of-sines
+                      SumOfSines 1/f - Play a 1/f spectrum sum-of-sines
+                 Wavetable from file - Play a wave table from a sound file
+              SHARC SOS (loads slow) - Load/print the SHARC timbre database, play example
+                  Vector-synth SHARC - Show vector cross-fade of SHARC spectra
 
 Source Tests  -  Test_Sources.cpp
-
-                   Noise tests - Test noise generators
-                Plucked string - Waves of string arpeggii, stereo with reverb
-        Random string melodies - Many random string arpeggii
-          Mono snd file player - Test playing a sound file
-        Stereo snd file player - Play a stereo sound file
-            Snd file transpose - Demonstrate transposing a sound file
-              Sample file bank - Play a large sample bank from sound files
-                 FM instrument - Play the basic FM instrument
-           Fancy FM instrument - FM note with attack chiff and vibrato
-            FM bell instrument - FM bell with glissando
-   SumOfSines (SOS) instrument - Demonstrate the SumOfSines instrument
-          SHARC SOS instrument - SumOfSines based on SHARC instrumental timbres
-           SHARC SOS w vibrato - SumOfSines based on SHARC instrumental timbres
-        SHARC SOS w cross-fade - SumOfSines based on SHARC instrumental timbres
-   Snd file instrument (buggy) - Test the sound file instrument
-         WaveShaping synthesis - Play 2 wave-shaper notes with envelopes
-                IFFT synthesis - Make a sound with IFFT synthesis
-                   Vector IFFT - Vector synthesis with 2 IFFTs
-    Vocoder pitch/time warping - Time-stretch and pitch shift a voice sample
-         Soundfile granulation - Random sound file granulation example
-      Granulation time stretch - Sound file time-stretch by granulation
-             SoundFont player0 - Play a choir sample on the SoundFont instrument
-             SoundFont player1 - Play a sample across its range on the SoundFont instrument
-             SoundFont player2 - Play the presets of a sample on the SoundFont instrument
-             SoundFont player3 - Play tympani on the SoundFont instrument
-             SoundFont player4 - Play all the GM orch instruments on the SoundFont instrument
+                         Noise tests - Test noise generators
+                      Plucked string - Waves of string arpeggii, stereo with reverb
+              Random string melodies - Many random string arpeggii
+                Mono snd file player - Test playing a sound file
+              Stereo snd file player - Play a stereo sound file
+                  Snd file transpose - Demonstrate transposing a sound file
+                    Sample file bank - Play a large sample bank from sound files
+                       FM instrument - Play the basic FM instrument
+                 Fancy FM instrument - FM note with attack chiff and vibrato
+                  FM bell instrument - FM bell with glissando
+         SumOfSines (SOS) instrument - Demonstrate the SumOfSines instrument
+                SHARC SOS instrument - SumOfSines based on SHARC instrumental timbres
+                 SHARC SOS w vibrato - SumOfSines based on SHARC instrumental timbres
+              SHARC SOS w cross-fade - SumOfSines based on SHARC instrumental timbres
+         Snd file instrument (buggy) - Test the sound file instrument
+               WaveShaping synthesis - Play 2 wave-shaper notes with envelopes
+                      IFFT synthesis - Make a sound with IFFT synthesis
+                         Vector IFFT - Vector synthesis with 2 IFFTs
+          Vocoder pitch/time warping - Time-stretch and pitch shift a voice sample
+               Soundfile granulation - Random sound file granulation example
+            Granulation time stretch - Sound file time-stretch by granulation
+                   SoundFont player0 - Play a choir sample on the SoundFont instrument
+                   SoundFont player1 - Play a sample across its range on the SoundFont instrument
+                   SoundFont player2 - Play the presets of a sample on the SoundFont instrument
+                   SoundFont player3 - Play tympani on the SoundFont instrument
+                   SoundFont player4 - Play all the GM orch instruments on the SoundFont instrument
 
 Envelope Tests  -  Test_Envelopes.cpp
-
-                Glissando test - Demonstrate a glissando function
-            Swell on amplitude - Make an amplitude swell
-            Frequency envelope - Play a note with a frequency envelope
-                       AR sine - Play an AR (attack/release) amplitude envelope
-               AM/FM envelopes - Test AM and FM envelopes
-                        ADSR 2 - Play an ADSR (attack/decay/sustain/release)
-                       ADSR FM - Dual-envelope FM example
-            Rand Freq envelope - Play a random-walk frequency envelope
-              50 Rand F/A envs - Test 50 random frequency envelope players
-     Envelope scaling (clicks) - Test using an envelope as VCA (clicks)
-                      Fancy FM - Play a fancy FM note
-              Complex envelope - Play a note with a complex amplitude envelope
-               Many random SOS - Layer many SumOfSines instruments with envelopes
+                      Glissando test - Demonstrate a glissando function
+                  Swell on amplitude - Make an amplitude swell
+                  Frequency envelope - Play a note with a frequency envelope
+                             AR sine - Play an AR (attack/release) amplitude envelope
+                     AM/FM envelopes - Test AM and FM envelopes
+                              ADSR 2 - Play an ADSR (attack/decay/sustain/release)
+                             ADSR FM - Dual-envelope FM example
+                  Rand Freq envelope - Play a random-walk frequency envelope
+                    50 Rand F/A envs - Test 50 random frequency envelope players
+           Envelope scaling (clicks) - Test using an envelope as VCA (clicks)
+                            Fancy FM - Play a fancy FM note
+                    Complex envelope - Play a note with a complex amplitude envelope
+                     Many random SOS - Layer many SumOfSines instruments with envelopes
 
 Effect Tests  -  Test_Effects.cpp
-
-                       Clipper - Demonstrate the signal clipper
-            FIR filter (buggy) - Play a narrow FIR band-pass filter
-                   All filters - Test different filter types
-                Biquad filters - Test biquad filter types
-             Filtered snd file - Dynamic BPF on a voice track
-                Dynamic filter - Play a dynamic BP filter on noise
-          Many dynamic filters - Many dynamic filtered-noise instruments
-                        Reverb - Show mono reverb on impulses
-                   Stereo-verb - Listen to the stereo reverb
-               Multi-tap delay - Play a multi-tap delay line
-             Split/Join filter - Play a splitter/joiner cross-over filter
-         Split/Join/Mix filter - Play a splitter/joiner/mixer cross-over filter
-              FanOut + Mixer 1 - Play a sound through fan-out + mixer
-              FanOut + Mixer 2 - Play a sound through fan-out + mixer
-                 Dynamic Mixer - Mix adding/dropping sources
-                Block up-sizer - Test the block resizer on up-sizing
-              Block down-sizer - Test the block resizer on down-sizing
+                             Clipper - Demonstrate the signal clipper
+                  FIR filter (buggy) - Play a narrow FIR band-pass filter
+                         All filters - Test different filter types
+                      Biquad filters - Test biquad filter types
+                   Filtered snd file - Dynamic BPF on a voice track
+                      Dynamic filter - Play a dynamic BP filter on noise
+                Many dynamic filters - Many dynamic filtered-noise instruments
+                              Reverb - Show mono reverb on impulses
+                         Stereo-verb - Listen to the stereo reverb
+                     Multi-tap delay - Play a multi-tap delay line
+                   Split/Join filter - Play a splitter/joiner cross-over filter
+               Split/Join/Mix filter - Play a splitter/joiner/mixer cross-over filter
+                    FanOut + Mixer 1 - Play a sound through fan-out + mixer
+                    FanOut + Mixer 2 - Play a sound through fan-out + mixer
+                       Dynamic Mixer - Mix adding/dropping sources
+                      Block up-sizer - Test the block resizer on up-sizing
+                    Block down-sizer - Test the block resizer on down-sizing
 
 Panner Tests  -  Test_Panners.cpp
-
-                 Stereo panner - Demonstrate the stero panner
-                         Mixer - Mixer with 4 sine inputs (slow sum-of-sines)
-                 Panning mixer - Play a panning stereo mixer
-          Bigger panning mixer - Test a mixer with many inputs
-                      Osc bank - Mix a bank of oscillators
-    HRTF horiz circles (buggy) - Test the HRTF-based binaural panner
-    HRTF axial circles (buggy) - Play a HRTF-panner with axial circles
-   HRTF median circles (buggy) - Play a HRTF-panner with median circles
-                    Ambisonics - Test the Ambisonic-based spatial panner
-                        Simple - Test the simple spatial panner
-                  VBAP (buggy) - Test the VBAP-based spatial panner
-                     Convolver - Test a convolver
+                       Stereo panner - Demonstrate the stero panner
+                               Mixer - Mixer with 4 sine inputs (slow sum-of-sines)
+                       Panning mixer - Play a panning stereo mixer
+                Bigger panning mixer - Test a mixer with many inputs
+                            Osc bank - Mix a bank of oscillators
+          HRTF horiz circles (buggy) - Test the HRTF-based binaural panner
+          HRTF axial circles (buggy) - Play a HRTF-panner with axial circles
+         HRTF median circles (buggy) - Play a HRTF-panner with median circles
+                          Ambisonics - Test the Ambisonic-based spatial panner
+                              Simple - Test the simple spatial panner
+                        VBAP (buggy) - Test the VBAP-based spatial panner
+                           Convolver - Test a convolver
 
 Control Tests  -  Test_Control.cpp
-
-                    Dump ports - Dump list of MIDI ports to stdout
-              MIDI file player - Play a MIDI file on an instrument library
-                    Dump input - Dump MIDI input from default device
-                    MIDI notes - Play MIDI notes (reads MIDI kbd)
-             OSC client/server - OSC client/server on a library
-                    OSC server - Start OSC server on a library
+                          Dump ports - Dump list of MIDI ports to stdout
+                    MIDI file player - Play a MIDI file on an instrument library
+                          Dump input - Dump MIDI input from default device
+                          MIDI notes - Play MIDI notes (reads MIDI kbd)
+                   OSC client/server - OSC client/server on a library
+                          OSC server - Start OSC server on a library
 
 Audio Tests  -  Test_Audio.cpp
-
-              Dump audio ports - Dump list of audio ports to stdout
-                 Echo audio in - Play the microphone input back the output
-                  Filter input - Apply a band-pass filter to the live input
-               Reverb on input - Add echo to the live input
-                  Input panner - Stereo panner on the live input
+                    Dump audio ports - Dump list of audio ports to stdout
+                       Echo audio in - Play the microphone input back the output
+                        Filter input - Apply a band-pass filter to the live input
+                     Reverb on input - Add echo to the live input
+                        Input panner - Stereo panner on the live input
 
 The source code for all these tests is in the Src/Tests directory (and in a "Test" 
 file group in the IDE); it's a good way to learn CSL to run the JUCE demo in an 
