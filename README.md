@@ -196,7 +196,7 @@ Take a look at the projects for Mac/Linux/Windows; we create a window with a cou
 of VU meters and oscilloscopes and combo boxes to select a test suite and specific test 
 to run. There's a demo GUI cheat sheet in the Doc folder.
 
-Here's the demo GUI's Menu List
+Here's the current demo GUI's Menu List
 
 Oscillator Tests  -  Test_Oscillators.cpp
 
@@ -317,7 +317,7 @@ file group in the IDE); it's a good way to learn CSL to run the JUCE demo in an
 XCode/Eclipse/VisualStudio debugger and set breakpoints in the test functions 
 you're interested in while using the GUI.
 
-## CSL main() functions
+## CSL main() functions 
 
 Note that there are several versions of the main() function; if you're not using
 one of the prepared project files, try compiling the library (most of the sources)
