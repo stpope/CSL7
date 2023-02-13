@@ -102,7 +102,7 @@ void dumpTestList() {
 		printf("\n%s  -  %s\n", testName, allTestFiles[i]);
 //		printf("</ul>\n<li>%s</li>\n<ul>", testName);
 		for (unsigned j = 0; gTestList[j].name != NULL; j++) {
-			printf("%24s	%s\n", gTestList[j].name, gTestList[j].comment);
+			printf("%30s  	%s\n", gTestList[j].name, gTestList[j].comment);
 //			printf("<li>%s -- %s</li>\n", gTestList[j].name, gTestList[j].comment);
 		}
 	}
@@ -311,7 +311,7 @@ CSLComponent::CSLComponent ()
 ////////////////////////////// Here we go! //////////////////////////////////////////
 	///
 					// CSL code starts here
-//	dumpTestList();					    // print out the demo/test menu
+	dumpTestList();					    // print out the demo/test menu
 
 					// initiali[zs]e the device manager so it picks a default device to use.
 	const juce::String error (mAudioDeviceManager.initialise(2,	    	// stereo input
